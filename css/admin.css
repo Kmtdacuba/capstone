@@ -1,0 +1,206 @@
+/*Login CSS*/
+
+
+.wrapper {
+    padding: 1%;
+    width: 80%;
+    margin: 0% auto;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 25px;
+    color: #21618C;
+  }
+  
+  h4 {
+    font-size: 20px;
+    color: #DC7633;
+  }
+  
+  .clear {
+    clear: both;
+    float: none;
+  }
+  
+  .table-full {
+    width: 100%;
+  }
+  
+  table tr th {
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+  }
+  
+  table tr td {
+    padding: 1%;
+  }
+  
+  .btn-primary {
+    color: #DC7633;
+    background-color: bisque;
+    padding: 1%;
+    border: 1px solid #DC7633;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .btn-primary:hover {
+    color: #DC7633;
+    background-color: #EDBB99;
+    border: none;
+  }
+  
+  .btn-second {
+    color: white;
+    background-color: #21618C;
+    padding: 1.5%;
+    border: 1px solid #0047AB;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    width: 50%;
+  }
+  
+  .btn-second:hover {
+    color: white;
+    background-color: #0047AB;
+    border: none;
+  }
+  
+  .btn-third {
+    color: white;
+    background-color: #D22B2B;
+    border: 1px solid #880808;
+    padding: 1.5%;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .btn-third:hover {
+    color: white;
+    background-color: #880808;
+    border: none;
+  }
+  
+  .success {
+    color: #21618C;
+  }
+  
+  .error {
+    color:#D22B2B;
+  }
+  /*Css For Main Content*/
+  
+  .main-content {
+    background-color: #526D82;
+    padding: 3% 0;
+  }
+  
+  .d_box {
+    width: 18%;
+    background-color: lightgray;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+  }
+  
+  /*Css for Footer Section*/
+  
+  .footer {
+    background-color: peachpuff;
+  }
+  
+  .footer a {
+    color: #21618C;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    color: blue;
+    font-weight: bold;
+  }
+  
+  /*Css For Add Admin Table*/
+  
+  .add_admin_content{
+    background-color: lightgray;
+    border: 1px solid #DC7633;
+    width: 80%;
+    padding: 1%;
+    margin: 1% auto;
+  }
+  
+  .add_admin_content h1 {
+    text-align: center;
+    margin: 2%;
+  }
+  
+  
+  .table-size input[type="text"] {
+    padding: 1%;
+    width: 100%;
+    margin: 1%;
+  }
+  
+  .table-size input[type="password"] {
+    width: 100%;
+    padding: 1%;
+    margin: 1%;
+  }
+  
+  .table-size input[type="submit"] {
+    width: 100%;
+    padding: 3%;
+    font-size: 16px;
+  }
+  
+  .table-size td {
+    font-weight: bold;
+    text-align: center;
+   
+  }
+  
+  .input-responsive{
+    width: 95%;
+    padding: 1%;
+    margin-bottom: 3%;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  /* Login */
+  
+  .login {
+    width: 40%;
+    margin: 10% auto;
+    padding: 1% auto;
+    background-color: wheat;
+  }
+  
+  .input-responsive{
+    width: 50%;
+    padding: 1%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #526D82;
+  }
+  
+  
+  /*Table*/
+  
+  .table-full {
+    width: 100%;
+  }
