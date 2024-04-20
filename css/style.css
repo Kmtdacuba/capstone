@@ -239,7 +239,7 @@
 @media only screen and (max-width: 500px) {
   .login {
     border: 1px solid gray;
-    width: 400px;
+    width: 100px;
     margin: 10%;
     padding: 2%;
     background-color: lightgray;
