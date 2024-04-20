@@ -241,6 +241,9 @@
     margin: 5% auto; /* Center the login box horizontally with more top and bottom margin */
     padding: 5%; /* Increase padding for smaller screens */
   }
+  h1 {
+    font-size: 12px;
+  }
 }
 
 
@@ -765,12 +768,11 @@ table tr th {
 
 .login {
   border: 1px solid gray;
-  width: 700px;
+  width: 90%;
   margin: 2 auto;
   padding: 2%;
   background-color: lightgray;
   border-radius: 10px;
-  overflow: hidden;
 }
 
 
