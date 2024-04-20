@@ -3,7 +3,7 @@
     // Start session
     session_start();
    // Create constant to store non repeating values
-   define('SITEURL','https://brgymanagment.online/');
+   define('SITEURL','http://localhost/capstone//');
    define('LOCALHOST', 'localhost: 3307');
    define('DB_USERNAME', 'root');
    define('DB_PASSWORD', '');

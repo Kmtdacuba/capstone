@@ -235,13 +235,14 @@
     display: none;
   }
 }
-
 @media (max-width: 400px) {
-  h1 {
+  .login {
     font-size: 20px;
+    width: 80%; /* Adjust width to fit smaller screens */
+    margin: 5px; /* Adjust margin for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
   }
 }
-
 
 
 /*Login CSS*/
@@ -766,7 +767,7 @@ table tr th {
 .login {
   border: 1px solid gray;
   width: 500px;
-  margin: 3%;
+  margin: 2%;
   padding: 2%;
   background-color: lightgray;
   border-radius: 10px;
