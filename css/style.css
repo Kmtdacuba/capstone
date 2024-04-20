@@ -236,7 +236,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   h1 {
     font-size: 20px;
   }
@@ -766,10 +766,11 @@ table tr th {
 .login {
   border: 1px solid gray;
   width: 500px;
-  margin: 5%;
+  margin: 3%;
   padding: 2%;
   background-color: lightgray;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 
