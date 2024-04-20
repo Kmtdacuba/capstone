@@ -24,6 +24,8 @@ include('config/connection.php');
         <div class="login">
 
             <h1>Login</h1>
+            <h1>Login</h1>
+            <h1>Login</h1>
             <?php 
     if(isset($_SESSION['login']))
     {
