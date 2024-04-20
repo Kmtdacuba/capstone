@@ -21,7 +21,7 @@ include('config/connection.php');
             </a>
         </div>
 
-        <div class="login">
+        <div class="login" style="@media only screen and (max-width: 600px) { width: 90%; }">
 
             <h1>Login</h1>
             <?php 

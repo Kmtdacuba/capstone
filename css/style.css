@@ -235,16 +235,7 @@
     display: none;
   }
 }
-@media (max-width: 480px) {
-  .login {
-    width: 90%; /* Adjust width to fit smaller screens */
-    margin: 5% auto; /* Center the login box horizontally with more top and bottom margin */
-    padding: 5%; /* Increase padding for smaller screens */
-  }
-  h1 {
-    font-size: 12px;
-  }
-}
+
 
 
 /*Login CSS*/
@@ -768,7 +759,7 @@ table tr th {
 
 .login {
   border: 1px solid gray;
-  width: 90%;
+  width: 400px;
   margin: 2 auto;
   padding: 2%;
   background-color: lightgray;
