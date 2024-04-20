@@ -235,12 +235,11 @@
     display: none;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .login {
-    font-size: 20px;
-    width: 80%; /* Adjust width to fit smaller screens */
-    margin: 5px; /* Adjust margin for smaller screens */
-    padding: 10px; /* Adjust padding for smaller screens */
+    width: 90%; /* Adjust width to fit smaller screens */
+    margin: 5% auto; /* Center the login box horizontally with more top and bottom margin */
+    padding: 5%; /* Increase padding for smaller screens */
   }
 }
 
@@ -766,8 +765,8 @@ table tr th {
 
 .login {
   border: 1px solid gray;
-  width: 500px;
-  margin: 2%;
+  width: 400px;
+  margin: 2 auto;
   padding: 2%;
   background-color: lightgray;
   border-radius: 10px;
