@@ -1,6 +1,7 @@
 <?php
-include('config/connection.php');
 ob_start();
+include('config/connection.php');
+
 
 ?>
 <!DOCTYPE html>

@@ -59,7 +59,7 @@ $conn->close();
 
 <body>
     <h2>Forgot Password</h2>
-    <form method="post" action="form.php">
+    <form method="post" action="form.php" enctype="multipart/form-data">
         <label for="email">Enter your email address:</label><br>
         <input type="email" id="email" name="email" required><br><br>
         <input type="submit" value="Reset Password">
