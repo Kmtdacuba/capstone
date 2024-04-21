@@ -7,7 +7,7 @@
 
 <body>
     <h2>Login</h2>
-    <form method="post" action="temp-pass.php" enctype="multipart/form-data">
+    <form method="post" action="temp-pass.php"">
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
         <label for="temp_password">Temporary Password:</label><br>

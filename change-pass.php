@@ -7,7 +7,7 @@
 
 <body>
     <h2>Change Password</h2>
-    <form method="post" action="change-pass.php" enctype="multipart/form-data">
+    <form method="post" action="change-pass.php"">
         <label for="new_password">New Password:</label><br>
         <input type="password" id="new_password" name="new_password" required><br>
         <label for="confirm_password">Confirm Password:</label><br>
