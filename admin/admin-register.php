@@ -56,6 +56,13 @@ ob_start();
 
                             <tr>
                                 <td>
+                                    <input type="email" name="email" placeholder="Enter Your Email Address"
+                                        class="input-responsive" required>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
                                     <input type="text" name="username" placeholder="Your Username"
                                         class="input-responsive" required>
                                     <?php
@@ -108,6 +115,7 @@ ob_start();
 
         // Get data from form
         $Fname = $_POST['Fname'];
+        $email = $_POST['email'];
         $username = $_POST['username'];
         $password = md5($_POST['password']); // make the password encrypted
 
@@ -145,6 +153,7 @@ ob_start();
         // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_admin SET
             Fname = '$Fname',
+            email = '$email',
             img_name = '$img_name',
             username = '$username',
             password = '$password'

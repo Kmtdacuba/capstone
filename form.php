@@ -1,5 +1,5 @@
 <?php
-include('../config/connection.php');
+include('config/connection.php');
 ?>
 <?php
 $host = 'smtp.hostinger.com';
@@ -38,6 +38,7 @@ if(isset($_POST['email'])) {
 
         if (mail($to, $subject, $message, $headers)) {
             echo "Temporary password sent to your email. Please check your inbox.";
+            header('location:'.SITEURL.'temp-pass.php');
         } else {
             echo "Failed to send temporary password. Please try again later.";
         }

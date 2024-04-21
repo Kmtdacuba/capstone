@@ -3,7 +3,7 @@ $user_id = $_SESSION['user_id'];
 ob_start();
 
 if(!isset($user_id)){
-   header('location:index.php');
+   header('http://localhost/capstone/index.php');
 };
 ?>
 <!DOCTYPE html>
