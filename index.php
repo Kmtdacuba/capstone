@@ -1,5 +1,6 @@
 <?php
 include('config/connection.php');
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,7 @@ include('config/connection.php');
                 <table class="table-size">
                     <!-- <img src="images/Login Form.png" alt="" width=100%> -->
                     <tr>
-                        <input type="text" name="username" placeholder="Enter Username" class="login-responsive"
+                        <input type="email" name="email" placeholder="Enter Email Address" class="login-responsive"
                             required>
                     </tr>
                     <br>
@@ -77,12 +78,12 @@ include('config/connection.php');
 <?php
 
 if(isset($_POST['submit'])){
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, md5($_POST['password']));
  
-    $select1 = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE username = '$username' AND password = '$password'") or die('query failed');
-    $select2 = mysqli_query($conn, "SELECT * FROM tbl_employee WHERE username = '$username' AND password = '$password'") or die('query failed');
-    $select3 = mysqli_query($conn, "SELECT * FROM tbl_resident WHERE username = '$username' AND password = '$password'") or die('query failed');
+    $select1 = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE email = '$email' AND password = '$password'") or die('query failed');
+    $select2 = mysqli_query($conn, "SELECT * FROM tbl_employee WHERE email = '$email' AND password = '$password'") or die('query failed');
+    $select3 = mysqli_query($conn, "SELECT * FROM tbl_resident WHERE email = '$email' AND password = '$password'") or die('query failed');
  
     if(mysqli_num_rows($select1) > 0){
        $row1 = mysqli_fetch_assoc($select1);
