@@ -21,10 +21,11 @@ include('config/connection.php');
             </a>
         </div>
 
-        <div class="login" style="@media only screen and (max-width: 600px) { width: 90%; }">
-
-            <h1>Login</h1>
-            <?php 
+        <div class="boxes">
+            <div class="inside-box">
+                <div class="login">
+                    <h1>Login</h1>
+                    <?php 
     if(isset($_SESSION['login']))
     {
         echo $_SESSION['login'];
@@ -42,32 +43,34 @@ include('config/connection.php');
 
 ?>
 
-            <form action="" method="POST" enctype="multipart/form-data">
-                <!-- Login table -->
-                <table class="table-size">
-                    <!-- <img src="images/Login Form.png" alt="" width=100%> -->
-                    <tr>
-                        <input type="text" name="username" placeholder="Enter Username" class="login-responsive"
-                            required>
-                    </tr>
-                    <br>
-                    <tr>
-                        <input type="password" name="password" placeholder="Enter Password" class="login-responsive"
-                            required>
-                    </tr>
-                    <tr>
-                        <a class="f" href="#">Forgot Password?</a>
-                    </tr>
-                    <br>
-                    <tr>
-                        <input type="submit" name="submit" value="Login" class="btn-second">
-                    </tr>
-                    <br><br>
-                    <tr>
-                        <a href="<?php echo SITEURL;?>residents/register.php" class="btn-reg">Register Now</a>
-                    </tr>
-                </table>
-            </form>
+                    <form action="" method=" POST" enctype="multipart/form-data">
+                        <!-- Login table -->
+                        <table class="table-size">
+                            <!-- <img src="images/Login Form.png" alt="" width=100%> -->
+                            <tr>
+                                <input type="text" name="username" placeholder="Enter Username" class="login-responsive"
+                                    required>
+                            </tr>
+                            <br>
+                            <tr>
+                                <input type="password" name="password" placeholder="Enter Password"
+                                    class="login-responsive" required>
+                            </tr>
+                            <tr>
+                                <a class="f" href="forgot-pass.php">Forgot Password?</a>
+                            </tr>
+                            <br>
+                            <tr>
+                                <input type="submit" name="submit" value="Login" class="btn-second">
+                            </tr>
+                            <br><br>
+                            <tr>
+                                <a href="<?php echo SITEURL;?>residents/register.php" class="btn-reg">Register Now</a>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
         </div>
     </center>
 
