@@ -1,6 +1,12 @@
 <?php
 include('config/connection.php');
 ob_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

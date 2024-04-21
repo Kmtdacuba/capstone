@@ -113,7 +113,7 @@
         $Lname = $_POST['Lname'];
         $Birthday = date("Y-m-d");
         $username = $_POST['username'];
-        $password = md5($_POST['password']); // make the password encrypted
+        $password = $_POST['password'];
 
         //Upload the image
        if(isset($_FILES['image']['name'])) {
