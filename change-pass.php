@@ -19,13 +19,7 @@
 
 </html>
 <?php
-session_start();
 
-// Check if user is logged in
-if (!isset($_SESSION['email'])) {
-    header("Location: index.php");
-    exit();
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST['new_password'];
