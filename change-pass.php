@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Database connection and query execution code here...
 
         echo "Password changed successfully!";
-        header('location:'.SITEURL.'index.php');
+        header('location: index.php');
     } else {
         echo "Passwords do not match.";
     }

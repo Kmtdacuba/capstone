@@ -33,12 +33,12 @@ if(isset($_POST['email'])) {
         // Send the temporary password via email
         $to = $email;
         $subject = 'Password Reset';
-        $message = 'Your temporary password is: ' . $temp_password . '. Please use this password to log in and change your password.';
+        $message = 'Your temporary password is: <b>' . $temp_password . '</b>. Please use this password to log in and change your password.';
         $headers = 'From: ' . $from_name . ' <' . $from_email . '>';
 
         if (mail($to, $subject, $message, $headers)) {
             echo "Temporary password sent to your email. Please check your inbox.";
-            header('location:'.SITEURL.'temp-pass.php');
+            header('location: temp-pass.php');
         } else {
             echo "Failed to send temporary password. Please try again later.";
         }
