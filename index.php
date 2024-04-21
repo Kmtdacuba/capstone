@@ -81,7 +81,7 @@ include('config/connection.php');
 
 if(isset($_POST['submit'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $password = mysqli_real_escape_string($conn, password_hash($_POST['password']));
  
     $select1 = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE email = '$email' AND password = '$password'") or die('query failed');
     $select2 = mysqli_query($conn, "SELECT * FROM tbl_employee WHERE email = '$email' AND password = '$password'") or die('query failed');
@@ -89,7 +89,7 @@ if(isset($_POST['submit'])){
  
     if(mysqli_num_rows($select1) > 0){
        $row1 = mysqli_fetch_assoc($select1);
-       $_SESSION['user_id'] = $row1['id'];
+       $_SESSION['use r_id'] = $row1['id'];
        $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
        header('location:'. SITEURL.'admin/dashboard.php');
     } 
