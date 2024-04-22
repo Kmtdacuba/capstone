@@ -7,7 +7,7 @@
 
 <body>
     <h2>Login</h2>
-    <form method="post" action="temp-pass.php"">
+    <form method="post" action="temp-pass.php">
         <label for=" email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
         <label for="temp_password">Temporary Password:</label><br>
@@ -30,13 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result1 = $conn->query($sql1);
 
     if ($result1->num_rows > 0) {
-        $user = $result1->fetch_assoc();
-        $hashed_password1 = $user['password'];
+        $user1 = $result1->fetch_assoc();
+        $hashed_password1 = $user1['password'];
 
         // Verify the temporary password against the hashed password
         if (password_verify($temp_password1, $hashed_password1)) {
             // Temporary password matches, set session variables and redirect to change password page
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_id'] = $user1['id'];
             header("Location: change-pass.php");
             exit();
         } else {
@@ -56,13 +56,13 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result2 = $conn->query($sql1);
 
     if ($result2->num_rows > 0) {
-        $user = $result2->fetch_assoc();
-        $hashed_password2 = $user['password'];
+        $user2 = $result2->fetch_assoc();
+        $hashed_password2 = $user2['password'];
 
         // Verify the temporary password against the hashed password
         if (password_verify($temp_password2, $hashed_password2)) {
             // Temporary password matches, set session variables and redirect to change password page
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_id'] = $user2['id'];
             header("Location: change-pass.php");
             exit();
         } else {
@@ -79,16 +79,16 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Retrieve the user from the database using the email - EMPLOYEE
     $sql3 = "SELECT * FROM tbl_resident WHERE email='$email'";
-    $result2 = $conn->query($sql1);
+    $result3 = $conn->query($sql1);
 
     if ($result3->num_rows > 0) {
-        $user = $result3->fetch_assoc();
-        $hashed_password23= $user['password'];
+        $user3 = $result3->fetch_assoc();
+        $hashed_password23= $user3['password'];
 
         // Verify the temporary password against the hashed password
         if (password_verify($temp_password3, $hashed_password3)) {
             // Temporary password matches, set session variables and redirect to change password page
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_id'] = $user3['id'];
             header("Location: change-pass.php");
             exit();
         } else {
