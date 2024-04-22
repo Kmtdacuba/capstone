@@ -54,7 +54,7 @@ include('config/connection.php');
                             required>
                     </tr>
                     <tr>
-                        <a class="f" href="#">Forgot Password?</a>
+                        <a class="f" href="form.php">Forgot Password?</a>
                     </tr>
                     <br>
                     <tr>
