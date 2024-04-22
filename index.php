@@ -39,10 +39,6 @@ include('config/connection.php');
     echo $_SESSION['add']; // display session message
     unset($_SESSION['add']); // remove session message
     }
-    if(isset($_SESSION['change'])) {
-        echo $_SESSION['change']; // display session message
-        unset($_SESSION['achangedd']); // remove session message
-        }
 
 ?>
 
@@ -89,21 +85,21 @@ if(isset($_POST['submit'])){
     if(mysqli_num_rows($select1) > 0){
        $row = mysqli_fetch_assoc($select1);
        $_SESSION['user_id'] = $row['id'];
-       $_SESSION['login'] = " <div class='success text-center'></div>";
+       $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
        header('location:'. SITEURL.'admin/dashboard.php');
     } 
  
     elseif(mysqli_num_rows($select2) > 0){
          $row = mysqli_fetch_assoc($select2);
          $_SESSION['user_id'] = $row['id'];
-         $_SESSION['login'] = " <div class='success text-center'></div>";
+         $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
          header('location:'. SITEURL.'employee/dashboard.php');
          } 
  
      elseif(mysqli_num_rows($select3) > 0){
          $row = mysqli_fetch_assoc($select3);
          $_SESSION['user_id'] = $row['id'];
-         $_SESSION['login'] = " <div class='success text-center'></div>";
+         $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
          header('location:'. SITEURL.'residents/dashboard.php');
          } 
     
