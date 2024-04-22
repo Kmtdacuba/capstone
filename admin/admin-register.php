@@ -117,8 +117,8 @@ ob_start();
         $Fname = $_POST['Fname'];
         $email = $_POST['email'];
         $username = $_POST['username'];
-        $password = $_POST['password']; // make the password encrypted
-
+        $password = md5($_POST['password']); // make the password encrypted
+        
        //Upload the image
        if(isset($_FILES['image']['name'])) {
         $img_name = $_FILES['image']['name'];

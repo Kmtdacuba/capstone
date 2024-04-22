@@ -61,7 +61,14 @@
 
                             <tr>
                                 <td>
-                                    <label class="date" for="">Birthday: </label>
+                                    <input type="email" name="email" placeholder="Email Address"
+                                        class="input-responsive" required>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="b_date" for="">Birthday: </label>
                                     <input type="date" id="Birthday" name="Bithrday" required>
                                 </td>
                             </tr>
@@ -111,10 +118,11 @@
         $Fname = $_POST['Fname'];
         $Mname = $_POST['Mname'];
         $Lname = $_POST['Lname'];
+        $email = $_POST['email'];
         $Birthday = date("Y-m-d");
         $username = $_POST['username'];
-        $password = $_POST['password'];
-
+        $password = md5($_POST['password']); // make the password encrypted
+        
         //Upload the image
        if(isset($_FILES['image']['name'])) {
         $img_name = $_FILES['image']['name'];
@@ -152,6 +160,7 @@
             Fname = '$Fname',
             Mname = '$Mname',
             Lname = '$Lname',
+            email = '$email',
             Birthday = '$Birthday',
             username = '$username',
             password = '$password'

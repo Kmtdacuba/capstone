@@ -1,5 +1,4 @@
 <?php
-ob_start();
 include('config/connection.php');
 ?>
 <!DOCTYPE html>
@@ -46,10 +45,8 @@ include('config/connection.php');
             <form action="" method="POST" enctype="multipart/form-data">
                 <!-- Login table -->
                 <table class="table-size">
-                    <!-- <img src="images/Login Form.png" alt="" width=100%> -->
                     <tr>
-                        <input type="email" name="email" placeholder="Enter Email Address" class="login-responsive"
-                            required>
+                        <input type="email" name="email" placeholder="Enter Username" class="login-responsive" required>
                     </tr>
                     <br>
                     <tr>
@@ -57,7 +54,7 @@ include('config/connection.php');
                             required>
                     </tr>
                     <tr>
-                        <a class="f" href="form.php">Forgot Password?</a>
+                        <a class="f" href="#">Forgot Password?</a>
                     </tr>
                     <br>
                     <tr>
@@ -93,15 +90,15 @@ if(isset($_POST['submit'])){
     } 
  
     elseif(mysqli_num_rows($select2) > 0){
-         $row2 = mysqli_fetch_assoc($select2);
-         $_SESSION['user_id'] = $row2['id'];
+         $row = mysqli_fetch_assoc($select2);
+         $_SESSION['user_id'] = $row['id'];
          $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
          header('location:'. SITEURL.'employee/dashboard.php');
          } 
  
      elseif(mysqli_num_rows($select3) > 0){
-         $row3 = mysqli_fetch_assoc($select3);
-         $_SESSION['user_id'] = $row3['id'];
+         $row = mysqli_fetch_assoc($select3);
+         $_SESSION['user_id'] = $row['id'];
          $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
          header('location:'. SITEURL.'residents/dashboard.php');
          } 

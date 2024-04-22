@@ -172,7 +172,7 @@ function checkForm() {
         $email = $_POST['email'];
         $a = $_POST['a'];
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']); // make the password encrypted
         $date_time = date("Y-m-d h:i:sa"); //time and date 
 
          //Upload the image
