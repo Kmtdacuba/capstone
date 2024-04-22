@@ -1,11 +1,9 @@
-<?php include('../config/connection.php');
+<?php
 ob_start();
+include('../config/connection.php');
+
 
 $user_id = $_SESSION['user_id'];
-
-if(!isset($user_id)){
-   header('http://localhost/capstone/index.php');
-};
 
 ?>
 <!DOCTYPE html>

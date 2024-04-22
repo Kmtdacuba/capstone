@@ -8,7 +8,7 @@
 <body>
     <h2>Change Password</h2>
     <form method="post" action="change-pass.php"">
-        <label for="new_password">New Password:</label><br>
+        <label for=" new_password">New Password:</label><br>
         <input type="password" id="new_password" name="new_password" required><br>
         <label for="confirm_password">Confirm Password:</label><br>
         <input type="password" id="confirm_password" name="confirm_password" required><br><br>
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify if passwords match
     if ($new_password === $confirm_password) {
         // Hash the new password
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+        $hashed_password =  md5($new_password, PASSWORD_DEFAULT);
 
         // Update password in the database
         $email = $_SESSION['email'];

@@ -26,7 +26,7 @@ if(isset($_POST['email'])) {
         $temp_password = generateRandomPassword();
 
         // Update the user's password in the database
-        $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
+        $hashed_password =  md5($temp_password, PASSWORD_DEFAULT);
         $sql_update = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
         $conn->query($sql_update);
 
