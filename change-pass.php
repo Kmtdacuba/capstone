@@ -35,8 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql1 = "UPDATE tbl_admin SET password='$hashed_password1' WHERE email='$email'";
 
         // Database connection and query execution code here...
-
-        echo "Password changed successfully!";
+        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
         header('location: index.php');
     } else {
         echo "Passwords do not match.";
@@ -59,7 +58,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Database connection and query execution code here...
 
-        echo "Password changed successfully!";
+        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
         header('location: index.php');
     } else {
         echo "Passwords do not match.";
@@ -80,8 +79,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql3 = "UPDATE tbl_employee SET password='$hashed_password3' WHERE email='$email'";
 
         // Database connection and query execution code here...
-
-        echo "Password changed successfully!";
+        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
         header('location: index.php');
     } else {
         echo "Passwords do not match.";
