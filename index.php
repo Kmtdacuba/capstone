@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
  
     if(mysqli_num_rows($select1) > 0){
        $row1 = mysqli_fetch_assoc($select1);
-       $_SESSION['use r_id'] = $row1['id'];
+       $_SESSION['user_id'] = $row1['id'];
        $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
        header('location:'. SITEURL.'admin/dashboard.php');
     } 

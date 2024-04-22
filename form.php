@@ -3,9 +3,9 @@ include('config/connection.php');
 ?>
 <?php
 $host = 'smtp.hostinger.com';
-$port = '465'; // Port number may vary, check Hostinger's documentation
+$port = ' 465'; // Port number may vary, check Hostinger's documentation
 $username_smtp = 'info@brgymanagment.online';
-$password_smtp = 'Barangay#188';
+$password_smtp = 'Barangay188#';
 $from_email = 'info@brgymanagment.online';
 $from_name = 'Barangay 188 Tala Caloocan City'; 
 

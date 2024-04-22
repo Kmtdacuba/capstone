@@ -173,6 +173,7 @@ function checkForm() {
         $a = $_POST['a'];
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $date_time = date("Y-m-d h:i:sa"); //time and date 
 
          //Upload the image
        if(isset($_FILES['image']['name'])) {
@@ -230,7 +231,8 @@ function checkForm() {
         email = '$email',
         a = '$a',
         username = '$username',
-        password = '$password'
+        password = '$password',
+        date_time = '$date_time'
     ";
     // EXECUTE QUERY AND SAVE DATA IN DATABASE
    $res = mysqli_query($conn, $sql) or die(mysqli_error());
