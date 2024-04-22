@@ -19,7 +19,7 @@ if(isset($_POST['email'])) {
 $email = $_POST['email'];
 
 // Check if the email exists in the database - ADMIN
-$sql = "SELECT * FROM tbl_admin WHERE email = '$email'";
+$sql1 = "SELECT * FROM tbl_admin WHERE email = '$email'";
 $result1 = $conn->query($sql1);
 
 // Check if the email exists in the database - EMPLOYEE
@@ -38,13 +38,14 @@ $temp_password = generateRandomPassword();
 // Update the user's password in the database
 $hashed_password = md5($temp_password, PASSWORD_DEFAULT);
 $sql_update1 = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
-$conn->query($sql_update1);
-
+$conn->query($sql_update1); ?>
+<center>
+    <?php
 // Send the temporary password via email
 $to = $email;
 $subject = 'Password Reset';
-$message = 'Your temporary password is: <span style="font-size: larger; font-weight: bold;">' . $temp_password . '</span>
- Please use this password to log in and change your password.';
+$message = 'Your temporary password is: ' . $temp_password . '
+Please use this password to log in and change your password.';
 $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
     echo "Temporary password sent to your email. Please check your inbox." ; 
     header('location: temp-pass.php'); 
@@ -66,8 +67,9 @@ elseif ($result2->num_rows > 0) {
     // Send the temporary password via email
     $to = $email;
     $subject = 'Password Reset';
-    $message = 'Your temporary password is: <span style="font-size: larger; font-weight: bold;">' . $temp_password . '</span>
-     Please use this password to log in and change your password.';
+    $message = 'Your temporary password is: ' . $temp_password . '
+    Please use this password to log in and change your password.';
+    
     $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
         echo "Temporary password sent to your email. Please check your inbox." ; 
         header('location: temp-pass.php'); 
@@ -88,8 +90,8 @@ elseif ($result3->num_rows > 0) {
     // Send the temporary password via email
     $to = $email;
     $subject = 'Password Reset';
-    $message = 'Your temporary password is: <span style="font-size: larger; font-weight: bold;">' . $temp_password . '</span>
-     Please use this password to log in and change your password.';
+    $message = 'Your temporary password is: ' . $temp_password . '
+    Please use this password to log in and change your password.';
     $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
         echo "Temporary password sent to your email. Please check your inbox." ; 
         header('location: temp-pass.php'); 
@@ -100,11 +102,13 @@ else {
     echo "Email not found in our records." ; 
 } 
 
-
-} 
-$conn->close();
 ?>
+</center>
+<?php
 
+    }
+    $conn->close();
+    ?>
 <!DOCTYPE html>
 <html>
 
