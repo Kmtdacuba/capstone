@@ -784,13 +784,12 @@ table tr th {
   height: 100vh;
   
 }
-
 .inside-box {
   width: 100%;
 }
 .login {
   border: 1px solid gray;
-  width: 33%;
+  width: 90%;
   margin: 2 auto;
   padding: 2%;
   background-color: lightgray;

@@ -79,8 +79,8 @@ function checkForm() {
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" id="Lname" placeholder="Last Name" onkeyup="checkForm()"
-                                        class="input-responsive" required>
+                                    <input type="text" id="Lname" name="Lname" placeholder="Last Name"
+                                        onkeyup="checkForm()" class="input-responsive" required>
                                 </td>
                             </tr>
                             <input class="file" type="hidden" name="image">
