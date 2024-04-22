@@ -85,21 +85,21 @@ if(isset($_POST['submit'])){
     if(mysqli_num_rows($select1) > 0){
        $row = mysqli_fetch_assoc($select1);
        $_SESSION['user_id'] = $row['id'];
-       $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
+       $_SESSION['login'] = " <div class='success text-center'></div>";
        header('location:'. SITEURL.'admin/dashboard.php');
     } 
  
     elseif(mysqli_num_rows($select2) > 0){
          $row = mysqli_fetch_assoc($select2);
          $_SESSION['user_id'] = $row['id'];
-         $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
+         $_SESSION['login'] = " <div class='success text-center'></div>";
          header('location:'. SITEURL.'employee/dashboard.php');
          } 
  
      elseif(mysqli_num_rows($select3) > 0){
          $row = mysqli_fetch_assoc($select3);
          $_SESSION['user_id'] = $row['id'];
-         $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
+         $_SESSION['login'] = " <div class='success text-center'></div>";
          header('location:'. SITEURL.'residents/dashboard.php');
          } 
     

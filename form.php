@@ -33,19 +33,19 @@ $result3 = $conn->query($sql3);
 // FOR ADMIN
 if ($result1->num_rows > 0) {
 // Generate a temporary password
-$temp_password = generateRandomPassword();
+$temp_password1 = generateRandomPassword();
 
 // Update the user's password in the database
-$hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
-$sql_update1 = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
+$hashed_password1 = md5($temp_password1, PASSWORD_DEFAULT);
+$sql_update1 = "UPDATE tbl_admin SET password = '$hashed_password1' WHERE email = '$email'";
 $conn->query($sql_update1); 
 
 // Send the temporary password via email
-$to = $email;
-$subject = 'Password Reset';
-$message = 'Your temporary password is: ' . $temp_password . '
+$to1 = $email;
+$subject1 = 'Password Reset';
+$message1 = 'Your temporary password is: ' . $temp_password1 . '
 Please use this password to log in and change your password.';
-$headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
+$headers1 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to1, $subject1, $message1, $headers1)) {
     echo "Temporary password sent to your email. Please check your inbox." ; 
     header('location: temp-pass.php'); 
 } else {
@@ -56,20 +56,20 @@ $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $sub
 
 elseif ($result2->num_rows > 0) {
     // Generate a temporary password
-    $temp_password = generateRandomPassword();
+    $temp_password2 = generateRandomPassword();
     
     // Update the user's password in the database
-    $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
-    $sql_update2 = "UPDATE tbl_employee SET password = '$hashed_password' WHERE email = '$email'";
+    $hashed_password2 = md5($temp_password2, PASSWORD_DEFAULT);
+    $sql_update2 = "UPDATE tbl_employee SET password = '$hashed_password2' WHERE email = '$email'";
     $conn->query($sql_update2);
     
     // Send the temporary password via email
-    $to = $email;
-    $subject = 'Password Reset';
-    $message = 'Your temporary password is: ' . $temp_password . '
+    $to2 = $email;
+    $subject2 = 'Password Reset';
+    $message2 = 'Your temporary password is: ' . $temp_password2 . '
     Please use this password to log in and change your password.';
     
-    $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
+    $headers2 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to2, $subject2, $message2, $headers2)) {
         echo "Temporary password sent to your email. Please check your inbox." ; 
         header('location: temp-pass.php'); 
     } else {
@@ -79,19 +79,19 @@ elseif ($result2->num_rows > 0) {
     // FOR RESIDENTS
 elseif ($result3->num_rows > 0) {
     // Generate a temporary password
-    $temp_password = generateRandomPassword();
+    $temp_password3 = generateRandomPassword();
     
     // Update the user's password in the database
-    $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
-    $sql_update3 = "UPDATE tbl_employee SET password = '$hashed_password' WHERE email = '$email'";
+    $hashed_password3 = md5($temp_password3, PASSWORD_DEFAULT);
+    $sql_update3 = "UPDATE tbl_employee SET password = '$hashed_password3' WHERE email = '$email'";
     $conn->query($sql_update3);
     
     // Send the temporary password via email
-    $to = $email;
-    $subject = 'Password Reset';
-    $message = 'Your temporary password is: ' . $temp_password . '
+    $to3 = $email;
+    $subject3 = 'Password Reset';
+    $message3 = 'Your temporary password is: ' . $temp_password3 . '
     Please use this password to log in and change your password.';
-    $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
+    $headers3 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to3, $subject3, $message3, $headers3)) {
         echo "Temporary password sent to your email. Please check your inbox." ; 
         header('location: temp-pass.php'); 
     } else {
