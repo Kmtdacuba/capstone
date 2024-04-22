@@ -36,11 +36,10 @@ if ($result1->num_rows > 0) {
 $temp_password = generateRandomPassword();
 
 // Update the user's password in the database
-$hashed_password = md5($temp_password, PASSWORD_DEFAULT);
+$hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
 $sql_update1 = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
-$conn->query($sql_update1); ?>
-<center>
-    <?php
+$conn->query($sql_update1); 
+
 // Send the temporary password via email
 $to = $email;
 $subject = 'Password Reset';
@@ -60,7 +59,7 @@ elseif ($result2->num_rows > 0) {
     $temp_password = generateRandomPassword();
     
     // Update the user's password in the database
-    $hashed_password = md5($temp_password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
     $sql_update2 = "UPDATE tbl_employee SET password = '$hashed_password' WHERE email = '$email'";
     $conn->query($sql_update2);
     
@@ -83,7 +82,7 @@ elseif ($result3->num_rows > 0) {
     $temp_password = generateRandomPassword();
     
     // Update the user's password in the database
-    $hashed_password = md5($temp_password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
     $sql_update3 = "UPDATE tbl_employee SET password = '$hashed_password' WHERE email = '$email'";
     $conn->query($sql_update3);
     
@@ -102,9 +101,6 @@ else {
     echo "Email not found in our records." ; 
 } 
 
-?>
-</center>
-<?php
 
     }
     $conn->close();
