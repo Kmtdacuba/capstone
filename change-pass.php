@@ -67,7 +67,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password3 = $_POST['new_password3'];
+    $new_password13 = $_POST['new_password3'];
     $confirm_password3 = $_POST['confirm_password3'];
 
     // Verify if passwords match
