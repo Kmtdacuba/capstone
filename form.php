@@ -104,16 +104,10 @@ if(isset($_POST['email'])) {
 $email = $_POST['email'];
 
 // Check if the email exists in the database - ADMIN
-$sql1 = "SELECT * FROM tbl_admin WHERE email = '$email'";
-$result1 = $conn->query($sql1);
+$sql = "SELECT * FROM tbl_admin WHERE email = '$email'";
+$result = $conn->query($sql1);
 
-// Check if the email exists in the database - EMPLOYEE
-$sql2 = "SELECT * FROM tbl_employee WHERE email = '$email'";
-$result2 = $conn->query($sql2);
 
-// Check if the email exists in the database - RESIDENTS
-$sql3 = "SELECT * FROM tbl_resident WHERE email = '$email'";
-$result3 = $conn->query($sql3);
 
 // FOR ADMIN
 if ($result1->num_rows > 0) {
@@ -121,16 +115,16 @@ if ($result1->num_rows > 0) {
 $temp_password = generateRandomPassword();
 
 // Update the user's password in the database
-$hashed_password1 = md5($temp_password, PASSWORD_DEFAULT);
-$sql_update1 = "UPDATE tbl_admin SET password = '$hashed_password1' WHERE email = '$email'";
-$conn->query($sql_update1); 
+$hashed_password = password_hash($temp_password, PASSWORD_DEFAULT);
+$sql_update = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
+$conn->query($sql_update); 
 
 // Send the temporary password via email
-$to1 = $email;
-$subject1 = 'Password Reset';
-$message1 = 'Your temporary password is: ' . $temp_password . '
+$to = $email;
+$subject = 'Password Reset';
+$message = 'Your temporary password is: ' . $temp_password . '
 Please use this temporary password to log in and change your password.';
-$headers1 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to1, $subject1, $message1, $headers1)) {
+$headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
 
     $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
        header('location:'. SITEURL.'temp-pass.php');
@@ -140,59 +134,7 @@ $headers1 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to1, $s
  } 
 } 
  
-// FOR EMPLOYEE
 
-elseif ($result2->num_rows > 0) {
-    // Generate a temporary password
-    $temp_password = generateRandomPassword();
-    
-    // Update the user's password in the database
-    $hashed_password2 = password_hash($temp_password, PASSWORD_DEFAULT);
-    $sql_update2 = "UPDATE tbl_employee SET password = '$hashed_password2' WHERE email = '$email'";
-    $conn->query($sql_update2);
-    
-    // Send the temporary password via email
-    $to2 = $email;
-    $subject2 = 'Password Reset';
-    $message2 = 'Your temporary password is: ' . $temp_password . '
-    Please use this password to log in and change your password.';
-    
-    $headers2 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to2, $subject2, $message2, $headers2)) {
-        $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
-        header('location:'. SITEURL.'temp-pass.php');
-    } else {
-        $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
-        header('location:'. SITEURL.'form.php');
-    } 
-}
-
-    // FOR RESIDENTS
-elseif ($result3->num_rows > 0) {
-    // Generate a temporary password
-    $temp_password = generateRandomPassword();
-    
-    // Update the user's password in the database
-    $hashed_password3 = password_hash($temp_password, PASSWORD_DEFAULT);
-    $sql_update3 = "UPDATE tbl_employee SET password = '$hashed_password3' WHERE email = '$email'";
-    $conn->query($sql_update3);
-    
-    // Send the temporary password via email
-    $to3 = $email;
-    $subject3 = 'Password Reset';
-    $message3 = 'Your temporary password is: ' . $temp_password . '
-    Please use this password to log in and change your password.';
-    $headers3 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to3, $subject3, $message3, $headers3)) {
-        $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
-        header('location:'. SITEURL.'temp-pass.php');
-    } else {
-        $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
-        header('location:'. SITEURL.'form.php');
-    }
-    } 
-else {
-    $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
-    header('location:'. SITEURL.'form.php');
-} 
     }
     $conn->close();
     ?>
