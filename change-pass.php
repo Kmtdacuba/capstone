@@ -65,8 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify if passwords match
     if ($new_password === $confirm_password1) {
         // Hash the new password
-        $hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
-
+        $hashed_password =  md5($new_password, PASSWORD_DEFAULT);
         // Update password in the database
         $email = $_SESSION['email'];
         $sql1 = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
