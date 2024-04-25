@@ -147,7 +147,7 @@ elseif ($result2->num_rows > 0) {
     $temp_password = generateRandomPassword();
     
     // Update the user's password in the database
-    $hashed_password2 = md5($temp_password, PASSWORD_DEFAULT);
+    $hashed_password2 = password_hash($temp_password, PASSWORD_DEFAULT);
     $sql_update2 = "UPDATE tbl_employee SET password = '$hashed_password2' WHERE email = '$email'";
     $conn->query($sql_update2);
     
@@ -172,7 +172,7 @@ elseif ($result3->num_rows > 0) {
     $temp_password = generateRandomPassword();
     
     // Update the user's password in the database
-    $hashed_password3 = md5($temp_password, PASSWORD_DEFAULT);
+    $hashed_password3 = password_hash($temp_password, PASSWORD_DEFAULT);
     $sql_update3 = "UPDATE tbl_employee SET password = '$hashed_password3' WHERE email = '$email'";
     $conn->query($sql_update3);
     

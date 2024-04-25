@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify if passwords match
     if ($new_password1 === $confirm_password1) {
         // Hash the new password
-        $hashed_password1 =  md5($new_password1, PASSWORD_DEFAULT);
+        $hashed_password1 =  password_hash($new_password1, PASSWORD_DEFAULT);
 
         // Update password in the database
         $email = $_SESSION['email'];
@@ -88,7 +88,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify if passwords match
     if ($new_password2 === $confirm_password2) {
         // Hash the new password
-        $hashed_password2 =  md5($new_password2, PASSWORD_DEFAULT);
+        $hashed_password2 =  password_hash($new_password2, PASSWORD_DEFAULT);
 
         // Update password in the database
         $email = $_SESSION['email'];
@@ -111,7 +111,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify if passwords match
     if ($new_password3 === $confirm_password3) {
         // Hash the new password
-        $hashed_password3 =  md5($new_password3, PASSWORD_DEFAULT);
+        $hashed_password3 =  password_hash($new_password3, PASSWORD_DEFAULT);
 
         // Update password in the database
         $email = $_SESSION['email'];
