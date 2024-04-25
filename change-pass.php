@@ -2,18 +2,35 @@
 <html>
 
 <head>
-    <title>Change Password</title>
+    <title>Barangay 188 Tala Caloocan City</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
-<body>
-    <h2>Change Password</h2>
-    <form method="post" action="change-pass.php">
-        <label for=" new_password">New Password:</label><br>
-        <input type="password" id="new_password" name="new_password" required><br>
-        <label for="confirm_password">Confirm Password:</label><br>
-        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-        <input type="submit" value="Change Password">
-    </form>
+<body class="bg">
+    <div>
+        <a href="">
+            <img src="images/Logo Name.png" alt="" width=100%>
+        </a>
+    </div>
+    <center>
+        <div class="login">
+            <h1>Change Password</h1>
+            <form method="post" action="change-pass.php">
+                <tr>
+                    <input class="login-responsive" type="password" id="new_password" name="new_password"
+                        placeholder="Input New Password" required><br>
+                </tr>
+                <tr>
+                    <input class="login-responsive" type="password" id="confirm_password" name="confirm_password"
+                        placeholder="Confirm Your Password" required><br>
+                </tr>
+                <tr>
+                    <input class="btn-second" type="submit" value="Change Password">
+                </tr>
+            </form>
+        </div>
+    </center>
 
 </body>
 
@@ -44,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 /* FOR EMPLOYEE */
 elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password12 = $_POST['new_password2'];
+    $new_password2 = $_POST['new_password2'];
     $confirm_password2 = $_POST['confirm_password2'];
 
     // Verify if passwords match
@@ -58,7 +75,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Database connection and query execution code here...
 
-        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
+        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully! Login now.</div>";
         header('location: index.php');
     } else {
         echo "Passwords do not match.";
@@ -76,7 +93,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Update password in the database
         $email = $_SESSION['email'];
-        $sql3 = "UPDATE tbl_employee SET password='$hashed_password3' WHERE email='$email'";
+        $sql3 = "UPDATE tbl_resident SET password='$hashed_password3' WHERE email='$email'";
 
         // Database connection and query execution code here...
         $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
