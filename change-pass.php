@@ -30,6 +30,11 @@ include('config/connection.php');
                     echo $_SESSION['change'];
                     unset($_SESSION['change']);
                 }
+                if(isset($_SESSION['temp']))
+                {
+                    echo $_SESSION['temp'];
+                    unset($_SESSION['temp']);
+                }
                 ?>
             <form method="post" action="change-pass.php">
                 <tr>
