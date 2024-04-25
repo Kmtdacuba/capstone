@@ -105,12 +105,12 @@ $email = $_POST['email'];
 
 // Check if the email exists in the database - ADMIN
 $sql = "SELECT * FROM tbl_admin WHERE email = '$email'";
-$result = $conn->query($sql1);
+$result = $conn->query($sql);
 
 
 
 // FOR ADMIN
-if ($result1->num_rows > 0) {
+if ($result->num_rows > 0) {
 // Generate a temporary password
 $temp_password = generateRandomPassword();
 
