@@ -55,11 +55,6 @@ include('config/connection.php');
     echo $_SESSION['add']; // display session message
     unset($_SESSION['add']); // remove session message
     }
-if(isset($_SESSION['change']))
-{
-    echo $_SESSION['change'];
-    unset($_SESSION['change']);
-}
 
             ?>
 

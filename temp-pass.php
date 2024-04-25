@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($temp_password, $hashed_password1)) {
             // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['user_id'] = $user1['id'];
-            $_SESSION['change'] = "<div class='success text-center'>Check email, temporary password sent to your email</div>";
+            $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
             header('location:'. SITEURL.'change-pass.php');
             exit; // Ensure no further execution of the script after redirection
         } else {
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($temp_password, $hashed_password1)) {
             // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['user_id'] = $user1['id'];
-            $_SESSION['change'] = "<div class='success text-center'>Check email, temporary password sent to your email</div>";
+            $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
             header('location:'. SITEURL.'change-pass.php');
             exit; // Ensure no further execution of the script after redirection
         } else {
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($temp_password, $hashed_password1)) {
             // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['user_id'] = $user1['id'];
-            $_SESSION['change'] = "<div class='success text-center'>Check email, temporary password sent to your email</div>";
+            $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
             header('location:'. SITEURL.'change-pass.php');
             exit; // Ensure no further execution of the script after redirection
         } else {

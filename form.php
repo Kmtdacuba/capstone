@@ -132,7 +132,7 @@ $message1 = 'Your temporary password is: ' . $temp_password . '
 Please use this temporary password to log in and change your password.';
 $headers1 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to1, $subject1, $message1, $headers1)) {
 
-    $_SESSION['login'] = " <div class='success text-center'>Temporary password senr to your email.</div>";
+    $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
        header('location:'. SITEURL.'temp-pass.php');
 } else {
     $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
