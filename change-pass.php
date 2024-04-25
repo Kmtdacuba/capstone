@@ -59,17 +59,17 @@ include('config/connection.php');
 
 /* FOR ADMIN */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password1 = $_POST['new_password1'];
-    $confirm_password1 = $_POST['confirm_password1'];
+    $new_password = $_POST['new_password1'];
+    $confirm_password = $_POST['confirm_password1'];
 
     // Verify if passwords match
-    if ($new_password1 === $confirm_password1) {
+    if ($new_password === $confirm_password1) {
         // Hash the new password
-        $hashed_password1 =  password_hash($new_password1, PASSWORD_DEFAULT);
+        $hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
 
         // Update password in the database
         $email = $_SESSION['email'];
-        $sql1 = "UPDATE tbl_admin SET password='$hashed_password1' WHERE email='$email'";
+        $sql1 = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
 
         // Database connection and query execution code here...
         $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
@@ -80,50 +80,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-/* FOR EMPLOYEE */
-elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password2 = $_POST['new_password2'];
-    $confirm_password2 = $_POST['confirm_password2'];
-
-    // Verify if passwords match
-    if ($new_password2 === $confirm_password2) {
-        // Hash the new password
-        $hashed_password2 =  password_hash($new_password2, PASSWORD_DEFAULT);
-
-        // Update password in the database
-        $email = $_SESSION['email'];
-        $sql2 = "UPDATE tbl_employee SET password='$hashed_password2' WHERE email='$email'";
-
-        // Database connection and query execution code here...
-
-        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
-        header('location: index.php');
-    } else {
-        $_SESSION['change'] = " <div class='success text-center'>Passwords do not match!</div>";
-        header('location: change-pass.php');
-    }
-}
-
-elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password13 = $_POST['new_password3'];
-    $confirm_password3 = $_POST['confirm_password3'];
-
-    // Verify if passwords match
-    if ($new_password3 === $confirm_password3) {
-        // Hash the new password
-        $hashed_password3 =  password_hash($new_password3, PASSWORD_DEFAULT);
-
-        // Update password in the database
-        $email = $_SESSION['email'];
-        $sql3 = "UPDATE tbl_resident SET password='$hashed_password3' WHERE email='$email'";
-
-        // Database connection and query execution code here...
-        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
-        header('location: index.php');
-    } else {
-        $_SESSION['change'] = " <div class='success text-center'>Passwords do not match!</div>";
-        header('location: change-pass.php');
-    }
-}
 
 ?>
