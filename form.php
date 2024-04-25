@@ -133,7 +133,7 @@ Please use this temporary password to log in and change your password.';
 $headers1 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to1, $subject1, $message1, $headers1)) {
 
     $_SESSION['login'] = " <div class='success text-center'>Temporary password senr to your email.</div>";
-       header('location:'. SITEURL.'change-pass.php');
+       header('location:'. SITEURL.'temp-pass.php');
 } else {
     $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
     header('location:'. SITEURL.'form.php');
@@ -159,7 +159,7 @@ elseif ($result2->num_rows > 0) {
     
     $headers2 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to2, $subject2, $message2, $headers2)) {
         $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
-        header('location:'. SITEURL.'change-pass.php');
+        header('location:'. SITEURL.'temp-pass.php');
     } else {
         $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
         header('location:'. SITEURL.'form.php');
@@ -183,7 +183,7 @@ elseif ($result3->num_rows > 0) {
     Please use this password to log in and change your password.';
     $headers3 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to3, $subject3, $message3, $headers3)) {
         $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
-        header('location:'. SITEURL.'change-pass.php');
+        header('location:'. SITEURL.'temp-pass.php');
     } else {
         $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
         header('location:'. SITEURL.'form.php');

@@ -21,6 +21,13 @@
                 <i class="fa-solid fa-square-xmark"></i>
             </a>
             <h1>Change Password</h1>
+            <?php
+                if(isset($_SESSION['change']))
+                {
+                    echo $_SESSION['change'];
+                    unset($_SESSION['change']);
+                }
+                ?>
             <form method="post" action="change-pass.php">
                 <tr>
                     <input class="login-responsive" type="password" id="new_password" name="new_password"
@@ -60,7 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
         header('location: index.php');
     } else {
-        echo "Passwords do not match.";
+        $_SESSION['change'] = " <div class='success text-center'>Passwords do not match!</div>";
+        header('location: change-pass.php');
     }
 }
 
@@ -80,10 +88,11 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Database connection and query execution code here...
 
-        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully! Login now.</div>";
+        $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
         header('location: index.php');
     } else {
-        echo "Passwords do not match.";
+        $_SESSION['change'] = " <div class='success text-center'>Passwords do not match!</div>";
+        header('location: change-pass.php');
     }
 }
 
@@ -104,7 +113,8 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['change'] = " <div class='success text-center'>Password changed successfully!</div>";
         header('location: index.php');
     } else {
-        echo "Passwords do not match.";
+        $_SESSION['change'] = " <div class='success text-center'>Passwords do not match!</div>";
+        header('location: change-pass.php');
     }
 }
 
