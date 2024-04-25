@@ -13,6 +13,22 @@ $user_id = $_SESSION['user_id'];
     <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
+    <script>
+    // Message will disappear after 2 seconds 
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.error');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the error message
+        }
+    }, 2000);
+
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.success');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the success message
+        }
+    }, 2000);
+    </script>
     <link href='' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>

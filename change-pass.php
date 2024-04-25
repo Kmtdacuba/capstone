@@ -5,6 +5,8 @@
     <title>Barangay 188 Tala Caloocan City</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg">
@@ -15,6 +17,9 @@
     </div>
     <center>
         <div class="login">
+            <a class="icons" href="index.php">
+                <i class="fa-solid fa-square-xmark"></i>
+            </a>
             <h1>Change Password</h1>
             <form method="post" action="change-pass.php">
                 <tr>

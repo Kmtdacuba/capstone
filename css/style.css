@@ -631,13 +631,18 @@ hr {
   float: left;
 }
 
+.label-profile {
+  text-align: left;
+  margin-left: 100px;
+}
+
 /*Css For Add Admin Table*/
 
 .add_admin_content{
   background-color: lightgray;
   border: gray;
   border-radius: 10px;
-  width: 100%;
+  width: 70%;
   padding: 1%;
   margin: 1%;
 }

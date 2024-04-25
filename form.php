@@ -1,6 +1,71 @@
 <?php
 include('config/connection.php');
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Barangay 188 Tala Caloocan City</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
+
+    <script>
+    // Message will disappear after 2 seconds 
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.error');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the error message
+        }
+    }, 2000);
+
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.success');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the success message
+        }
+    }, 2000);
+    </script>
+</head>
+
+<body class="bg">
+    <center>
+        <div>
+            <a href="">
+                <img src="images/Logo Name.png" alt="" width=100%>
+            </a>
+        </div>
+        <div class="login">
+            <a class="icons" href="index.php">
+                <i class="fa-solid fa-square-xmark"></i>
+            </a>
+            <h1>Forgot Password</h1>
+            <br>
+            <?php
+if(isset($_SESSION['temp']))
+{
+    echo $_SESSION['temp'];
+    unset($_SESSION['temp']);
+}
+?>
+            <table class="table-size">
+                <form method="post" action="form.php">
+                    <tr>
+                        <input class="login-responsive" type="email" id="email" name="email"
+                            placeholder="Input Email Address" required><br>
+                    </tr>
+                    <tr>
+                        <input class="btn-second" type="submit" value="Reset Password">
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </center>
+</body>
+
+</html>
 <?php
 $host = 'smtp.hostinger.com';
 $port = ' 465'; // Port number may vary, check Hostinger's documentation
@@ -64,14 +129,17 @@ $conn->query($sql_update1);
 $to1 = $email;
 $subject1 = 'Password Reset';
 $message1 = 'Your temporary password is: ' . $temp_password . '
-Please use this password to log in and change your password.';
+Please use this temporary password to log in and change your password.';
 $headers1 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to1, $subject1, $message1, $headers1)) {
-    echo "Temporary password sent to your email. Please check your inbox." ; 
-    header('location: temp-pass.php'); 
-} else {
-    echo "Failed to send temporary password. Please try again later." ; } 
-} 
 
+    $_SESSION['login'] = " <div class='success text-center'>Temporary password senr to your email.</div>";
+       header('location:'. SITEURL.'change-pass.php');
+} else {
+    $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
+    header('location:'. SITEURL.'form.php');
+ } 
+} 
+ 
 // FOR EMPLOYEE
 
 elseif ($result2->num_rows > 0) {
@@ -90,11 +158,13 @@ elseif ($result2->num_rows > 0) {
     Please use this password to log in and change your password.';
     
     $headers2 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to2, $subject2, $message2, $headers2)) {
-        echo "Temporary password sent to your email. Please check your inbox." ; 
-        header('location: temp-pass.php'); 
+        $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
+        header('location:'. SITEURL.'change-pass.php');
     } else {
-        echo "Failed to send temporary password. Please try again later." ; } 
+        $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
+        header('location:'. SITEURL.'form.php');
     } 
+}
 
     // FOR RESIDENTS
 elseif ($result3->num_rows > 0) {
@@ -112,50 +182,17 @@ elseif ($result3->num_rows > 0) {
     $message3 = 'Your temporary password is: ' . $temp_password . '
     Please use this password to log in and change your password.';
     $headers3 = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to3, $subject3, $message3, $headers3)) {
-        $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email</div>";
-        header('location: temp-pass.php'); 
+        $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
+        header('location:'. SITEURL.'change-pass.php');
     } else {
-        echo "Failed to send temporary password. Please try again later." ; } 
+        $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
+        header('location:'. SITEURL.'form.php');
+    }
     } 
 else {
-    echo "Email not found in our records." ; 
+    $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
+    header('location:'. SITEURL.'form.php');
 } 
-
-
     }
     $conn->close();
     ?>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Barangay 188 Tala Caloocan City</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
-</head>
-
-<body class="bg">
-    <center>
-        <div>
-            <a href="">
-                <img src="images/Logo Name.png" alt="" width=100%>
-            </a>
-        </div>
-        <div class="login">
-            <form method="post" action="form.php">
-                <h1>Forgot Password</h1> <br>
-                <table class="table-size">
-                    <tr>
-                        <input class="login-responsive" type="email" id="email" name="email"
-                            placeholder="Input Email Address" required><br>
-                    </tr>
-                    <tr>
-                        <input class="btn-second" type="submit" value="Reset Password">
-                    </tr>
-                </table>
-        </div>
-        </form>
-    </center>
-</body>
-
-</html>

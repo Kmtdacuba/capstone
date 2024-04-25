@@ -5,6 +5,24 @@
     <title>Barangay 188 Tala Caloocan City</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
+    <script>
+    // Message will disappear after 2 seconds 
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.error');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the error message
+        }
+    }, 2000);
+
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.success');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the success message
+        }
+    }, 2000);
+    </script>
 </head>
 
 <body class="bg">
@@ -15,6 +33,9 @@
     </div>
     <center>
         <div class="login">
+            <a class="icons" href="index.php">
+                <i class="fa-solid fa-square-xmark"></i>
+            </a>
             <h1>Temporary Password</h1><br>
 
             <?php
@@ -22,6 +43,11 @@
             {
                 echo $_SESSION['temp'];
                 unset($_SESSION['temp']);
+            }
+            if(isset($_SESSION['change']))
+            {
+                echo $_SESSION['change'];
+                unset($_SESSION['change']);
             }
             ?>
             <table class="table-size">
@@ -65,13 +91,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Temporary password matches, set session variables and redirect to change password page
           
             $_SESSION['user_id'] = $user1['id'];
-            header("Location: change-pass.php");
+            $_SESSION['change'] = " <div class='success text-center'>Check email, temporary password sent to your email</div>";
+       header('location:'. SITEURL.'change-pass.php');
             exit();
         } else {
-            echo "Invalid email or temporary password.";
+            
+            $_SESSION['change'] = " <div class='error text-center'>Invalid email or temporary password/div>";
+       header('location:'. SITEURL.'temp-pass.php');
         }
     } else {
-        echo "Invalid email or temporary password.";
+        $_SESSION['change'] = " <div class='error text-center'>Invalid email or temporary password/div>";
+        header('location:'. SITEURL.'temp-pass.php');
     }
 }
 

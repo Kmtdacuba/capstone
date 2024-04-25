@@ -12,24 +12,26 @@ ob_start();
     <title>Barangay 188 Tala Caloocan City</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../favicon.png">
+    <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg">
     <center>
         <div>
-            <a href="update_myprofile.php">
+            <a href="update-myprofile.php">
                 <img src="../images/Logo Name.png" alt="" width=100%>
             </a>
         </div>
-    </center>
 
-    <div class="main-content">
-        <div class="wrapper">
-            <div class="add_admin_content">
+        <div class="main-content">
+            <div class="wrapper">
+                <div class="add_admin_content">
+                    <a class="icons" href="my-profile.php">
+                        <i class="fa-solid fa-square-xmark"></i>
+                    </a>
+                    <h1>Update My Profile</h1>
 
-                <h1>Update My Profile</h1>
-
-                <?php
+                    <?php
             $id = $_GET['id'];
 
             $sql = "SELECT * FROM tbl_resident WHERE id=$id";
@@ -64,7 +66,6 @@ ob_start();
             }
 
         ?>
-                <center>
                     <form action="" method="POST" enctype="multipart/form-data">
 
                         <table class="table-size">
@@ -176,9 +177,9 @@ ob_start();
                             </tr>
                         </table>
                     </form>
-                </center>
-            </div>
-        </div>
+    </center>
+    </div>
+    </div>
     </div>
 </body>
 
@@ -276,12 +277,14 @@ ob_start();
         if($sql2)
        { 
            /*Successful*/
+           $_SESSION['update'] = "<div class='success text-center'>Profile updated successfully </div>";
            header('location:'.SITEURL.'residents/my-profile.php');
            exit;
        }
        else
        {
            /*sorry your profile is not update*/
+           $_SESSION['success'] = "<div class='error text-center'>Failed to update profile </div>";
            header('location:'.SITEURL.'residents/update-myprofile.php');
            exit;
        }
@@ -289,6 +292,7 @@ ob_start();
     else
     {
         /*sorry your id is not match*/
+        $_SESSION['success'] = "<div class='error text-center'>Failed to update profile </div>";
         header('location:'.SITEURL.'residents/update-myprofile.php');
         exit;
     }

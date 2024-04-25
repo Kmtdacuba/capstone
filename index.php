@@ -10,6 +10,22 @@ include('config/connection.php');
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <title>Barangay 188 Tala Caloocan City</title>
+    <script>
+    // Message will disappear after 2 seconds 
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.error');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the error message
+        }
+    }, 2000);
+
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.success');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the success message
+        }
+    }, 2000);
+    </script>
 </head>
 
 <body class="bg">
@@ -46,7 +62,8 @@ include('config/connection.php');
                 <!-- Login table -->
                 <table class="table-size">
                     <tr>
-                        <input type="email" name="email" placeholder="Enter Username" class="login-responsive" required>
+                        <input type="email" name="email" placeholder="Enter Email Address" class="login-responsive"
+                            required>
                     </tr>
                     <br>
                     <tr>
@@ -105,7 +122,7 @@ if(isset($_POST['submit'])){
     
     else
     {
-        $_SESSION['login'] = " <div class='error text-center'>Username or password not match </div>";
+        $_SESSION['login'] = " <div class='error text-center'>Email or password not match </div>";
         header('location:'.SITEURL.'index.php');
     }
  
