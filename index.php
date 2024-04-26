@@ -91,7 +91,7 @@ include('config/connection.php');
 </html>
 <?php
 
-if(isset($_POST['submit'])){
+if(isset($_POST['email'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
