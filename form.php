@@ -1,6 +1,5 @@
 <?php
 include('config/connection.php');
-session_start();
 
 $host = 'smtp.hostinger.com';
 $port = '465'; // Port number may vary, check Hostinger's documentation
