@@ -76,27 +76,7 @@ $from_name = 'Barangay 188 Tala Caloocan City';
 
 // Function to generate a random password
 function generateRandomPassword($length = 10) {
-    $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    $numbers = '0123456789';
-    $specialChars = '!@#$%^&*()-_=+';
-
-    // Make sure each character type is included at least once
-    $password = 
-        substr(str_shuffle($uppercase), 0, 1) . 
-        substr(str_shuffle($lowercase), 0, 1) . 
-        substr(str_shuffle($numbers), 0, 1) . 
-        substr(str_shuffle($specialChars), 0, 1);
-
-    // Fill the rest of the password with random characters
-    $remainingLength = $length - 4; // 4 characters are already added
-    $allChars = $uppercase . $lowercase . $numbers . $specialChars;
-    $password .= substr(str_shuffle($allChars), 0, $remainingLength);
-
-    // Shuffle the password to randomize the character order
-    $password = str_shuffle($password);
-
-    return $password;
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
 
 
@@ -115,7 +95,7 @@ if ($result->num_rows > 0) {
 $temp_password = generateRandomPassword();
 
 // Update the user's password in the database
-$hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
+$hashed_password =  password_hash($temp_password, PASSWORD_DEFAULT);
 $sql_update = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
 $conn->query($sql_update); 
 
