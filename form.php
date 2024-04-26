@@ -120,8 +120,8 @@ $conn->close();
     if(isset($_POST['email'])) {
         $email = $_POST['email'];
         
-        // Check if the email exists in the database - ADMIN
-        $sql1 = "SELECT * FROM tbl_resident WHERE email = '$email'";
+        // Check if the email exists in the database - EMPLOYEE
+        $sql1 = "SELECT * FROM tbl_employee WHERE email = '$email'";
         $result1 = $conn->query($sql1);
         
         
@@ -132,7 +132,7 @@ $conn->close();
         
         // Update the user's password in the database
         $hashed_password =  password_hash($temp_password, PASSWORD_DEFAULT);
-        $sql_update1 = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
+        $sql_update1 = "UPDATE tbl_employee SET password = '$hashed_password' WHERE email = '$email'";
         $conn->query($sql_update1); 
         
         // Send the temporary password via email
