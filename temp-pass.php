@@ -105,11 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('location:'. SITEURL.'temp-pass.php');
         exit;
     }
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $temp_password = $_POST['temp_password'];
 
     // Retrieve the user from the database using the email - EMPLOYEE
     $sql1 = "SELECT * FROM tbl_employee WHERE email='$email'";
@@ -137,5 +132,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
+
 
 ?>
