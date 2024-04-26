@@ -133,7 +133,8 @@ ob_start();
         $email = $_POST['email'];
         $a = $_POST['a'];
         $username = $_POST['username'];
-        $password = md5($_POST['password']); // make the password encrypted
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
 
          //Upload the image
        if(isset($_FILES['image']['name'])) {

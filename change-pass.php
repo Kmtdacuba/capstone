@@ -59,13 +59,13 @@ include('config/connection.php');
 
 /* FOR ADMIN */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password = $_POST['new_password1'];
-    $confirm_password = $_POST['confirm_password1'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
 
     // Verify if passwords match
-    if ($new_password === $confirm_password1) {
+    if ($new_password === $confirm_password) {
         // Hash the new password
-        $hashed_password =  md5($new_password);
+        $hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
         // Update password in the database
         $email = $_SESSION['email'];
         $sql1 = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
