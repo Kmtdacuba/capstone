@@ -93,40 +93,50 @@ include('config/connection.php');
 
 if(isset($_POST['submit'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = $conn(password_hash($_POST['password'], PASSWORD_DEFAULT));
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
- 
-    $select1 = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE email = '$email' AND password = '$password'") or die('query failed');
-    $select2 = mysqli_query($conn, "SELECT * FROM tbl_employee WHERE email = '$email' AND password = '$password'") or die('query failed');
-    $select3 = mysqli_query($conn, "SELECT * FROM tbl_resident WHERE email = '$email' AND password = '$password'") or die('query failed');
- 
-    if(mysqli_num_rows($select1) > 0){
-       $row = mysqli_fetch_assoc($select1);
-       $_SESSION['user_id'] = $row['id'];
-       $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
-       header('location:'. SITEURL.'admin/dashboard.php');
-    } 
- 
-    elseif(mysqli_num_rows($select2) > 0){
-         $row = mysqli_fetch_assoc($select2);
-         $_SESSION['user_id'] = $row['id'];
-         $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
-         header('location:'. SITEURL.'employee/dashboard.php');
-         } 
- 
-     elseif(mysqli_num_rows($select3) > 0){
-         $row = mysqli_fetch_assoc($select3);
-         $_SESSION['user_id'] = $row['id'];
-         $_SESSION['login'] = " <div class='success text-center'>Login Successful</div>";
-         header('location:'. SITEURL.'residents/dashboard.php');
-         } 
-    
-    else
-    {
-        $_SESSION['login'] = " <div class='error text-center'>Email or password not match </div>";
+    // Retrieve hashed password from the database based on the entered email
+    $result1 = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE email = '$email'") or die('query failed');
+    $result2 = mysqli_query($conn, "SELECT * FROM tbl_employee WHERE email = '$email'") or die('query failed');
+    $result3 = mysqli_query($conn, "SELECT * FROM tbl_resident WHERE email = '$email'") or die('query failed');
+
+    if(mysqli_num_rows($result1) > 0){
+       $row = mysqli_fetch_assoc($result1);
+       $hashed_password = $row['password'];
+       if (password_verify($password, $hashed_password)) {
+           $_SESSION['user_id'] = $row['id'];
+           $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
+           header('location:'. SITEURL.'admin/dashboard.php');
+       } else {
+           $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
+           header('location:'.SITEURL.'index.php');
+       }
+    } elseif(mysqli_num_rows($result2) > 0){
+        $row = mysqli_fetch_assoc($result2);
+        $hashed_password = $row['password'];
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
+            header('location:'. SITEURL.'employee/dashboard.php');
+        } else {
+            $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
+            header('location:'.SITEURL.'index.php');
+        }
+    } elseif(mysqli_num_rows($result3) > 0){
+        $row = mysqli_fetch_assoc($result3);
+        $hashed_password = $row['password'];
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
+            header('location:'. SITEURL.'residents/dashboard.php');
+        } else {
+            $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
+            header('location:'.SITEURL.'index.php');
+        }
+    } else {
+        $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
         header('location:'.SITEURL.'index.php');
     }
- 
- }
+}
 
- ?>
+?>
