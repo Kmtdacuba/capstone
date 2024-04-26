@@ -36,7 +36,7 @@ include('config/connection.php');
                     unset($_SESSION['temp']);
                 }
                 ?>
-            <form method="post" action="change-pass.php">
+            <form method="post" action="change-password.php">
                 <tr>
                     <input class="login-responsive" type="password" id="new_password" name="new_password"
                         placeholder="Input New Password" required><br>
