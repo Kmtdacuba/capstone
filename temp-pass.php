@@ -84,6 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
     $result = $conn->query($sql);
 
+    // Retrieve the user from the database using the email - EMPLOYEE
+    $sql1 = "SELECT * FROM tbl_employee WHERE email='$email'";
+    $result1 = $conn->query($sql1);
+    
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         $hashed_password = $user['password'];
@@ -100,18 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('location:'. SITEURL.'temp-pass.php');
             exit;
         }
-    } else {
-        $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-        header('location:'. SITEURL.'temp-pass.php');
-        exit;
-    }
-
-    // Retrieve the user from the database using the email - EMPLOYEE
-    $sql1 = "SELECT * FROM tbl_employee WHERE email='$email'";
-    $result1 = $conn->query($sql1);
-
-    if ($result->num_rows > 0) {
-        $user = $result1->fetch_assoc();
+    } 
+    elseif ($result1->num_rows > 0) {
+        $user = $result->fetch_assoc();
         $hashed_password = $user['password'];
 
         // Verify the temporary password against the hashed password
@@ -126,12 +121,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('location:'. SITEURL.'temp-pass.php');
             exit;
         }
-    } else {
+    }else {
         $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
         header('location:'. SITEURL.'temp-pass.php');
         exit;
     }
 }
-
 
 ?>
