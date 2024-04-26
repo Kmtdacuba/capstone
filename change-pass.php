@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Check if the form is submitted
+// Check if the form is submitted - ADMN
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
@@ -24,6 +24,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
     $sql = "UPDATE tbl_admin SET password='$hashed_password' WHERE id='$user_id'";
+    if ($conn->query($sql) === TRUE) {
+        $_SESSION['change'] = "<div class='success text-center'>Password changed successfully</div>";
+        header('location: index.php');
+        exit;
+    } else {
+        $_SESSION['change'] = "<div class='error text-center'>Error updating password: " . $conn->error . "</div>";
+        header('location: change-pass.php');
+        exit;
+    }
+}
+
+// Check if the form is submitted - EMPLOYEE
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Validate new password and confirm password
+    if ($new_password != $confirm_password) {
+        $_SESSION['change'] = "<div class='error text-center'>New password and confirm password do not match</div>";
+        header('location: change-password.php');
+        exit;
+    }
+
+    // Update password in the database
+    $user_id = $_SESSION['user_id'];
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+    $sql = "UPDATE tbl_employee SET password='$hashed_password' WHERE id='$user_id'";
     if ($conn->query($sql) === TRUE) {
         $_SESSION['change'] = "<div class='success text-center'>Password changed successfully</div>";
         header('location: index.php');
