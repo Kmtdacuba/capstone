@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = $_POST['confirm_password'];
 
     // Verify if passwords match
-    if ($new_password === $confirm_password1) {
+    if ($new_password === $confirm_password) {
         // Hash the new password
         $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
         // Update password in the database
