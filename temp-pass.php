@@ -56,7 +56,7 @@ include('config/connection.php');
             <table class="table-size">
                 <form method="post" action="temp-pass.php">
                     <tr>
-                        <input class="login-responsive" type=" email" id="email" name="email"
+                        <input class="login-responsive" type="email" id="email" name="email"
                             placeholder="Input Email Address" required>
                     </tr>
                     <tr>
@@ -81,15 +81,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $temp_password = $_POST['temp_password'];
 
     // Retrieve the user from the database using the email - ADMIN
-    $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
-    $result = $conn->query($sql);
+    $sql_admin = "SELECT * FROM tbl_admin WHERE email='$email'";
+    $result_admin = $conn->query($sql_admin);
 
     // Retrieve the user from the database using the email - EMPLOYEE
-    $sql1 = "SELECT * FROM tbl_employee WHERE email='$email'";
-    $result1 = $conn->query($sql1);
+    $sql_employee = "SELECT * FROM tbl_employee WHERE email='$email'";
+    $result_employee = $conn->query($sql_employee);
     
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    // Retrieve the user from the database using the email - RESIDENT
+    $sql_resident = "SELECT * FROM tbl_resident WHERE email='$email'";
+    $result_resident = $conn->query($sql_resident);
+    
+    if ($result_admin->num_rows > 0) {
+        $user = $result_admin->fetch_assoc();
         $hashed_password = $user['password'];
 
         // Verify the temporary password against the hashed password
@@ -97,16 +101,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
-            header('location:'. SITEURL.'change-pass.php');
+            header('location: change-password.php');
             exit; // Ensure no further execution of the script after redirection
         } else {
             $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-            header('location:'. SITEURL.'temp-pass.php');
+            header('location: temp-pass.php');
             exit;
         }
     } 
-    elseif ($result1->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    elseif ($result_employee->num_rows > 0) {
+        $user = $result_employee->fetch_assoc();
         $hashed_password = $user['password'];
 
         // Verify the temporary password against the hashed password
@@ -114,18 +118,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
-            header('location:'. SITEURL.'change-pass.php');
+            header('location: change-password.php');
             exit; // Ensure no further execution of the script after redirection
         } else {
             $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-            header('location:'. SITEURL.'temp-pass.php');
+            header('location: temp-pass.php');
             exit;
         }
-    }else {
+    } 
+    elseif ($result_resident->num_rows > 0) {
+        $user = $result_resident->fetch_assoc();
+        $hashed_password = $user['password'];
+
+        // Verify the temporary password against the hashed password
+        if (password_verify($temp_password, $hashed_password)) {
+            // Temporary password matches, set session variables and redirect to change password page
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
+            header('location: change-password.php');
+            exit; // Ensure no further execution of the script after redirection
+        } else {
+            $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
+            header('location: temp-pass.php');
+            exit;
+        }
+    }
+    else {
         $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-        header('location:'. SITEURL.'temp-pass.php');
+        header('location: temp-pass.php');
         exit;
     }
 }
-
 ?>
