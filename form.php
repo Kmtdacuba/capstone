@@ -103,8 +103,8 @@ $to = $email;
 $subject = 'Password Reset';
 $message = 'Your temporary password is: ' . $temp_password . '
 Please use this temporary password to log in and change your password.';
-$headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $subject, $message, $headers)) {
-
+$headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; 
+if (mail($to, $subject, $message, $headers)) {
     $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
        header('location:'. SITEURL.'temp-pass.php');
 } else {
@@ -112,8 +112,6 @@ $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $sub
     header('location:'. SITEURL.'form.php');
  } 
 } 
- 
-
     }
     $conn->close();
 
