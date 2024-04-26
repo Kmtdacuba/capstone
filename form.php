@@ -115,7 +115,6 @@ $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; if (mail($to, $sub
  
 
     }
-$conn->close();
 
     if(isset($_POST['email'])) {
         $email = $_POST['email'];
@@ -150,5 +149,7 @@ $conn->close();
          } 
         }   
             }
-            $conn->close();
+
+            
+$conn->close();
     ?>
