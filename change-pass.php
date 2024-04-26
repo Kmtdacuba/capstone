@@ -57,7 +57,6 @@ include('config/connection.php');
 </html>
 <?php
 
-
 /* FOR ADMIN */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST['new_password'];
@@ -67,27 +66,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($new_password === $confirm_password) {
         // Hash the new password
         $hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
-        
-        // Ensure $_SESSION['email'] is set correctly
-        if(isset($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            // Update password in the database
-            $sql = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
-            // Execute SQL update query here...
+        // Update password in the database
+        $email = $_SESSION['email'];
+        $sql = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
 
-            $_SESSION['change'] = "<div class='success text-center'>Password changed successfully!</div>";
-            // Redirect to appropriate page after successful password change
-            header('location: index.php'); // Change 'dashboard.php' to appropriate page
-            exit(); // Make sure to exit after redirection
-        } else {
-            $_SESSION['change'] = "<div class='error text-center'>Session email not set!</div>";
-            header('location: change-pass.php');
-            exit();
-        }
+        // Database connection and query execution code here...
+        $_SESSION['change'] = "<div class='success text-center'>Password changed successfully!</div>";
+        header('location: index.php');
+        exit; // Exit after redirect
     } else {
         $_SESSION['change'] = "<div class='error text-center'>Passwords do not match!</div>";
         header('location: change-pass.php');
-        exit();
+        exit; // Exit after redirect
     }
 }
 

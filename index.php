@@ -58,7 +58,7 @@ include('config/connection.php');
 
             ?>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="index.php" method="POST" enctype="multipart/form-data">
                 <!-- Login table -->
                 <table class="table-size">
                     <tr>
