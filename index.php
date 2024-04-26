@@ -56,6 +56,11 @@ include('config/connection.php');
     unset($_SESSION['add']); // remove session message
     }
 
+    if(isset($_SESSION['change'])) {
+        echo $_SESSION['change']; // display session message
+        unset($_SESSION['change']); // remove session message
+        }
+
             ?>
 
             <form action="index.php" method="POST" enctype="multipart/form-data">

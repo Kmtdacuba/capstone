@@ -35,6 +35,11 @@ include('config/connection.php');
                     echo $_SESSION['temp'];
                     unset($_SESSION['temp']);
                 }
+                if(isset($_SESSION['replace']))
+                {
+                    echo $_SESSION['replace'];
+                    unset($_SESSION['replace']);
+                }
                 ?>
             <form method="post" action="change-password.php">
                 <tr>
