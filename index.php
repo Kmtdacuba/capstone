@@ -42,7 +42,7 @@ include('config/connection.php');
 
 ?>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="index.php" method="POST" enctype="multipart/form-data">
                 <!-- Login table -->
                 <table class="table-size">
                     <tr>
@@ -74,7 +74,7 @@ include('config/connection.php');
 </html>
 <?php
 
-if(isset($_POST['submit'])){
+if(isset($_POST['email'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, password_hash($_POST['password'], PASSWORD_DEFAULT));
  
