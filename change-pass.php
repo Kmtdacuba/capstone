@@ -1,5 +1,29 @@
 <?php
 include('config/connection.php');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    if ($new_password === $confirm_password) {
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+        $email = $_SESSION['email'];
+        $sql = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
+
+        if ($conn->query($sql) === TRUE) {
+            $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
+            header('location: index.php');
+            exit;
+        } else {
+            $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
+            header('location: change-pass.php');
+            exit;
+        }
+    } else {
+        $_SESSION['change'] = "<div class='error text-center'>Passwords do not match!</div>";
+        header('location: change-pass.php');
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -69,30 +93,3 @@ include('config/connection.php');
 </body>
 
 </html>
-
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
-
-    if ($new_password === $confirm_password) {
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $email = $_SESSION['email'];
-        $sql = "UPDATE tbl_admin SET password='$hashed_password' WHERE email='$email'";
-
-        if ($conn->query($sql) === TRUE) {
-            $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
-            header('location: index.php');
-            exit;
-        } else {
-            $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
-            header('location: change-pass.php');
-            exit;
-        }
-    } else {
-        $_SESSION['change'] = "<div class='error text-center'>Passwords do not match!</div>";
-        header('location: change-pass.php');
-        exit;
-    }
-}
-?>

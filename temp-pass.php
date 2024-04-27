@@ -1,5 +1,38 @@
 <?php
 include('config/connection.php');
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $temp_password = $_POST['temp_password'];
+
+    // Retrieve the user from the database using the email - ADMIN
+    $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $hashed_password = $user['password'];
+
+        // Verify the temporary password against the hashed password
+        if (password_verify($temp_password, $hashed_password)) {
+            // Temporary password matches, set session variables and redirect to change password page
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
+            header('location:'. SITEURL.'change-pass.php');
+            exit; // Ensure no further execution of the script after redirection
+        } else {
+            $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
+            header('location:'. SITEURL.'temp-pass.php');
+            exit;
+        }
+    } else {
+        $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
+        header('location:'. SITEURL.'temp-pass.php');
+        exit;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,38 +106,3 @@ include('config/connection.php');
 </body>
 
 </html>
-
-<?php
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $temp_password = $_POST['temp_password'];
-
-    // Retrieve the user from the database using the email - ADMIN
-    $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $hashed_password = $user['password'];
-
-        // Verify the temporary password against the hashed password
-        if (password_verify($temp_password, $hashed_password)) {
-            // Temporary password matches, set session variables and redirect to change password page
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
-            header('location:'. SITEURL.'change-pass.php');
-            exit; // Ensure no further execution of the script after redirection
-        } else {
-            $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-            header('location:'. SITEURL.'temp-pass.php');
-            exit;
-        }
-    } else {
-        $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-        header('location:'. SITEURL.'temp-pass.php');
-        exit;
-    }
-}
-
-?>
