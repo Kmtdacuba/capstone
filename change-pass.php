@@ -1,6 +1,7 @@
 <?php
 include('config/connection.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -71,6 +72,7 @@ include('config/connection.php');
 </body>
 
 </html>
+
 <?php
 
 /* FOR ADMIN */
@@ -81,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verify if passwords match
     if ($new_password === $confirm_password) {
         // Hash the new password
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $password = password_hash($new_password, PASSWORD_DEFAULT); // Use $new_password here
         // Update password in the database
         $email = $_SESSION['email'];
         $sql = "UPDATE tbl_admin SET password='$password' WHERE email='$email'";
