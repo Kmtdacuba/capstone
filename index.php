@@ -58,7 +58,7 @@ include('config/connection.php');
 
             ?>
 
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="index.php" method="POST" enctype="multipart/form-data">
                 <!-- Login table -->
                 <table class="table-size">
                     <tr>
@@ -91,7 +91,7 @@ include('config/connection.php');
 </html>
 <?php
 
-if(isset($_POST['submit'])){
+if(isset($_POST['email'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
@@ -102,40 +102,47 @@ if(isset($_POST['submit'])){
 
     if(mysqli_num_rows($result1) > 0){
        $row = mysqli_fetch_assoc($result1);
-       $hashed_password = $row['password'];
-       if (password_verify($password, $hashed_password)) {
+       $stored_password = $row['password'];
+       if (password_verify($password, $stored_password)) {
            $_SESSION['user_id'] = $row['id'];
            $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
            header('location:'. SITEURL.'admin/dashboard.php');
+           exit; // Ensure no further code execution after successful login
        } else {
            $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
            header('location:'.SITEURL.'index.php');
+           exit; // Ensure no further code execution after login failure
        }
     } elseif(mysqli_num_rows($result2) > 0){
         $row = mysqli_fetch_assoc($result2);
-        $hashed_password = $row['password'];
-       if (password_verify($password, $hashed_password)) {
+        $stored_password = $row['password'];
+       if (password_verify($password, $stored_password)) {
            $_SESSION['user_id'] = $row['id'];
            $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
            header('location:'. SITEURL.'employee/dashboard.php');
+           exit; // Ensure no further code execution after successful login
        } else {
            $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
            header('location:'.SITEURL.'index.php');
+           exit; // Ensure no further code execution after login failure
        }
     } elseif(mysqli_num_rows($result3) > 0){
         $row = mysqli_fetch_assoc($result3);
-        $hashed_password = $row['password'];
-       if (password_verify($password, $hashed_password)) {
+        $stored_password = $row['password'];
+       if (password_verify($password, $stored_password)) {
            $_SESSION['user_id'] = $row['id'];
            $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
            header('location:'. SITEURL.'residents/dashboard.php');
+           exit; // Ensure no further code execution after successful login
        } else {
            $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
            header('location:'.SITEURL.'index.php');
+           exit; // Ensure no further code execution after login failure
        }
     } else {
         $_SESSION['login'] = "<div class='error text-center'>Email or password not match</div>";
         header('location:'.SITEURL.'index.php');
+        exit; // Ensure no further code execution after login failure
     }
 }
 ?>
