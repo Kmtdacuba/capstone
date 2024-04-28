@@ -258,13 +258,13 @@ function checkForm() {
    if($res == TRUE){
     // data inserted
     // variable to display message;
-    $_SESSION['add']="<div class='success'> &nbsp; Successful Registration</div>";
+    $_SESSION['register']="<div class='success'> &nbsp; Successful Registration</div>";
     header("Location:".SITEURL.'index.php');
     exit();
    }
    else{
     // data not inserted
-    $_SESSION['add'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
+    $_SESSION['register'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
     header("location:".SITEURL.'residents/register.php');
     exit();
    }

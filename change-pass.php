@@ -63,7 +63,7 @@ include('config/connection.php');
                         placeholder="Confirm Your Password" required><br>
                 </tr>
                 <tr>
-                    <input class="btn-second" type="submit" value="Change Password">
+                    <input name="change-pass" class="btn-second" type="submit" value="Change Password">
                 </tr>
             </form>
         </div>
