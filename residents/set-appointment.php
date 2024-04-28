@@ -199,12 +199,13 @@ $selected_time = array(
 
 </html>
 <?php
-$host = 'smtp.hostinger.com';
-$port = ' 465'; // Port number may vary, check Hostinger's documentation
-$username_smtp = 'info@brgymanagment.online';
-$password_smtp = 'Barangay#188';
-$from_email = 'info@brgymanagment.online';
-$from_name = 'Barangay 188 Tala Caloocan City'; 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'path/to/PHPMailer/src/Exception.php';
+require 'path/to/PHPMailer/src/PHPMailer.php';
+require 'path/to/PHPMailer/src/SMTP.php';
+
 if (isset($_POST["selected_time"])) {
     $selectedTimeSlot = $_POST["selected_time"];
     
@@ -217,7 +218,7 @@ if (isset($_POST["selected_time"])) {
             echo "Time slot $selectedTimeSlot has been successfully booked.";
 
             // Send email confirmation
-            $to = $email;
+            $to = "recipient@example.com"; // Change this to the recipient's email address
             $subject = "Appointment Schedule Confirmation";
             $message = "Dear $name,\n\n";
             $message .= "Your appointment has been scheduled successfully.\n\n";
@@ -226,10 +227,27 @@ if (isset($_POST["selected_time"])) {
             $message .= "\nThank you for choosing our service.\n\n";
             $message .= "Best Regards,\nBarangay 188 Tala Caloocan City";
 
-            $headers = "From: $from_name <$from_email>";
+            // PHPMailer configuration
+            $mail = new PHPMailer(true);
 
-            // PHP mail() function to send email
-            mail($to, $subject, $message, $headers);
+            $mail->isSMTP();
+            $mail->Host = 'smtp.hostinger.com';
+            $mail->Port = 465; // Port number may vary, check Hostinger's documentation
+            $mail->SMTPAuth = true;
+            $mail->Username = 'info@brgymanagment.online';
+            $mail->Password = 'Barangay#188';
+            $mail->SMTPSecure = 'ssl';
+            $mail->setFrom('info@brgymanagment.online', 'Barangay 188 Tala Caloocan City');
+            $mail->addAddress($to);
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+
+            // Send email
+            if ($mail->send()) {
+                echo 'Email has been sent successfully.';
+            } else {
+                echo 'Email could not be sent. Mailer Error: ' . $mail->ErrorInfo;
+            }
         } else {
             echo "Sorry, the selected time slot $selectedTimeSlot is already booked.";
         }
@@ -237,55 +255,56 @@ if (isset($_POST["selected_time"])) {
         echo "Invalid time slot selected.";
     }
 }
+
 // Function to check if a date is a weekend (Saturday or Sunday)
 function isWeekend($date) {
-    return (date('N', strtotime($date)) >= 6);
+return (date('N', strtotime($date)) >= 6);
 }
 
 if(isset($_POST['submit'])) {
-    // Get data from form
-    $appointment_no = rand(0, 99999);
-    $name = $_POST['name'];
-    $type = $_POST['type'];
-    $selectedDate = $_POST['selected_date'];
-    $selectedTime = $_POST['selected_time'];
+// Get data from form
+$appointment_no = rand(0, 99999);
+$name = $_POST['name'];
+$type = $_POST['type'];
+$selectedDate = $_POST['selected_date'];
+$selectedTime = $_POST['selected_time'];
 
-    if(isWeekend($selectedDate)) {
-        echo "Sorry, you cannot select Saturday or Sunday. Please choose a weekday.";
-    }
+if(isWeekend($selectedDate)) {
+echo "Sorry, you cannot select Saturday or Sunday. Please choose a weekday.";
+}
 
-    // Your database connection and insertion code goes here
+// Your database connection and insertion code goes here
 
-    $sql1 = "SELECT * FROM tbl_appointment";
-    $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
-    $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
-    $today = new Datetime(date('Y-m-d')); // Creating a DateTime object representing today's date.
-    $diff = $today->diff($bday); 
-    // Sql query to serve the data into database
-    $sql = "INSERT INTO tbl_appointment SET
-    appointment_no = '$appointment_no',
-    name = '$name',
-    age='$diff->y',
-    type = '$type',
-    selected_time = '$selectedTime',
-    selected_date = '$selectedDate'
-    ";
-    // EXECUTE QUERY AND SAVE DATA IN DATABASE
-    $res = mysqli_query($conn, $sql) or die(mysqli_error());
+$sql1 = "SELECT * FROM tbl_appointment";
+$res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
+$bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
+$today = new Datetime(date('Y-m-d')); // Creating a DateTime object representing today's date.
+$diff = $today->diff($bday);
+// Sql query to serve the data into database
+$sql = "INSERT INTO tbl_appointment SET
+appointment_no = '$appointment_no',
+name = '$name',
+age='$diff->y',
+type = '$type',
+selected_time = '$selectedTime',
+selected_date = '$selectedDate'
+";
+// EXECUTE QUERY AND SAVE DATA IN DATABASE
+$res = mysqli_query($conn, $sql) or die(mysqli_error());
 
-    // check if data is inserted or not and display message;
-    if($res == TRUE){
-        // data inserted
-        // variable to display message;
-        $_SESSION['appointment']="<div class='success'>Successful to set appointment</div>";
-        header("Location:".SITEURL.'residents/my-appointment.php');
-        exit();
-    }
-    else{
-        // data not inserted
-        $_SESSION['appointmrnt'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
-        header("location:".SITEURL.'residents/my-appointment.php');
-        exit();
-    }
+// check if data is inserted or not and display message;
+if($res == TRUE){
+// data inserted
+// variable to display message;
+$_SESSION['appointment']="<div class='success'>Successful to set appointment</div>";
+header("Location:".SITEURL.'residents/my-appointment.php');
+exit();
+}
+else{
+// data not inserted
+$_SESSION['appointmrnt'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
+header("location:".SITEURL.'residents/my-appointment.php');
+exit();
+}
 }
 ?>
