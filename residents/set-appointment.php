@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
                        }
                    }
         ?>
-                    <form action="set-appointment.php" method="POST">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <table class="table-size">
                             <tr>
                                 <td>
@@ -73,9 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="name">Email Address:</label> <br>
-                                    <input class="input-responsive" type="email" name="email"
-                                        plavceholder="Input Email Address">
+                                    <label for="email">Email Address:</label> <br>
+
+                                    <input type="email" name="email" placeholder="Input Email Address"
+                                        class="input-responsive">
                                 </td>
                             </tr>
                             <tr>
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <tr>
                                 <td>
                                     Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;Time:
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time:
                                     <br><input class="date" type="date" id="selected_date" name="selected_date"
                                         min="<?php echo date('Y-m-d'); ?>" required>
                                     <?php
@@ -197,15 +198,13 @@ $selected_time = array(
 </body>
 
 </html>
-<?php 
-
+<?php
 $host = 'smtp.hostinger.com';
 $port = ' 465'; // Port number may vary, check Hostinger's documentation
 $username_smtp = 'info@brgymanagment.online';
-$password_smtp = 'Barangay188#';
+$password_smtp = 'Barangay#188';
 $from_email = 'info@brgymanagment.online';
 $from_name = 'Barangay 188 Tala Caloocan City'; 
-
 if (isset($_POST["selected_time"])) {
     $selectedTimeSlot = $_POST["selected_time"];
     
@@ -216,6 +215,21 @@ if (isset($_POST["selected_time"])) {
             // Book the time slot
             $_SESSION["bookedTimeSlots"][] = $selectedTimeSlot;
             echo "Time slot $selectedTimeSlot has been successfully booked.";
+
+            // Send email confirmation
+            $to = $email;
+            $subject = "Appointment Schedule Confirmation";
+            $message = "Dear $name,\n\n";
+            $message .= "Your appointment has been scheduled successfully.\n\n";
+            $message .= "Date: $selectedDate\n";
+            $message .= "Time: $selectedTimeSlot\n";
+            $message .= "\nThank you for choosing our service.\n\n";
+            $message .= "Best Regards,\nBarangay 188 Tala Caloocan City";
+
+            $headers = "From: $from_name <$from_email>";
+
+            // PHP mail() function to send email
+            mail($to, $subject, $message, $headers);
         } else {
             echo "Sorry, the selected time slot $selectedTimeSlot is already booked.";
         }
@@ -223,13 +237,12 @@ if (isset($_POST["selected_time"])) {
         echo "Invalid time slot selected.";
     }
 }
-    // Function to check if a date is a weekend (Saturday or Sunday)
-    function isWeekend($date) {
-        return (date('N', strtotime($date)) >= 6);
-    }
+// Function to check if a date is a weekend (Saturday or Sunday)
+function isWeekend($date) {
+    return (date('N', strtotime($date)) >= 6);
+}
 
-  if(isset($_POST['email'])) {
-
+if(isset($_POST['submit'])) {
     // Get data from form
     $appointment_no = rand(0, 99999);
     $name = $_POST['name'];
@@ -241,13 +254,14 @@ if (isset($_POST["selected_time"])) {
         echo "Sorry, you cannot select Saturday or Sunday. Please choose a weekday.";
     }
 
+    // Your database connection and insertion code goes here
 
     $sql1 = "SELECT * FROM tbl_appointment";
     $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
     $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
     $today = new Datetime(date('Y-m-d')); // Creating a DateTime object representing today's date.
     $diff = $today->diff($bday); 
-         // Sql query to serve the data into database
+    // Sql query to serve the data into database
     $sql = "INSERT INTO tbl_appointment SET
     appointment_no = '$appointment_no',
     name = '$name',
@@ -255,41 +269,23 @@ if (isset($_POST["selected_time"])) {
     type = '$type',
     selected_time = '$selectedTime',
     selected_date = '$selectedDate'
-";
+    ";
+    // EXECUTE QUERY AND SAVE DATA IN DATABASE
+    $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
-        // Send the temporary appointment via email
-        $to = $email;
-        $subject = 'Appointment Schedule';
-        $message = 'Name: ' . $name . 
-        'Appointment Number: ' . $appointment_no  . 
-        'Date: ' . $selected_date  . 
-        'Time: ' . $selected_time  . '
-        Upon going to Barangay please save your appoitment number.';
-        $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; 
-        if (mail($to, $subject, $message, $headers)) {
-            $_SESSION['sent'] = " <div class='success text-center'>Appointment details successfully sent to your email address</div>";
-            header('location:'. SITEURL.'my-appointments.php');
-        } else {
-            $_SESSION['sent'] = " <div class='error text-center'>Failed to sent apooitnment details</div>";
-            header('location:'. SITEURL.'set-appointment.php');
-        } 
-// EXECUTE QUERY AND SAVE DATA IN DATABASE
-$res = mysqli_query($conn, $sql) or die(mysqli_error());
-
-// check if data is inserted or not and display message;
-
-if($res == TRUE){
-// data inserted
-// variable to display message;
-$_SESSION['appointment']="<div class='success'>Successful to set appointment</div>";
-header("Location:".SITEURL.'residents/my-appointment.php');
-exit();
-}
-else{
-// data not inserted
-$_SESSION['appointmrnt'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
-header("location:".SITEURL.'residents/my-appointment.php');
-exit();
-}
+    // check if data is inserted or not and display message;
+    if($res == TRUE){
+        // data inserted
+        // variable to display message;
+        $_SESSION['appointment']="<div class='success'>Successful to set appointment</div>";
+        header("Location:".SITEURL.'residents/my-appointment.php');
+        exit();
+    }
+    else{
+        // data not inserted
+        $_SESSION['appointmrnt'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
+        header("location:".SITEURL.'residents/my-appointment.php');
+        exit();
+    }
 }
 ?>
