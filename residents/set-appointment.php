@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </tr>
                             <tr>
                                 <td>
+                                    <label for="name">Email Address:</label> <br>
                                     <input type="email" name="email" placeholder="Input Email Address"
                                         class="input-responsive">
                                 </td>
@@ -260,6 +261,8 @@ if (isset($_POST["selected_time"])) {
     $subject = "Appointment Schedule Confirmation";
     $message = "Dear $name,\n\n";
     $message .= "Your appointment has been scheduled successfully.\n\n";
+    $message .= "Appointment for $type\n";
+    $message .= "Appointment Number: $appointment_no\n";
     $message .= "Date: $selectedDate\n";
     $message .= "Time: $selectedTimeSlot\n";
     $message .= "\nThank you for choosing our service.\n\n";
