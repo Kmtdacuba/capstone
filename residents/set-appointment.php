@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
                        }
                    }
         ?>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <form action="set-appointment.php" method="POST">
                         <table class="table-size">
                             <tr>
                                 <td>
@@ -69,6 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <input type="text" name="name"
                                         value="<?php echo $Fname, ' ', $Mname, ' ', $Lname; ?>" class="input-responsive"
                                         readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="name">Email Address:</label> <br>
+                                    <input class="input-responsive" type="email" name="email"
+                                        plavceholder="Input Email Address">
                                 </td>
                             </tr>
                             <tr>
@@ -191,6 +198,14 @@ $selected_time = array(
 
 </html>
 <?php 
+
+$host = 'smtp.hostinger.com';
+$port = ' 465'; // Port number may vary, check Hostinger's documentation
+$username_smtp = 'info@brgymanagment.online';
+$password_smtp = 'Barangay188#';
+$from_email = 'info@brgymanagment.online';
+$from_name = 'Barangay 188 Tala Caloocan City'; 
+
 if (isset($_POST["selected_time"])) {
     $selectedTimeSlot = $_POST["selected_time"];
     
@@ -213,7 +228,7 @@ if (isset($_POST["selected_time"])) {
         return (date('N', strtotime($date)) >= 6);
     }
 
-  if(isset($_POST['submit'])) {
+  if(isset($_POST['email'])) {
 
     // Get data from form
     $appointment_no = rand(0, 99999);
@@ -241,6 +256,23 @@ if (isset($_POST["selected_time"])) {
     selected_time = '$selectedTime',
     selected_date = '$selectedDate'
 ";
+
+        // Send the temporary appointment via email
+        $to = $email;
+        $subject = 'Appointment Schedule';
+        $message = 'Name: ' . $name . 
+        'Appointment Number: ' . $appointment_no  . 
+        'Date: ' . $selected_date  . 
+        'Time: ' . $selected_time  . '
+        Upon going to Barangay please save your appoitment number.';
+        $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; 
+        if (mail($to, $subject, $message, $headers)) {
+            $_SESSION['sent'] = " <div class='success text-center'>Appointment details successfully sent to your email address</div>";
+            header('location:'. SITEURL.'my-appointments.php');
+        } else {
+            $_SESSION['sent'] = " <div class='error text-center'>Failed to sent apooitnment details</div>";
+            header('location:'. SITEURL.'set-appointment.php');
+        } 
 // EXECUTE QUERY AND SAVE DATA IN DATABASE
 $res = mysqli_query($conn, $sql) or die(mysqli_error());
 

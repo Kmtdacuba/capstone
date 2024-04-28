@@ -53,9 +53,8 @@ function checkForm() {
         a !== '' &&
         username !== '' &&
         password !== '' &&
-        femaleChecked || maleChecked &&
-        singleChecked ||
-        marriedChecked || widowedChecked) {
+        (femaleChecked || maleChecked) &&
+        (singleChecked || marriedChecked || widowedChecked)) {
         document.getElementById('submit').disabled = false;
     } else {
         document.getElementById('submit').disabled = true;
@@ -110,20 +109,20 @@ function checkForm() {
                             <tr>
                                 <td>
                                     <label for="">Gender:</label>
-                                    <input type="radio" id="male" name="gender" value="male" onclick="checkForm()">
+                                    <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
                                     Male
-                                    <input type="radio" id="female" name="gender" value="female" onclick="checkForm()">
+                                    <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
                                     Female
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
-                                    <input type="radio" id="single" name="s" value="single" onclick="checkForm()">
+                                    <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
                                     Single
-                                    <input type="radio" id="married" name="s" value="married" onclick="checkForm()">
+                                    <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
                                     Married
-                                    <input type="radio" id="widowed" name="s" value="widowed" onclick="checkForm()">
+                                    <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
                                     Widowed
                                 </td>
                             </tr>
