@@ -225,9 +225,11 @@ if (isset($_POST["selected_time"])) {
         return (date('N', strtotime($date)) >= 6);
     }
 
-  if(isset($_POST['submit'])) {
+  if(isset($_POST['email'])) {
 
+    
     // Get data from form
+    $email = $_POST['email'];
     $appointment_no = rand(0, 99999);
     $name = $_POST['name'];
     $type = $_POST['type'];
@@ -238,7 +240,6 @@ if (isset($_POST["selected_time"])) {
         echo "Sorry, you cannot select Saturday or Sunday. Please choose a weekday.";
     }
 
-
     $sql1 = "SELECT * FROM tbl_appointment";
     $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
     $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
@@ -246,6 +247,7 @@ if (isset($_POST["selected_time"])) {
     $diff = $today->diff($bday); 
          // Sql query to serve the data into database
     $sql = "INSERT INTO tbl_appointment SET
+    email = '$email',
     appointment_no = '$appointment_no',
     name = '$name',
     age='$diff->y',
@@ -253,17 +255,6 @@ if (isset($_POST["selected_time"])) {
     selected_time = '$selectedTime',
     selected_date = '$selectedDate'
 ";
-
-if(isset($_POST['email'])) {
-    $email = $_POST['email'];
-    
-    // Check if the email exists in the database - ADMIN
-    $sql_email = "SELECT * FROM tbl_appointment WHERE email = '$email'";
-    $result_email = $conn->query($sql_email);
-    
-    // FOR APPOINTMENT SEND TO EMAIL
-    if ($result_email->num_rows > 0) {
-    
     // Send email confirmation
     $to = $email; 
     $subject = "Appointment Schedule Confirmation";
@@ -284,9 +275,6 @@ if(isset($_POST['email'])) {
         $_SESSION['sent'] = " <div class='error text-center'>Unseccessful to send appointment details</div>";
         header('location:'. SITEURL.'set-appointment.php');
      } 
-    } 
-}
-    
 // EXECUTE QUERY AND SAVE DATA IN DATABASE
 $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
