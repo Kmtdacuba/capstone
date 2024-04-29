@@ -47,6 +47,7 @@ ob_start();
                     $row = mysqli_fetch_assoc($res);
 
                     $Fname = $row['Fname'];
+                    $email = $row['email'];
                     $current_image = $row['img_name'];
                     $username = $row['username'];
                     $password = $row['password'];
@@ -68,6 +69,14 @@ ob_start();
                                 <td>
                                     <label for="">Name:</label> <br>
                                     <input type="text" name="Fname" value="<?php echo $Fname; ?>"
+                                        class="input-responsive">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="lbl_update" for="">Email Address: </label> <br>
+                                    <input type="text" name="email" value="<?php echo $email;?>"
                                         class="input-responsive">
                                 </td>
                             </tr>
@@ -124,6 +133,7 @@ ob_start();
     {
         $id = $_POST['id'];
         $Fname = $_POST['Fname'];
+        $email = $_POST['email'];
         $current_image = $_POST['current_image'];
         $username = $_POST['username'];
 
@@ -186,6 +196,7 @@ ob_start();
 
         $update = "UPDATE tbl_admin SET 
         Fname = '$Fname',
+        email = '$email',
         img_name = '$img_name' , 
         username = '$username'
         WHERE id='$id' 

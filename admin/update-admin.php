@@ -49,6 +49,7 @@ ob_start();
                     $row = mysqli_fetch_assoc($res);
 
                     $Fname = $row['Fname'];
+                    $email = $row['email'];
                     $username = $row['username'];
                     $password = $row['password'];
                 }
@@ -70,6 +71,15 @@ ob_start();
                                         class="input-responsive">
                                 </td>
                             </tr>
+
+                            <tr>
+                                <td>
+                                    <label class="lbl_update" for="">Email Address: </label> <br>
+                                    <input type="text" name="email" value="<?php echo $email;?>"
+                                        class="input-responsive">
+                                </td>
+                            </tr>
+
 
                             </tr>
                             <td>
@@ -100,6 +110,7 @@ ob_start();
     if(isset($_POST['submit']))
     {
         $name = $_POST['name'];
+        $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -112,6 +123,7 @@ ob_start();
 
         $update = "UPDATE tbl_admin SET 
         Fname = '$Fname',
+        email = '$email',
         username = '$username',
         password = '$password'
         WHERE id='$id' 

@@ -4,20 +4,14 @@
     $email = $_SESSION['email'];
 ?>
 <section class="home-section">
+    <div class="refresh">
+        <a class="icons" href="my-appointment.php">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </div>
 
-    <div class="text">My Appointment</div>
+    <div class="text">Appointment History</div>
     <br><br>
-    <a href="<?php echo SITEURL; ?>residents/set-appointment.php?id=<?php echo $user_id; ?>" class="btn-primary">Set
-        Appointment</a>
-    <a href="<?php echo SITEURL; ?>residents/history.php" class="btn-history">Appointment History</a>
-    <br><br>
-    <?php
-if(isset($_SESSION['sent']))
-{
-    echo $_SESSION['sent'];
-    unset($_SESSION['sent']);
-}
-?>
     <table class="table-full">
         <tr>
             <th>ID</th>
@@ -26,11 +20,12 @@ if(isset($_SESSION['sent']))
             <th>Appointment Number</th>
             <th>Time</th>
             <th>Date</th>
+            <th>Action</th>
 
         </tr>
 
         <?php
-                        $sql = "SELECT * FROM tbl_appointment WHERE email='$email' ";
+                        $sql = "SELECT * FROM appointment_archive WHERE email='$email' ";
 
                         $res = mysqli_query($conn, $sql);
 
@@ -49,6 +44,7 @@ if(isset($_SESSION['sent']))
                                 $appointment_no = $row['appointment_no'];
                                 $selected_time = $row['selected_time'];
                                 $selected_date = $row['selected_date'];
+                                $action = $row['action'];
                                 
                 ?>
 
@@ -59,6 +55,8 @@ if(isset($_SESSION['sent']))
             <td><?php echo $appointment_no;?></td>
             <td><?php echo $selected_time;?></td>
             <td><?php echo $selected_date;?></td>
+            <td style="color: red;"><?php echo $action;?></td>
+
         </tr>
 
         <?php
@@ -68,7 +66,7 @@ if(isset($_SESSION['sent']))
 
                         else {
                             // no data in database
-                            echo '<span style="color: red;">No record found</span>';
+                            echo '<span style="color: red;">&nbsp;&nbsp;No record found</span>';
                         }
 
                     ?>

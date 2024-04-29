@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                            $Mname = $row['Mname'];
                            $Lname = $row['Lname'];
                            $Birthday = $row['Birthday'];
+                           $email = $row['email'];
                        }
                    }
         ?>
@@ -73,9 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="name">Email Address:</label> <br>
-                                    <input type="email" name="email" placeholder="Input Email Address"
-                                        class="input-responsive">
+                                    <label for="email">Email Address:</label> <br>
+                                    <input type="text" name="email" value="<?php echo $email; ?>"
+                                        class="input-responsive" readonly>
                                 </td>
                             </tr>
                             <tr>
@@ -236,6 +237,7 @@ if (isset($_POST["selected_time"])) {
     $type = $_POST['type'];
     $selectedDate = $_POST['selected_date'];
     $selectedTime = $_POST['selected_time'];
+    $date = date("Y-m-d"); //date 
 
     if(isWeekend($selectedDate)) {
         echo "Sorry, you cannot select Saturday or Sunday. Please choose a weekday.";
@@ -254,7 +256,8 @@ if (isset($_POST["selected_time"])) {
     age='$diff->y',
     type = '$type',
     selected_time = '$selectedTime',
-    selected_date = '$selectedDate'
+    selected_date = '$selectedDate',
+    date = '$date'
 ";
     // Send email confirmation
     $to = $email; 
@@ -272,10 +275,11 @@ if (isset($_POST["selected_time"])) {
 
     // PHP mail() function to send email
     if (mail($to, $subject, $message, $headers)) {
-        $_SESSION['sent'] = " <div class='success text-center'>Scheduled appointment details sent to your email</div>";
+ 
+        $_SESSION['sent'] = " <div class='success'> &nbsp;Scheduled appointment details sent to your email</div>";
            header('location:'. SITEURL.'my-appointment.php');
     } else {
-        $_SESSION['sent'] = " <div class='error text-center'>Unseccessful to send appointment details</div>";
+        $_SESSION['sent'] = " <div class='error'> &nbsp;Unseccessful to send appointment details</div>";
         header('location:'. SITEURL.'set-appointment.php');
      } 
 // EXECUTE QUERY AND SAVE DATA IN DATABASE
@@ -286,13 +290,14 @@ $res = mysqli_query($conn, $sql) or die(mysqli_error());
 if($res == TRUE){
 // data inserted
 // variable to display message;
-$_SESSION['appointment']="<div class='success'>Successful to set appointment</div>";
-header("Location:".SITEURL.'residents/my-appointment.php');
+$_SESSION['email '] = $eamil;
+$_SESSION['appointment']="<div class='success text-center'> &nbsp;Appointment set successfully</div>";
+header("Location:".SITEURL.'residents/summary.php');
 exit();
 }
 else{
 // data not inserted
-$_SESSION['appointmrnt'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
+$_SESSION['appointmrnt'] = " <div class='error text-center'> &nbsp;Failed to set appointment. pleas try again</div>";
 header("location:".SITEURL.'residents/my-appointment.php');
 exit();
 }

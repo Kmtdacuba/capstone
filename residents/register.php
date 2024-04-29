@@ -20,16 +20,17 @@ ob_start();
         if (errorDiv) {
             errorDiv.remove(); // Remove the error message
         }
-    }, 2000);
+    }, 5000);
 
     setTimeout(function() {
         var errorDiv = document.querySelector('.success');
         if (errorDiv) {
             errorDiv.remove(); // Remove the success message
         }
-    }, 2000);
+    }, 5000);
     </script>
 </head>
+
 <script>
 function checkForm() {
     var Fname = document.getElementById('Fname').value;
@@ -109,20 +110,20 @@ function checkForm() {
                             <tr>
                                 <td>
                                     <label for="">Gender:</label>
-                                    <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
+                                    <input type="radio" id="male" name="gender" value="male" onclick="checkForm()">
                                     Male
-                                    <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
+                                    <input type="radio" id="female" name="gender" value="female" onclick="checkForm()">
                                     Female
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
-                                    <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
+                                    <input type="radio" id="single" name="s" value="single" onclick="checkForm()">
                                     Single
-                                    <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
+                                    <input type="radio" id="married" name="s" value="married" onclick="checkForm()">
                                     Married
-                                    <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
+                                    <input type="radio" id="widowed" name="s" value="widowed" onclick="checkForm()">
                                     Widowed
                                 </td>
                             </tr>
@@ -130,6 +131,13 @@ function checkForm() {
                                 <td>
                                     <input type="email" id="email" name="email" placeholder="Email Address"
                                         onkeyup="checkForm()" class="input-responsive" required>
+                                    <?php
+                    if(isset($_SESSION['unique']))
+                    {
+                        echo $_SESSION['unique'];
+                        unset($_SESSION['unique']);
+                    }
+                    ?>
                                 </td>
                             </tr>
                             <tr>
@@ -142,13 +150,7 @@ function checkForm() {
                                 <td>
                                     <input type="text" id="username" name="username" placeholder="Username"
                                         onkeyup="checkForm()" class="input-responsive" required>
-                                    <?php
-                    if(isset($_SESSION['unique']))
-                    {
-                        echo $_SESSION['unique'];
-                        unset($_SESSION['unique']);
-                    }
-                    ?>
+
                                 </td>
                             </tr>
                             <tr>
@@ -188,7 +190,7 @@ function checkForm() {
         $a = $_POST['a'];
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $date_time = date("Y-m-d h:i:sa"); //time and date 
+        $date = date("Y-m-d"); //date 
 
          //Upload the image
        if(isset($_FILES['image']['name'])) {
@@ -218,11 +220,11 @@ function checkForm() {
     } else {
         $img_name = ""; // Set img_name to empty if no image is selected
     }
-        $sql1 = "SELECT * FROM tbl_resident WHERE username='$username'";
+        $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
         $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
 
         if (mysqli_num_rows($res1) > 0) {
-            $_SESSION['unique'] = "<div class='success'>Username already take.</div>";
+            $_SESSION['unique'] = "<div class='error'>Email address already taken</div>";
             header("Location:".SITEURL.'residents/register.php');?>
 <?php
         exit();
@@ -247,7 +249,7 @@ function checkForm() {
         a = '$a',
         username = '$username',
         password = '$password',
-        date_time = '$date_time'
+        date = '$date'
     ";
     // EXECUTE QUERY AND SAVE DATA IN DATABASE
    $res = mysqli_query($conn, $sql) or die(mysqli_error());

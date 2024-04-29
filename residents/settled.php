@@ -4,7 +4,7 @@
 ?>
 
 <section class="home-section">
-    <div class="text">Dashboard</div>
+    <div class="text">Transaction History</div>
 
     <?php 
                             if(isset($_SESSION['login']))

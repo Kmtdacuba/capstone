@@ -61,6 +61,13 @@ $user_id = $_SESSION['user_id'];
                 <span class="tooltip">My Appointenments</span>
             </li>
             <li>
+                <a href="settled.php">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="links_name">History</span>
+                </a>
+                <span class="tooltip">History</span>
+            </li>
+            <li>
                 <a href="requirements.php">
                     <i class="fa-regular fa-file-lines"></i>
                     <span class="links_name">Requirements</span>

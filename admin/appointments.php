@@ -34,6 +34,7 @@ include('partials/side-nav.php')
             <th>ID</th>
             <th>Name</th>
             <th>Type</th>
+            <th>Email</th>
             <th>Appointment Number</th>
             <th>Time</th>
             <th>Date</th>
@@ -56,6 +57,7 @@ include('partials/side-nav.php')
                 $id = $row['id'];
                 $name = $row['name'];
                 $type = $row['type'];
+                $email = $row['email'];
                 $appointment_no = $row['appointment_no'];
                 $selected_time = $row['selected_time'];
                 $selected_date = $row['selected_date'];
@@ -66,6 +68,7 @@ include('partials/side-nav.php')
                 <td><?php echo $sn++; ?></td>
                 <td><?php echo $name; ?></td>
                 <td><?php echo $type; ?></td>
+                <td><?php echo $email; ?></td>
                 <td><?php echo $appointment_no; ?></td>
                 <td><?php echo $selected_time; ?></td>
                 <td><?php echo $selected_date; ?></td>
@@ -115,6 +118,7 @@ include('partials/side-nav.php')
                                 $id = $row['id'];
                                 $name = $row['name'];
                                 $type = $row['type'];
+                                $email = $row['email'];
                                 $appointment_no = $row['appointment_no'];
                                 $selected_time = $row['selected_time'];
                                 $selected_date = $row['selected_date'];
@@ -125,6 +129,7 @@ include('partials/side-nav.php')
             <td><?php echo $sn++; ?></td>
             <td><?php echo $name; ?></td>
             <td><?php echo $type; ?></td>
+            <td><?php echo $email; ?></td>
             <td><?php echo $appointment_no; ?></td>
             <td><?php echo $selected_time; ?></td>
             <td><?php echo $selected_date; ?></td>

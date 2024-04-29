@@ -25,7 +25,7 @@ ob_start();
 
                 <div class="add_admin_content">
 
-                    <a class="icons" href="employee.php">
+                    <a class="icons" href="residents.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Update Resident's Profile</h1><br>

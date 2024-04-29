@@ -405,6 +405,7 @@ table tr td {
   border: none;
 }
 
+
 .btn-fifth {
   color: white;
   background-color: green;
@@ -488,6 +489,26 @@ hr {
   color: white;
   background-color: #27374D;
   padding: 13px 42%;
+  border: none;
+}
+
+.btn-history {
+  color: white;
+  background-color: #D22B2B;
+  border: 1px solid #880808;
+  padding: .5%;
+  margin: 1%;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-history:hover {
+  color: white;
+  background-color: #D22B2B;
+  border: 1px solid #880808;
+  padding: .8%;
   border: none;
 }
 
@@ -654,6 +675,7 @@ hr {
 
 .table-size {
   width: 80%;
+  text-align: left;
 }
 
 
