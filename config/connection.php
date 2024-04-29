@@ -1,5 +1,5 @@
 <?php
-
+  /*  
 // Start session
     session_start();
    // Create constant to store non repeating values
@@ -11,7 +11,7 @@
    // execure query and save data into databse
     $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD) or die(mysqli_error());// database connection
     $db_select = mysqli_select_db($conn, DB_NAME) or die(mysqli_error());
-  /*  
+    */
 // Start session
      session_start();
         // Create constant to store non repeating values
@@ -25,6 +25,6 @@
      $conn = mysqli_connect(LOCALHOST, DB_USERNAME, DB_PASSWORD) or die(mysqli_error());// database connection
      $db_select = mysqli_select_db($conn, DB_NAME) or die(mysqli_error());
 
-    */
+
 
 ?>
