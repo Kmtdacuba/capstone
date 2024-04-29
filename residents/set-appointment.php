@@ -211,12 +211,12 @@ if (isset($_POST["selected_time"])) {
     // Check if the selected time slot is available
     if (in_array($selectedTimeSlot, $selected_time)) {
         // Check if the time slot is already booked
-        if (!isset($_SESSION["bookedTimeSlots"]) || !in_array($selectedTimeSlot, $_SESSION["bookedTimeSlots"])) {
+        if (isset($_SESSION["bookedTimeSlots"]) && in_array($selectedTimeSlot, $_SESSION["bookedTimeSlots"])) {
+            echo "Sorry, the selected time slot $selectedTimeSlot is already booked.";
+        } else {
             // Book the time slot
             $_SESSION["bookedTimeSlots"][] = $selectedTimeSlot;
             echo "Time slot $selectedTimeSlot has been successfully booked.";
-        } else {
-            echo "Sorry, the selected time slot $selectedTimeSlot is already booked.";
         }
     } else {
         echo "Invalid time slot selected.";
