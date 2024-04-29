@@ -56,11 +56,13 @@ include('config/connection.php');
             <table class="table-size">
                 <form method="post" action="temp-pass.php">
                     <tr>
-                        <input class="login-responsive" type=" email" id="email" name="email"
+                        <label for="email" style="text-align: left; display: block;">Email Address:</label>
+                        <input class="input-responsive" type=" email" id="email" name="email"
                             placeholder="Input Email Address" required>
                     </tr>
                     <tr>
-                        <input class="login-responsive" type="password" id="temp_password" name="temp_password"
+                        <label for="email" style="text-align: left; display: block;">Temporary Password:</label>
+                        <input class="input-responsive" type="password" id="temp_password" name="temp_password"
                             placeholder="Input Temporary Password" required>
                     </tr><br>
                     <tr>
