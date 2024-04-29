@@ -68,7 +68,7 @@ if(isset($_SESSION['sent']))
 
                         else {
                             // no data in database
-                            echo '<span style="color: red;">No record found</span>';
+                            echo '<span style="color: red;"> &nbsp; No record found</span>';
                         }
 
                     ?>

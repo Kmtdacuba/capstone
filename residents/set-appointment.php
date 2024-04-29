@@ -276,11 +276,7 @@ if (isset($_POST["selected_time"])) {
     // PHP mail() function to send email
     if (mail($to, $subject, $message, $headers)) {
  
-        $_SESSION['sent'] = " <div class='success'> &nbsp;Scheduled appointment details sent to your email</div>";
-          
-    } else {
-        $_SESSION['sent'] = " <div class='error'> &nbsp;Unseccessful to send appointment details</div>";
-
+        
      } 
 // EXECUTE QUERY AND SAVE DATA IN DATABASE
 $res = mysqli_query($conn, $sql) or die(mysqli_error());
@@ -290,7 +286,7 @@ $res = mysqli_query($conn, $sql) or die(mysqli_error());
 if($res == TRUE){
 // data inserted
 // variable to display message;
-$_SESSION['email '] = $email;
+$_SESSION['email '] = $eamil;
 $_SESSION['appointment']="<div class='success text-center'> &nbsp;Appointment set successfully</div>";
 header("Location:".SITEURL.'residents/summary.php');
 exit();
