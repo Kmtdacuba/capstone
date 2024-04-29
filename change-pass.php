@@ -52,20 +52,18 @@ include('config/connection.php');
                     echo $_SESSION['temp'];
                     unset($_SESSION['temp']);
                 }
-            ?><br>
+            ?>
             <form method="post" action="change-pass.php">
                 <tr>
-                    <label for="new_password" style="text-align: left; display: block;">New Password:</label>
-                    <input class="input-responsive" type="password" id="new_password" name="new_password"
+                    <input class="login-responsive" type="password" id="new_password" name="new_password"
                         placeholder="Input New Password" required><br>
                 </tr>
                 <tr>
-                    <label for="confirm_password" style="text-align: left; display: block;">Confirm Password:</label>
-                    <input class="input-responsive" type="password" id="confirm_password" name="confirm_password"
+                    <input class="login-responsive" type="password" id="confirm_password" name="confirm_password"
                         placeholder="Confirm Your Password" required><br>
                 </tr>
                 <tr>
-                    <input name="change-pass" class="btn-second" type="submit" value="Confirm">
+                    <input name="change-pass" class="btn-second" type="submit" value="Change Password">
                 </tr>
             </form>
         </div>

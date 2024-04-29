@@ -277,10 +277,10 @@ if (isset($_POST["selected_time"])) {
     if (mail($to, $subject, $message, $headers)) {
  
         $_SESSION['sent'] = " <div class='success'> &nbsp;Scheduled appointment details sent to your email</div>";
-           header('location:'. SITEURL.'resident/my-appointment.php');
+           header('location:'. SITEURL.'residents/my-appointment.php');
     } else {
         $_SESSION['sent'] = " <div class='error'> &nbsp;Unseccessful to send appointment details</div>";
-        header('location:'. SITEURL.'resident/set-appointment.php');
+        header('location:'. SITEURL.'residents/set-appointment.php');
      } 
 // EXECUTE QUERY AND SAVE DATA IN DATABASE
 $res = mysqli_query($conn, $sql) or die(mysqli_error());

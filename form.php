@@ -50,19 +50,17 @@ if(isset($_SESSION['temp']))
     unset($_SESSION['temp']);
 }
 ?>
-            <form method="post" action="form.php">
-
-                <table class="table-size">
+            <table class="table-size">
+                <form method="post" action="form.php">
                     <tr>
-                        <label for="email" style="text-align: left; display: block;">Email Address:</label>
-                        <input class="input-responsive" type="email" id="email" name="email"
+                        <input class="login-responsive" type="email" id="email" name="email"
                             placeholder="Input Email Address" required><br>
                     </tr>
                     <tr>
-                        <input class="btn-second" type="submit" value="Verify">
+                        <input class="btn-second" type="submit" value="Reset Password">
                     </tr>
-                </table>
-            </form>
+                </form>
+            </table>
         </div>
     </center>
 </body>

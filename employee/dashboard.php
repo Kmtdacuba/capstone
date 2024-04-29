@@ -156,7 +156,7 @@
     <a href="id.php">
         <div class="d_box text-center">
             <?php
-                                $total_transactions_query = "SELECT COUNT(*) AS Barangay_Identification_Card FROM tbl_appointment WHERE type = 'Barangay Indentification Card'";
+                                $total_transactions_query = "SELECT COUNT(*) AS Barangay_Identification_Card FROM tbl_appointment WHERE type = 'Barangay Identification Card'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Identification_Card = $total_transactions_row['Barangay_Identification_Card'];
@@ -204,17 +204,17 @@
             <!--Transaction Chart-->
             <?php 
 $dataPoints1 = array(
-	        array("label"=> "Certificate", "y"=> $Barangay_Certificate),
-            array("label"=> "Barangay Indigency", "y"=> $Barangay_Indigency),
-            array("label"=> "Barangay Clearance", "y"=> $Barangay_Clearance),
-            array("label"=> "Barangay Business Permit", "y"=> $Barangay_Business_Permit),
-            array("label"=> "Barangay Facilities & Properties", "y"=> $Barangay_Facilities_Properties),
-            array("label"=> "Barangay Identification Card", "y"=> $Barangay_Identification_Card),
-            array("label"=> "Barangay Records, Data & Similar Documents", "y"=> $Barangay_Records),
-            array("label"=> "Other", "y"=> $other)
-            );
-
-            ?>
+	array("label"=> "Barangay Cetrificate", "y"=> $Barangay_Certificate),
+	array("label"=> "Barangay Indigency", "y"=> $Barangay_Indigency),
+    array("label"=> "Barangay Clearance", "y"=> $Barangay_Clearance),
+    array("label"=> "Barangay Business Permit", "y"=> $Barangay_Business_Permit),
+    array("label"=> "Barangay Facilities & Properties", "y"=> $Barangay_Facilities_Properties),
+    array("label"=> "Barangay Identification Card", "y"=> $Barangay_Identification_Card),
+    array("label"=> "Barangay Records, Data & Similar Documents", "y"=> $Barangay_Records),
+    array("label"=> "Other", "y"=> $other)
+);
+	
+?>
             <script>
             window.onload = function() {
 
@@ -247,6 +247,8 @@ $dataPoints1 = array(
             <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 
             <!--Transaction Chart Ends-->
+
+
 
             <!--Main Section Ends-->
 </section>

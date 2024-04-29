@@ -26,7 +26,7 @@ ob_start();
         <div class="main-content">
             <div class="wrapper">
                 <div class="add_admin_content">
-                    <a class="icons" href="../index.php">
+                    <a class="icons" href="residents.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Registration Form</h1>

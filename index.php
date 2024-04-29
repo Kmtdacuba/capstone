@@ -125,9 +125,9 @@ if(isset($_POST['email'])){
     } elseif(mysqli_num_rows($result3) > 0){
         $row = mysqli_fetch_assoc($result3);
         $hashed_password = $row['password'];
+        
        if (password_verify($password, $hashed_password)) {
            $_SESSION['user_id'] = $row['id'];
-           $_SESSION['email'] = $email;
            $_SESSION['login'] = "<div class='success text-center'>Login Successful</div>";
            header('location:'. SITEURL.'residents/dashboard.php');
        } else {

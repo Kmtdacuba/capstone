@@ -156,7 +156,7 @@
     <a href="id.php">
         <div class="d_box text-center">
             <?php
-                                $total_transactions_query = "SELECT COUNT(*) AS Barangay_Identification_Card FROM tbl_appointment WHERE type = 'Barangay Indentification Card'";
+                                $total_transactions_query = "SELECT COUNT(*) AS Barangay_Identification_Card FROM tbl_appointment WHERE type = 'Barangay Identification Card'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Identification_Card = $total_transactions_row['Barangay_Identification_Card'];
