@@ -1,5 +1,5 @@
 <?php
-include('config/connection.php');
+include('../config/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ include('config/connection.php');
 
 <head>
     <title>Barangay 188 Tala Caloocan City</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
     <script>
@@ -31,13 +31,13 @@ include('config/connection.php');
 
 <body class="bg">
     <div>
-        <a href="">
-            <img src="images/Logo Name.png" alt="" width=100%>
-        </a>
+
+        <img src="../images/Logo Name.png" alt="" width=100%>
+
     </div>
     <center>
         <div class="login">
-            <a class="icons" href="index.php">
+            <a class="icons" href="../index.php">
                 <i class="fa-solid fa-square-xmark"></i>
             </a>
             <h1>Change Password</h1>
@@ -95,20 +95,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session variable to indicate successful password change
             $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
             // Redirect user to login page
-            header('location: index.php');
+            header('location:'.SITEURL.'index.php');
             exit;
         } else {
             // Error in updating password
             $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
             // Redirect user back to change password page
-            header('location: change-pass.php');
+            header('location:'.SITEURL.'forgot/change-pass.php');
             exit;
         }
     } else {
         // Passwords do not match
         $_SESSION['change'] = "<div class='error text-center'>Passwords do not match!</div>";
         // Redirect user back to change password page
-        header('location: change-pass.php');
+        header('location:'.SITEURL.'forgot/change-pass.php');
         exit;
     }
 }

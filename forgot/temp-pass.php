@@ -1,13 +1,13 @@
 <?php
-include('config/connection.php');
+include('../config/connection.php');
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Barangay 188 Tala Caloocan City</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
     <script>
@@ -30,13 +30,13 @@ include('config/connection.php');
 
 <body class="bg">
     <div>
-        <a href="">
-            <img src="images/Logo Name.png" alt="" width=100%>
-        </a>
+
+        <img src="../images/Logo Name.png" alt="" width=100%>
+
     </div>
     <center>
         <div class="login">
-            <a class="icons" href="index.php">
+            <a class="icons" href="../index.php">
                 <i class="fa-solid fa-square-xmark"></i>
             </a>
             <h1>Temporary Password</h1><br>
@@ -58,12 +58,12 @@ include('config/connection.php');
                     <tr>
                         <label for="email" style="text-align: left; display: block;">Email Address:</label>
                         <input class="input-responsive" type=" email" id="email" name="email"
-                            placeholder="Input Email Address" required>
+                            placeholder="sample@gmail.com" required>
                     </tr>
                     <tr>
                         <label for="email" style="text-align: left; display: block;">Temporary Password:</label>
                         <input class="input-responsive" type="password" id="temp_password" name="temp_password"
-                            placeholder="Input Temporary Password" required>
+                            required>
                     </tr><br>
                     <tr>
                         <input class="btn-second" type="submit" value="Verify">
@@ -95,16 +95,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['change'] = "<div class='success text-center'>Change your password to login</div>";
-            header('location:'. SITEURL.'change-pass.php');
+            header('location:'. SITEURL.'forgot/change-pass.php');
             exit; // Ensure no further execution of the script after redirection
         } else {
             $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-            header('location:'. SITEURL.'temp-pass.php');
+            header('location:'. SITEURL.'forgot/temp-pass.php');
             exit;
         }
     } else {
         $_SESSION['change'] = "<div class='error text-center'>Invalid email or temporary password</div>";
-        header('location:'. SITEURL.'temp-pass.php');
+        header('location:'. SITEURL.'forgot/temp-pass.php');
         exit;
     }
 }

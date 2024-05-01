@@ -1,5 +1,5 @@
 <?php
-include('config/connection.php');
+include('../config/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ include('config/connection.php');
 
 <head>
     <title>Barangay 188 Tala Caloocan City</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
 
@@ -33,12 +33,12 @@ include('config/connection.php');
 <body class="bg">
     <center>
         <div>
-            <a href="">
-                <img src="images/Logo Name.png" alt="" width=100%>
-            </a>
+
+            <img src="../images/Logo Name.png" alt="" width=100%>
+
         </div>
         <div class="login">
-            <a class="icons" href="index.php">
+            <a class="icons" href="../index.php">
                 <i class="fa-solid fa-square-xmark"></i>
             </a>
             <h1>Forgot Password</h1>
@@ -56,7 +56,7 @@ if(isset($_SESSION['temp']))
                     <tr>
                         <label for="email" style="text-align: left; display: block;">Email Address:</label>
                         <input class="input-responsive" type="email" id="email" name="email"
-                            placeholder="Input Email Address" required><br>
+                            placeholder="sample@gmail.com" required><br>
                     </tr>
                     <tr>
                         <input class="btn-second" type="submit" value="Verify">
@@ -108,14 +108,12 @@ Please use this temporary password to log in and change your password.';
 $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; 
 if (mail($to, $subject, $message, $headers)) {
     $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
-       header('location:'. SITEURL.'temp-pass.php');
+       header('location:'. SITEURL.'forgot/temp-pass.php');
 } else {
     $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
-    header('location:'. SITEURL.'form.php');
+    header('location:'. SITEURL.'forgot/form.php');
  } 
 } 
     }
     $conn->close();
-
-    
     ?>

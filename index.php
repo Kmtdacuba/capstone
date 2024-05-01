@@ -10,6 +10,7 @@ include('config/connection.php');
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <title>Barangay 188 Tala Caloocan City</title>
+
     <script>
     // Message will disappear after 2 seconds 
     setTimeout(function() {
@@ -71,7 +72,7 @@ include('config/connection.php');
                             required>
                     </tr>
                     <tr>
-                        <a class="f" href="form.php">Forgot Password?</a>
+                        <a class="f" href="forgot/form.php">Forgot Password?</a>
                     </tr>
                     <br>
                     <tr>
