@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Icon -->
+    <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
     <title>Terms and Conditions</title>
 </head>
 
@@ -17,6 +19,9 @@
         </div>
         <div class="terms">
             <div class="table-size ">
+                <a class="icons" href="index.php">
+                    <i class="fa-solid fa-square-xmark"></i>
+                </a>
                 <h1 class="text-center">Terms and Conditions</h1>
                 <p>By using our services, you agree to the following terms and conditions:</p>
                 <ol>
