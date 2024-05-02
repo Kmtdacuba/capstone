@@ -1102,3 +1102,24 @@ label {
   background-color: lightgray;
   border-radius: 10px;
 }
+
+/*CSS Admin Queuing*/
+
+.queues {
+  width: 32.7%;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+  float: left;
+  background-color: pink;
+  border: 1px solid lightpink;
+  cursor: pointer;
+}
+
+.queues:hover {
+  background-color: lightpink;
+  border: 1px solid pink;
+  cursor: pointer;
+  padding: 3px;
+  margin: 3px;
+}

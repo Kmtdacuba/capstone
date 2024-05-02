@@ -32,6 +32,7 @@ $user_id = $_SESSION['user_id'];
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href='' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <!-- Refresh every 10 seconds -->
 <meta http-equiv="refresh" content="10">

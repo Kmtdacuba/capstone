@@ -84,25 +84,25 @@ setTimeout(function() {
     <a href="priority-queue.php">
         <div class="queues text-center">
             <?php
-                                $total_priority_query = "SELECT COUNT(*) AS total_priority FROM tbl_queuing WHERE age>=60";
-                                $total_priority_result = $conn->query($total_priority_query);
-                                $total_priority_row = $total_priority_result->fetch_assoc();
-                                $total_priority = $total_priority_row['total_priority'];
+                                $total_queuing_query = "SELECT COUNT(*) AS total_queuing FROM tbl_queuing WHERE age>=60";
+                                $total_queuing_result = $conn->query($total_queuing_query);
+                                $total_queuing_row = $total_queuing_result->fetch_assoc();
+                                $total_queuing = $total_queuing_row['total_queuing'];
                                 ?>
             <h5 class="h5">PRIORITY RESIDENT</h5>
-            <h2 class="h2"><?php echo $total_priority; ?></h2>
+            <h2 class="h2"><?php echo $total_queuing; ?></h2>
         </div>
     </a>
     <a href="regular-queue.php">
         <div class="queues text-center">
             <?php
-                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age<=60 && age>=1";
-                                $total_regular_result = $conn->query($total_regular_query);
-                                $total_regular_row = $total_regular_result->fetch_assoc();
-                                $total_regular = $total_regular_row['total_regular'];
+                                $total_queuing_query = "SELECT COUNT(*) AS total_queuing FROM tbl_queuing WHERE age>=60 && age<=1";
+                                $total_queuing_result = $conn->query($total_queuing_query);
+                                $total_queuing_row = $total_queuing_result->fetch_assoc();
+                                $total_queuing = $total_queuing_row['total_queuing'];
                                 ?>
             <h5 class="h5">REGULAR RESIDENT</h5>
-            <h2 class="h2"><?php echo $total_regular; ?></h2>
+            <h2 class="h2"><?php echo $total_queuing; ?></h2>
         </div>
     </a>
     <br><br>
@@ -120,7 +120,7 @@ setTimeout(function() {
         </tr>
 
         <?php
-                        $sql = "SELECT * FROM tbl_queuing";
+                        $sql = "SELECT * FROM tbl_queuing WHERE age>=60";
 
                         $res = mysqli_query($conn, $sql);
 
