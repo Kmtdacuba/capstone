@@ -1,8 +1,14 @@
 <?php
-
 include('../config/connection.php');
 ob_start();
 ?>
+
+<!--Refresh every 5 seconds-->
+<script>
+setTimeout(function() {
+    window.location.reload();
+}, 5000);
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +21,13 @@ ob_start();
     <title>Barangay 188 Tala Caloocan City</title>
 </head>
 
+<!-- Refresh every 10 seconds -->
+<meta http-equiv="refresh" content="10">
+
 <body class="bg">
     <center>
         <div>
-            <a href="">
-                <img src="../images/Logo Name.png" alt="" width=80%>
-            </a>
+            <img src="../images/Logo Name.png" alt="" width=80%>
         </div>
         <div class="queuing-screen">
             <h1 class="serve-now">NOW SERVING</h1><br>

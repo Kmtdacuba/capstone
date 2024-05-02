@@ -2,6 +2,15 @@
     include ('partials/side-nav.php');
     ob_start();
 ?>
+
+<!--Refresh every 10 seconds (10000 milliseconds) -->
+<script>
+setTimeout(function() {
+    window.location.reload();
+}, 10000);
+</script>
+
+
 <section class="home-section">
     <div class="refresh">
         <a class="icons" href="queuing.php">
@@ -76,10 +85,9 @@
 
 
         <tr>
-            <th>ID</th>
             <th>QUEUING NUMBER</th>
             <th>DATE & TIME</th>
-            <th>STATUS</th>
+            <th>APPOINTMENT NUMBER</th>
             <th>ACTION</th>
         </tr>
 
@@ -98,16 +106,16 @@
 
                             while($row = mysqli_fetch_assoc($res))
                             {
-                                $id = $row['id'];
-                                $queuing_number = $row['queuing_number'];
+                                $queue_no = $row['queue_no'];
+                                $queue_type = $row['queue_type'];
                                 $date_time= $row['date_time'];
                                 $appointment_no = $row['appointment_no'];
                                 
                 ?>
 
         <tr>
-            <td><?php echo $sn++; ?></td>
-            <td><?php echo $queuing_number; ?></td>
+            <td><?php echo $queue_no++; ?></td>
+            <td><?php echo $queue_type; ?></td>
             <td><?php echo $date_time; ?></td>
             <td><?php echo $appointment_no; ?></td>
             <td>

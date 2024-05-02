@@ -1091,3 +1091,14 @@ label {
 .date-time {
   font: 14px;
 }
+
+/*Terms and Conditions*/
+
+.terms {
+  border: 1px solid gray;
+  width: 50%;
+  margin: 2 auto;
+  padding: 2%;
+  background-color: lightgray;
+  border-radius: 10px;
+}

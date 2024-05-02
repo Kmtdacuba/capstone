@@ -44,6 +44,7 @@ function checkForm() {
     var a = document.getElementById('a').value;
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
+    var termsChecked = document.getElementById("terms").checked;
 
     // Check if all fields are filled
     if (Fname !== '' &&
@@ -53,6 +54,7 @@ function checkForm() {
         a !== '' &&
         username !== '' &&
         password !== '' &&
+        termsChecked &&
         (femaleChecked || maleChecked) &&
         (singleChecked || marriedChecked || widowedChecked)) {
         document.getElementById('submit').disabled = false;
@@ -130,6 +132,13 @@ function checkForm() {
                                 <td>
                                     <input type="email" id="email" name="email" placeholder="Email Address"
                                         onkeyup="checkForm()" class="input-responsive" required>
+                                    <?php
+                    if(isset($_SESSION['unique']))
+                    {
+                        echo $_SESSION['unique'];
+                        unset($_SESSION['unique']);
+                    }
+                    ?>
                                 </td>
                             </tr>
                             <tr>
@@ -142,13 +151,7 @@ function checkForm() {
                                 <td>
                                     <input type="text" id="username" name="username" placeholder="Username"
                                         onkeyup="checkForm()" class="input-responsive" required>
-                                    <?php
-                    if(isset($_SESSION['unique']))
-                    {
-                        echo $_SESSION['unique'];
-                        unset($_SESSION['unique']);
-                    }
-                    ?>
+
                                 </td>
                             </tr>
                             <tr>
@@ -157,6 +160,16 @@ function checkForm() {
                                         onkeyup="checkForm()" class="input-responsive" required>
                                 </td>
                             </tr>
+                            <center>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="terms" name="terms" onclick="checkForm()" required>
+                                        <label for="terms">I viewed and accept the <a style="text-decoration: none;"
+                                                href="http://localhost/capstone/t&c.php">Terms and
+                                                conditions</a></label><br>
+                                    </td>
+                                </tr>
+                            </center>
                             <tr>
                                 <td>
                                     <input type="submit" id="submit" name="submit" value="Register" class="btn-second"
@@ -218,11 +231,11 @@ function checkForm() {
     } else {
         $img_name = ""; // Set img_name to empty if no image is selected
     }
-        $sql1 = "SELECT * FROM tbl_resident WHERE username='$username'";
+        $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
         $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
 
         if (mysqli_num_rows($res1) > 0) {
-            $_SESSION['unique'] = "<div class='success'>Username already take.</div>";
+            $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
             header("Location:".SITEURL.'residents/register.php');?>
 <?php
         exit();
