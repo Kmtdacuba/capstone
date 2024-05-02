@@ -13,6 +13,22 @@ ob_start();
     <title>Barangay 188 Tala Caloocan City</title>
 </head>
 <script>
+// Message will disappear after 2 seconds 
+setTimeout(function() {
+    var errorDiv = document.querySelector('.error');
+    if (errorDiv) {
+        errorDiv.remove(); // Remove the error message
+    }
+}, 2000);
+
+setTimeout(function() {
+    var errorDiv = document.querySelector('.success');
+    if (errorDiv) {
+        errorDiv.remove(); // Remove the success message
+    }
+}, 2000);
+</script>
+<script>
 function checkForm() {
     var appointment_no = document.getElementById('appointment_no').value;
 
@@ -36,13 +52,18 @@ function limitInput(field) {
     <center>
 
         <div>
-            <a href="">
-                <img src="../images/Logo Name.png" alt="" width=100%>
-            </a>
+            <img src="../images/Logo Name.png" alt="" width=100%>
         </div>
         <div class="login">
 
             <h1>Appointment Number</h1><br>
+            <?php
+                    if(isset($_SESSION['number']))
+                    {
+                        echo $_SESSION['number'];
+                        unset($_SESSION['number']);
+                    }
+                    ?>
             <form action="" method="POST" enctype="multipart/form-data">
                 <!-- Login table -->
                 <table class="table-size">
@@ -52,6 +73,7 @@ function limitInput(field) {
                             oninput="limitInput(this)" maxlength="5" placeholder="Enter Appointment Number"
                             class="login-responsive" required>
                     </tr>
+
                     <tr>
                         <input type="hidden" id="status" name="status" value="waiting">
                     </tr>
@@ -68,20 +90,32 @@ function limitInput(field) {
 
 </html>
 <?php 
+ 
     // Process value from form and save to database;
     // Check whether submit button is clicked or not
 
     if(isset($_POST['submit'])) {
-        
+
         $appointment_no = $_POST['appointment_no'];
         $date_time = date("Y-m-d h:i:sa"); //time and date 
  
+        // Check if appointment number already exists
+    $sql_check = "SELECT * FROM tbl_queuing WHERE appointment_no='$appointment_no'";
+    $res_check = mysqli_query($conn, $sql_check) or die(mysqli_error($conn));
+
+    if (mysqli_num_rows($res_check) > 0) {
+        $_SESSION['number'] = "<div class='error'>Appointment number already exists</div>";
+        header("Location: queuing.php");
+        exit();
+    }
         // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_queuing SET 
         queue_no = '$new_queue_no',
         appointment_no = '$appointment_no',
         date_time = '$date_time'
         ";
+        
+        
         // EXECUTE QUERY AND SAVE DATA IN DATABASE
        $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
@@ -103,5 +137,5 @@ function limitInput(field) {
         header("location:" .SITEURL.'queuing/queue-num.php');
         exit;
        }
-    }
+    } 
 ?>
