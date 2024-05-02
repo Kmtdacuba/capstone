@@ -86,6 +86,7 @@ setTimeout(function() {
 
         <tr>
             <th>QUEUING NUMBER</th>
+            <th>RESIDENT TYPE</th>
             <th>DATE & TIME</th>
             <th>APPOINTMENT NUMBER</th>
             <th>ACTION</th>
