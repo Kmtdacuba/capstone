@@ -225,7 +225,7 @@ function checkForm() {
         // Check if the image was uploaded successfully
         if($upload == false) {
             $_SESSION['upload'] = "<div class='error'>Failed to upload image</div>";
-            header('location:' . SITEURL . "admin/register.php");
+            header('location:' . SITEURL . "residents/register.php");
             die(); // Stop execution if upload fails
         }
     } else {

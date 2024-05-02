@@ -120,7 +120,7 @@ setTimeout(function() {
         </tr>
 
         <?php
-                        $sql = "SELECT * FROM tbl_queuing";
+                        $sql = "SELECT * FROM tbl_queuing WHERE age>=60 && age <=1";
 
                         $res = mysqli_query($conn, $sql);
 
@@ -147,10 +147,8 @@ setTimeout(function() {
             <td><?php echo $date_time; ?></td>
             <td><?php echo $appointment_no; ?></td>
             <td>
-                <a href="<?php echo SITEURL; ?>employee/queuing-done.php?id=<?php echo $id; ?>"
-                    class="btn-fifth">Call</a>
-                <a href="<?php echo SITEURL; ?>emplomployee/queuing-done.php?id=<?php echo $id; ?>"
-                    class="btn-second">Done</a>
+                <a href="<?php echo SITEURL; ?>admin/queuing-done.php?id=<?php echo $id; ?>" class="btn-fifth">Call</a>
+                <a href="<?php echo SITEURL; ?>admin/queuing-done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
             </td>
             </td>
         </tr>
