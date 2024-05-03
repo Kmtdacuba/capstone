@@ -3,18 +3,6 @@ include('../config/connection.php');
 $user_id = $_SESSION['user_id'];
 ob_start();
 ?>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var dateInput = document.getElementById('selected_date');
-    dateInput.addEventListener('change', function() {
-        var selectedDate = new Date(this.value);
-        if (selectedDate.getDay() == 0) { // 0 corresponds to Sunday
-            alert('Sorry, Sundays are not available for appointments.');
-            this.value = ''; // Clear the selected date
-        }
-    });
-});
-</script>
 
 <!DOCTYPE html>
 <html lang="en">

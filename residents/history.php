@@ -25,7 +25,7 @@
         </tr>
 
         <?php
-                        $sql = "SELECT * FROM appointment_archive WHERE email='$email' ";
+                        $sql = "SELECT * FROM appointment_archive WHERE email='$email'";
 
                         $res = mysqli_query($conn, $sql);
 

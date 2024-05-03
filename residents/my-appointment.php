@@ -9,7 +9,8 @@
     <br><br>
     <a href="<?php echo SITEURL; ?>residents/set-appointment.php?id=<?php echo $user_id; ?>" class="btn-primary">Set
         Appointment</a>
-    <a href="<?php echo SITEURL; ?>residents/history.php" class="btn-history">Appointment History</a>
+    <a href="<?php echo SITEURL; ?>residents/history.php?id=<?php echo $user_id; ?>" class="btn-history">Appointment
+        History</a>
     <br><br>
     <?php
 if(isset($_SESSION['sent']))

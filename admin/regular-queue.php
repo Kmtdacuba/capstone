@@ -96,7 +96,7 @@ setTimeout(function() {
     <a href="regular-queue.php">
         <div class="queues text-center">
             <?php
-                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age<=60 && age>=1";
+                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age<=1 && age>=60";
                                 $total_regular_result = $conn->query($total_regular_query);
                                 $total_regular_row = $total_regular_result->fetch_assoc();
                                 $total_regular = $total_regular_row['total_regular'];
