@@ -89,41 +89,34 @@
                     </td>
                 </div>
                 <tr>
-                    <div class="profile text-center">
-                        <td><?php echo $employee_no; ?></td>
-                    </div>
-                    <br>
-                    <div class="profile text-center">
-                        <td><?php echo $Fname; ?></td>
-                    </div>
-                    <br>
-                    <div class="profile text-center">
-                        <td><?php echo $Mname; ?></td>
-                    </div>
-                <tr>
-                    <div class="profile text-center">
-                        <td><?php echo $Lname; ?></td>
-                    </div>
-                    <br>
-                    <div class="profile text-center">
-                        <td><?php echo $Birthday; ?></td>
-                    </div>
-                    <br>
-                    <div class="profile text-center">
-                        <td><?php echo $username; ?></td>
-                    </div>
-                    <br><br>
+                    <div class="label-profile">
+                        <div class="">
+                            <td>Employee Number: <?php echo $employee_no; ?></td>
+                        </div>
+                        <br>
+                        <div class="">
+                            <td>Name: <?php echo $Fname, ' ', $Mname, ' ',$Lname;?></td>
+                        </div>
+                        <br>
+                        <div class="">
+                            <td>Birthday: <?php echo $Birthday; ?></td>
+                        </div>
+                        <br>
+                        <div class="">
+                            <td>Username: <?php echo $username; ?></td>
+                        </div>
+                        <br><br>
 
-                    <a href="<?php echo SITEURL; ?>employee/update-myprofile.php?id=<?php echo $user_id; ?>"
-                        class="btn-primary">Edit My Profile</a>
-
-                    <?php
+                        <a href="<?php echo SITEURL; ?>employee/update-myprofile.php?id=<?php echo $user_id; ?>"
+                            class="btn-primary">Edit My Profile</a>
+                        <?php
 
                     }
                 }
 
                 ?>
 
+                    </div>
             </div>
         </div>
     </center>

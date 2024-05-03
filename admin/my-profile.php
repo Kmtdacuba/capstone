@@ -83,18 +83,20 @@
                     </td>
                 </div>
                 <tr>
-                    <div class="profile text-center">
-                        <td><?php echo $Fname; ?></td>
+                    <div class="label-profile">
+                        <div class="">
+                            <td>Name: <?php echo $Fname; ?></td>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="">
+                            <td>Username: <?php echo $username; ?></td>
+                        </div>
+                        <br><br>
+                        <a href="<?php echo SITEURL; ?>admin/update-myprofile.php?id=<?php echo $user_id; ?>"
+                            class="btn-primary">Edit My Profile</a>
+                        <br><br>
                     </div>
-                    <br>
-                    <br>
-                    <div class="profile text-center">
-                        <td><?php echo $username; ?></td>
-                    </div>
-                    <br><br>
-                    <a href="<?php echo SITEURL; ?>admin/update-myprofile.php?id=<?php echo $user_id; ?>"
-                        class="btn-primary">Edit My Profile</a>
-                    <br><br>
                     <?php
 
                     }

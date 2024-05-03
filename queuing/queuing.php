@@ -1,5 +1,6 @@
 <?php
 include('../config/connection.php');
+$user_id = $_SESSION['user_id'];
 ob_start();
 ?>
 <!DOCTYPE html>
@@ -64,6 +65,24 @@ function limitInput(field) {
                         unset($_SESSION['number']);
                     }
                     ?>
+
+            <?php
+                   $sql = "SELECT * FROM tbl_resident WHERE id=$user_id";
+       
+                   $result = mysqli_query($conn, $sql);
+       
+                   if ($result == TRUE)
+                   {
+                       $count= mysqli_num_rows($result);
+       
+                       if($count==1)
+                       {
+                           $row = mysqli_fetch_assoc($result);
+                           $Birthday = $row['Birthday'];
+                       }
+                   }
+        ?>
+
             <form action="" method="POST" enctype="multipart/form-data">
                 <!-- Login table -->
                 <table class="table-size">
@@ -73,7 +92,12 @@ function limitInput(field) {
                             oninput="limitInput(this)" maxlength="5" placeholder="Enter Appointment Number"
                             class="login-responsive" required>
                     </tr>
-
+                    <tr>
+                        <td>
+                            <input type="hidden" name="Birthday" value="<?php echo $Birthday; ?>"
+                                class="input-responsive" readonly>
+                        </td>
+                    </tr>
                     <tr>
                         <input type="hidden" id="status" name="status" value="waiting">
                     </tr>
@@ -108,9 +132,17 @@ function limitInput(field) {
         header("Location: queuing.php");
         exit();
     }
+
+    $sql1 = "SELECT * FROM tbl_appointment";
+    $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
+    $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
+    $today = new Datetime(date('Y-m-d')); // Creating a DateTime object representing today's date.
+    $diff = $today->diff($bday); 
+    
         // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_queuing SET 
         queue_no = '$new_queue_no',
+        age='$diff->y',
         appointment_no = '$appointment_no',
         date_time = '$date_time'
         ";
