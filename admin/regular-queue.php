@@ -137,7 +137,7 @@ setTimeout(function() {
         </tr>
 
         <?php
-                        $sql = "SELECT * FROM tbl_queuing WHERE age>=1";
+                        $sql = "SELECT * FROM tbl_queuing WHERE age>=1 && age<60";
 
                         $res = mysqli_query($conn, $sql);
 
