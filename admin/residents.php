@@ -138,7 +138,7 @@ include('partials/side-nav.php')
      }
     else {
 
-        $sql = "SELECT * FROM tbl_resident LIMIT 10";
+        $sql = "SELECT * FROM tbl_resident";
 
                         $res = mysqli_query($conn, $sql);
 
