@@ -2,17 +2,17 @@
 include('../config/connection.php');
 ob_start();
 $queue_no = $_GET['queue_no'];
-$query = "UPDATE tbl_queuing SET status = 'Calling' WHERE queue_no =$queue_no";
+$query = "UPDATE tbl_queuing SET status = 'Serving' WHERE queue_no =$queue_no";
 $sql = mysqli_query($conn,$query);
 if($sql == TRUE) {
 
-    $_SESSION['call'] = "<div class='success'> &nbsp Now calling Queue-00$queue_no </div>";
+    $_SESSION['call'] = "<div class='success'> &nbsp Now serving Queue-00$queue_no </div>";
     header("location:" .SITEURL.'admin/queuing.php');
     exit;
     
    }
    else {
-    $_SESSION['call'] = " <div class='error'> &nbsp Cannot call, Pleas try again</div>";
+    $_SESSION['call'] = " <div class='error'> &nbsp Cannot serve, Pleas try again</div>";
     header("location:" .SITEURL.'admin/queuing');
     exit;
    }
