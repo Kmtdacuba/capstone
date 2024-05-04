@@ -56,9 +56,9 @@ $user_id = $_SESSION['user_id'];
             <li>
                 <a href="my-appointment.php">
                     <i class="fa-solid fa-calendar-check"></i>
-                    <span class="links_name">My Appointenments</span>
+                    <span class="links_name">My Appointnments</span>
                 </a>
-                <span class="tooltip">My Appointenments</span>
+                <span class="tooltip">My Appointnments</span>
             </li>
             <li>
                 <a href="settled.php">
