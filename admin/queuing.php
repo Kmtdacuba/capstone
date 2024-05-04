@@ -53,7 +53,7 @@ setTimeout(function() {
         <tr>
             <td>COUNTER 1</td>
             <?php
-$sql = "SELECT * FROM tbl_queuing LIMIT 1";
+$sql = "SELECT * FROM tbl_queuing";
 $res = mysqli_query($conn, $sql);
 $count = mysqli_num_rows($res);
 
