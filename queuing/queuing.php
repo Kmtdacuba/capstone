@@ -138,6 +138,8 @@ function limitInput(field) {
     $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
     $today = new Datetime(date('Y-m-d')); // Creating a DateTime object representing today's date.
     $diff = $today->diff($bday); 
+
+    $sql_age = "SELECT * FROM tbl_appointment";
     
         // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_queuing SET 

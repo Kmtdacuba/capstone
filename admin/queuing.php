@@ -7,7 +7,7 @@
     <title>Baranagy 188 Tala Caloocan City</title>
 
     <link rel="icon" type="image/png" href="../favicon.png">
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="5">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 <script>
 setTimeout(function() {
     window.location.reload();
-}, 10000);
+}, 5000);
 </script>
 
 
@@ -36,8 +36,8 @@ setTimeout(function() {
     </div>
     <div class="text">Queuing
     </div>
+    <a href="<?php echo SITEURL; ?>queuing/queuing.php" class="btn-primary">Queuing Number</a>
     <br>
-
     <div class="q text-center">
         <h5 class="h5">Counter Access</h5>
     </div>
@@ -51,22 +51,75 @@ setTimeout(function() {
         </tr><br>
 
         <tr>
-            <td>1.</td>
-            <td>1.</td>
-            <td>1.</td>
-            <td>1.</td>
+            <td>COUNTER 1</td>
+            <?php
+$sql = "SELECT * FROM tbl_queuing LIMIT 1";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 0) {
+    // Move result pointer to the second row
+    mysqli_data_seek($res, 0);
+
+    // Fetch and display data from the second row
+    if ($row = mysqli_fetch_assoc($res)) {
+        $queue_no = $row['queue_no'];
+        $status = $row['status'];
+        ?>
+            <td>Queue-00<?php echo $queue_no; ?></td>
+            <?php
+    }
+}
+?>
+            <td><?php echo $status; ?></td>
+            <td>2.</td>
         </tr>
         <tr>
-            <td>2.</td>
-            <td>2.</td>
-            <td>2.</td>
+            <td>COUNTER 2</td>
+            <?php
+$sql = "SELECT * FROM tbl_queuing ";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 0) {
+    // Move result pointer to the second row
+    mysqli_data_seek($res, 1);
+
+    // Fetch and display data from the second row
+    if ($row = mysqli_fetch_assoc($res)) {
+        $queue_no = $row['queue_no'];
+        $status = $row['status'];
+        ?>
+            <td>Queue-00<?php echo $queue_no; ?></td>
+            <?php
+    }
+}
+?> <td><?php echo $status; ?></td>
             <td>2.</td>
         </tr>
 
         <tr>
-            <td>3.</td>
-            <td>3.</td>
-            <td>3.</td>
+            <td>COUNTER 3</td>
+            <?php
+$sql = "SELECT * FROM tbl_queuing";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 0) {
+    // Move result pointer to the second row
+    mysqli_data_seek($res, 2);
+
+    // Fetch and display data from the second row
+    if ($row = mysqli_fetch_assoc($res)) {
+        $queue_no = $row['queue_no'];
+        $status = $row['status'];
+        ?>
+            <td>Queue-00<?php echo $queue_no; ?></td>
+            <?php
+    }
+}
+?>
+            <td><?php echo $status; ?></td>
             <td>3.</td>
         </tr>
 
@@ -132,6 +185,7 @@ setTimeout(function() {
             <th>RESIDENT TYPE</th>
             <th>DATE & TIME</th>
             <th>APPOINTMENT NUMBER</th>
+            <th>STATUS</th>
             <th>ACTION</th>
         </tr>
 
@@ -154,7 +208,7 @@ setTimeout(function() {
                                 $queue_type = $row['queue_type'];
                                 $date_time= $row['date_time'];
                                 $appointment_no = $row['appointment_no'];
-                                
+                                $status= $row['status'];
                 ?>
 
         <tr>
@@ -162,9 +216,12 @@ setTimeout(function() {
             <td><?php echo $queue_type; ?></td>
             <td><?php echo $date_time; ?></td>
             <td><?php echo $appointment_no; ?></td>
+            <td><?php echo $status; ?></td>
             <td>
-                <a href="<?php echo SITEURL; ?>admin/queuing-done.php?id=<?php echo $id; ?>" class="btn-fifth">Call</a>
-                <a href="<?php echo SITEURL; ?>admin/queuing-done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
+                <a href="<?php echo SITEURL; ?>admin/queuing-call.php?queue_no=<?php echo $queue_no; ?>"
+                    class="btn-fifth">Call</a>
+                <a href="<?php echo SITEURL; ?>admin/queuing-done.php?queue_no=<?php echo $queue_no - 1; ?>"
+                    class="btn-second">Done</a>
             </td>
             </td>
         </tr>
