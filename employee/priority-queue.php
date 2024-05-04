@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baranagy 188 Tala Caloocan City</title>
+
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta http-equiv="refresh" content="10">
+</head>
+
+<body>
+
+</body>
+
+</html>
 <?php 
     include ('partials/side-nav.php');
     ob_start();

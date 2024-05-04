@@ -35,7 +35,7 @@ $user_id = $_SESSION['user_id'];
 
 </head>
 <!-- Refresh every 10 seconds -->
-<meta http-equiv="refresh" content="10">
+
 
 <body>
     <div class="sidebar">
