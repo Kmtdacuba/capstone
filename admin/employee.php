@@ -5,7 +5,7 @@
 <section class="home-section">
     <div class="text">Employee Profile</div>
     <br><br>
-    <a href="<?php echo SITEURL; ?>admin/add-employee.php" class="btn-primary">Add Emplooyee</a>
+    <a href="<?php echo SITEURL; ?>admin/add-employee.php" class="btn-primary">Add Employee</a>
     <br><br><br>
 
     <?php 
