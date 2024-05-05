@@ -249,14 +249,6 @@ function checkForm() {
 <?php
         exit();
         }
-        // check if user have an account
-$sql2 = "SELECT * FROM tbl_resident WHERE Fname='$Fname' AND Lname='$Lname' AND Birthday='$Birthday' AND gender='$gender'";
-$res2 = mysqli_query($conn, $sql2) or die(mysqli_error);
-
-if (mysqli_num_rows($res2) > 0) {
-    $_SESSION['exist'] = "<div class='error'>Already have an account</div>";
-    header("Location:".SITEURL.'residents/register.php');
-    }
         else{
 
             $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
