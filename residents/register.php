@@ -80,6 +80,14 @@ function checkForm() {
                     </a>
                     <h1>Registration Form</h1>
 
+                    <?php
+                    if(isset($_SESSION['exist']))
+                    {
+                        echo $_SESSION['exist'];
+                        unset($_SESSION['exist']);
+                    }
+                    ?>
+
                     <form action="" method="POST" enctype="multipart/form-data">
                         <table class="table-size">
                             <tr>
@@ -186,8 +194,7 @@ function checkForm() {
 
 </html>
 <?php
-    // Process value from form and save to database;
-    // Check whether submit button is clicked or not
+
     if(isset($_POST['submit'])) {
 
         // Get data from form
@@ -236,10 +243,20 @@ function checkForm() {
 
         if (mysqli_num_rows($res1) > 0) {
             $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
-            header("Location:".SITEURL.'residents/register.php');?>
+            header("Location:".SITEURL.'residents/register.php');
+        ?>
+
 <?php
         exit();
         }
+        // check if user have an account
+$sql2 = "SELECT * FROM tbl_resident WHERE Fname='$Fname' AND Lname='$Lname' AND Birthday='$Birthday' AND gender='$gender'";
+$res2 = mysqli_query($conn, $sql2) or die(mysqli_error);
+
+if (mysqli_num_rows($res2) > 0) {
+    $_SESSION['exist'] = "<div class='error'>Already have an account</div>";
+    header("Location:".SITEURL.'residents/register.php');
+    }
         else{
 
             $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
@@ -281,5 +298,5 @@ function checkForm() {
     exit();
    }
 }
-    }   
+    }  
 ?>
