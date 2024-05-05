@@ -80,14 +80,6 @@ function checkForm() {
                     </a>
                     <h1>Registration Form</h1>
 
-                    <?php
-                    if(isset($_SESSION['exist']))
-                    {
-                        echo $_SESSION['exist'];
-                        unset($_SESSION['exist']);
-                    }
-                    ?>
-
                     <form action="" method="POST" enctype="multipart/form-data">
                         <table class="table-size">
                             <tr>
@@ -194,7 +186,6 @@ function checkForm() {
 
 </html>
 <?php
-
     if(isset($_POST['submit'])) {
 
         // Get data from form
@@ -243,9 +234,7 @@ function checkForm() {
 
         if (mysqli_num_rows($res1) > 0) {
             $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
-            header("Location:".SITEURL.'residents/register.php');
-        ?>
-
+            header("Location:".SITEURL.'residents/register.php');?>
 <?php
         exit();
         }
@@ -290,5 +279,5 @@ function checkForm() {
     exit();
    }
 }
-    }  
+    }   
 ?>
