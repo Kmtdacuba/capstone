@@ -1,5 +1,6 @@
 <?php
 include('config/connection.php');
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
