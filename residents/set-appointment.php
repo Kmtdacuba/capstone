@@ -281,7 +281,7 @@ exit();
 }
 else{
 // data not inserted
-$_SESSION['appointmrnt'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
+$_SESSION['appointment'] = " <div class='error'> Failed to set appointment. pleas try again</div>";
 header("location:".SITEURL.'residents/my-appointment.php');
 exit();
 }

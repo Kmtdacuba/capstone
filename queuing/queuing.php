@@ -114,25 +114,31 @@ function limitInput(field) {
 
 </html>
 <?php 
- 
-    // Process value from form and save to database;
-    // Check whether submit button is clicked or not
 
     if(isset($_POST['submit'])) {
-
+        
         $appointment_no = $_POST['appointment_no'];
         $date_time = date("Y-m-d h:i:sa"); //time and date 
- 
-        // Check if appointment number already exists
+
+    // Check if appointment number already exists
     $sql_check = "SELECT * FROM tbl_queuing WHERE appointment_no='$appointment_no'";
     $res_check = mysqli_query($conn, $sql_check) or die(mysqli_error($conn));
 
     if (mysqli_num_rows($res_check) > 0) {
-        $_SESSION['number'] = "<div class='error'>Appointment number already exists</div>";
-        header("Location: queuing.php");
+        $_SESSION['number'] = "<div class='error'>Appointment number already have queuing number</div>";
+        header("location:" .SITEURL.'queuing/queuing.php');
         exit();
     }
+// Check if appointment number exists in table appointment
+$sql_number = "SELECT * FROM tbl_appointment WHERE appointment_no='$appointment_no'";
+$res_number = mysqli_query($conn, $sql_number) or die(mysqli_error($conn));
 
+if (mysqli_num_rows($res_number) == 0) {
+    $_SESSION['number'] = "<div class='error'>Appointment number doesn't exist in table</div>";
+    header("Location: queuing.php");
+    exit();
+}
+    
     $sql1 = "SELECT * FROM tbl_appointment";
     $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
     $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.

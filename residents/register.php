@@ -238,15 +238,7 @@ function checkForm() {
     } else {
         $img_name = ""; // Set img_name to empty if no image is selected
     }
-        $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
-        $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
 
-        if (mysqli_num_rows($res1) > 0) {
-            $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
-            header("Location:".SITEURL.'residents/register.php');?>
-<?php
-        exit();
-        }
          // check if user have an account
 $sql2 = "SELECT * FROM tbl_resident WHERE Fname='$Fname' AND Lname='$Lname' AND Birthday='$Birthday' AND gender='$gender'";
 $res2 = mysqli_query($conn, $sql2) or die(mysqli_error);
@@ -254,6 +246,17 @@ $res2 = mysqli_query($conn, $sql2) or die(mysqli_error);
 if (mysqli_num_rows($res2) > 0) {
     $_SESSION['exist'] = "<div class='error'>Already have an account</div>";
     header("Location:".SITEURL.'residents/register.php');
+    exit();
+    }
+
+    //check if email aready used 
+    $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
+    $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
+
+    if (mysqli_num_rows($res1) > 0) {
+        $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
+        header("Location:".SITEURL.'residents/register.php');?>
+<?php
     exit();
     }
         else{
