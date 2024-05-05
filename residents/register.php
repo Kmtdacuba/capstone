@@ -79,6 +79,15 @@ function checkForm() {
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Registration Form</h1>
+                    <br>
+
+                    <?php
+                    if(isset($_SESSION['exist']))
+                    {
+                        echo $_SESSION['exist'];
+                        unset($_SESSION['exist']);
+                    }
+                    ?>
 
                     <form action="" method="POST" enctype="multipart/form-data">
                         <table class="table-size">
