@@ -89,7 +89,7 @@
                     </td>
                 </div>
                 <tr>
-                    <div class="label-profile">
+                    <div class="">
                         <div class="">
                             <td>Employee Number: <?php echo $employee_no; ?></td>
                         </div>

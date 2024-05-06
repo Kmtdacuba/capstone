@@ -83,7 +83,7 @@
                     </td>
                 </div>
                 <tr>
-                    <div class="label-profile">
+                    <div class="">
                         <div class="">
                             <td>Name: <?php echo $Fname; ?></td>
                         </div>
