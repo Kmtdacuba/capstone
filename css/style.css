@@ -230,36 +230,7 @@
   font-weight: 500;
   margin: 18px
 }
-@media (max-width: 420px) {
-  .sidebar li .tooltip{
-    display: none;
-  }
-}
 
-@media (max-width: 480px) {
-  .boxes {
-    width: 200%;
-    margin: 10px;
-  }
-
-  .login {
-    width: 100%;
-  }
-}
-
-
-/*Open Print App*/
-@media print {
-  body * {
-      visibility: hidden;
-  }
-  .content, .content * {
-      visibility: visible;
-  }
-  .content {
-      position: absolute;
-  }
-}
 
 
 /*Login CSS*/
@@ -1163,4 +1134,32 @@ label {
   cursor: pointer;
   padding: 3px;
   margin: 3px;
+}
+
+
+/*Qmedia Query*/
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login {
+    width: 100%;
+  }
+}
+
+
+/*Open Print App*/
+@media print {
+  body * {
+      visibility: hidden;
+  }
+  .content, .content * {
+      visibility: visible;
+  }
+  .content {
+      position: absolute;
+  }
 }
