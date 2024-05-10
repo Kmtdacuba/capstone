@@ -2,6 +2,23 @@
 ob_start();
 include('../config/connection.php');
 $user_id = $_SESSION['user_id'];
+
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page or handle accordingly
+    eader('location:'.SITEURL.'index.php');    exit();
+}
+
+// Check last activity time
+if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 300) { // 300 seconds = 5 minutes
+    // Destroy session and logout user
+    session_unset();
+    session_destroy();
+    header('location:'.SITEURL.'index.php');
+    exit();
+}
+
+// Update last activity time
+$_SESSION['last_activity'] = time();
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

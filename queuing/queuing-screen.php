@@ -32,22 +32,22 @@ setTimeout(function() {
         <div class="queuing-screen">
             <table class="table-full">
                 <tr>
-                    <th>
+                    <th class="th-bg th">
                         <h1 class="font">
                             COUNTER NO
                         </h1>
                     </th>
-                    <th>
+                    <th class="th-bg th">
                         <h1 class="font">
                             SERVING
                         </h1>
                     </th>
-                    <th>
+                    <th class="th-bg th">
                         <h1 class="font">
                             CALLING
                         </h1>
                     </th>
-                    <th>
+                    <th class="th-bg th">
                         <h1 class="font">
                             WAITING
                         </h1>
@@ -55,7 +55,21 @@ setTimeout(function() {
                 </tr><br>
                 <tr>
                     <!--ROW 1-->
-                    <td class="font">COUNTER 1</td>
+                    <?php
+$sql = "SELECT * FROM counters WHERE status='available'";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 0) {
+    mysqli_data_seek($res, 0);
+
+    if ($row = mysqli_fetch_assoc($res)) {
+        $counter_number = $row['counter_number'];
+        ?>
+                    <td class="font th">COUNTER <?php echo $counter_number; ?></td>
+                    <?php
+    }
+}?>
                     <?php
 $sql = "SELECT * FROM tbl_queuing WHERE status='Serving'";
 $res = mysqli_query($conn, $sql);
@@ -67,13 +81,13 @@ if ($count > 0) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -90,13 +104,13 @@ if ($count > 0) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="blink">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="blink th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -112,13 +126,13 @@ else {
                         if ($row = mysqli_fetch_assoc($res)) {
                             $queue_no = $row['queue_no'];
                             ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
                         }
                     }
                     else {
                         ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                                         }
@@ -128,7 +142,21 @@ else {
 
                 <tr>
                     <!--ROW 2-->
-                    <td class="font">COUNTER 2</td>
+                    <?php
+$sql = "SELECT * FROM counters WHERE status='available'";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 1) {
+    mysqli_data_seek($res, 1);
+
+    if ($row = mysqli_fetch_assoc($res)) {
+        $counter_number = $row['counter_number'];
+        ?>
+                    <td class="font th">COUNTER <?php echo $counter_number; ?></td>
+                    <?php
+    }
+}?>
                     <?php
 $sql = "SELECT * FROM tbl_queuing WHERE status='Serving'";
 $res = mysqli_query($conn, $sql);
@@ -140,13 +168,13 @@ if ($count > 1) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -163,13 +191,13 @@ if ($count > 1) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -185,13 +213,13 @@ else {
                         if ($row = mysqli_fetch_assoc($res)) {
                             $queue_no = $row['queue_no'];
                             ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
                         }
                     }
                     else {
                         ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                                         }
@@ -201,7 +229,21 @@ else {
 
                 <tr>
                     <!--ROW 3-->
-                    <td class="font">COUNTER 3</td>
+                    <?php
+$sql = "SELECT * FROM counters WHERE status='available'";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 2) {
+    mysqli_data_seek($res, 2);
+
+    if ($row = mysqli_fetch_assoc($res)) {
+        $counter_number = $row['counter_number'];
+        ?>
+                    <td class="font th">COUNTER <?php echo $counter_number; ?></td>
+                    <?php
+    }
+}?>
                     <?php
 $sql = "SELECT * FROM tbl_queuing WHERE status='Serving'";
 $res = mysqli_query($conn, $sql);
@@ -213,13 +255,13 @@ if ($count > 2) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -236,13 +278,13 @@ if ($count > 2) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -258,13 +300,13 @@ else {
                         if ($row = mysqli_fetch_assoc($res)) {
                             $queue_no = $row['queue_no'];
                             ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
                         }
                     }
                     else {
                         ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                                         }
@@ -274,7 +316,21 @@ else {
 
                 <tr>
                     <!--ROW 4-->
-                    <td class="font">COUNTER 4</td>
+                    <?php
+$sql = "SELECT * FROM counters WHERE status='available'";
+$res = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($res);
+
+if ($count > 3) {
+    mysqli_data_seek($res, 3);
+
+    if ($row = mysqli_fetch_assoc($res)) {
+        $counter_number = $row['counter_number'];
+        ?>
+                    <td class="font th">COUNTER <?php echo $counter_number; ?></td>
+                    <?php
+    }
+}?>
                     <?php
 $sql = "SELECT * FROM tbl_queuing WHERE status='Serving'";
 $res = mysqli_query($conn, $sql);
@@ -286,13 +342,13 @@ if ($count > 3) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th ">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -303,19 +359,19 @@ $sql = "SELECT * FROM tbl_queuing WHERE status='Calling'";
 $res = mysqli_query($conn, $sql);
 $count = mysqli_num_rows($res);
 
-if ($count > 3) {
-    mysqli_data_seek($res, 3);
+if ($count > 4) {
+    mysqli_data_seek($res, 4);
 
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -331,13 +387,13 @@ else {
                         if ($row = mysqli_fetch_assoc($res)) {
                             $queue_no = $row['queue_no'];
                             ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
                         }
                     }
                     else {
                         ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                                         }
@@ -347,7 +403,7 @@ else {
 
                 <tr>
                     <!--ROW 5-->
-                    <td class="font">COUNTER 5</td>
+                    <td class="font th">COUNTER 5</td>
                     <?php
 $sql = "SELECT * FROM tbl_queuing WHERE status='Serving'";
 $res = mysqli_query($conn, $sql);
@@ -359,13 +415,13 @@ if ($count > 4) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -382,13 +438,13 @@ if ($count > 4) {
     if ($row = mysqli_fetch_assoc($res)) {
         $queue_no = $row['queue_no'];
         ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
     }
 }
 else {
     ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"><?php echo ' '; ?></td>
 
                     <?php
                     }
@@ -404,13 +460,13 @@ else {
                         if ($row = mysqli_fetch_assoc($res)) {
                             $queue_no = $row['queue_no'];
                             ?>
-                    <td class="font">Queue-00<?php echo $queue_no; ?></td>
+                    <td class="font th">Queue-00<?php echo $queue_no; ?></td>
                     <?php
                         }
                     }
                     else {
                         ?>
-                    <td><?php echo ' '; ?></td>
+                    <td class="th"> <?php echo ' '; ?></td>
 
                     <?php
                                         }

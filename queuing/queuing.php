@@ -115,10 +115,19 @@ function limitInput(field) {
 </html>
 <?php 
 
+// Function to get the next counter
+function getNextCounter($conn) {
+    $query = "SELECT IFNULL((MAX(counter_no) % 5) + 1, 1) AS next_counter FROM tbl_queuing";
+    $result = $conn->query($query);
+    $row = $result->fetch_assoc();
+    return $row['next_counter'];
+}
+
     if(isset($_POST['submit'])) {
         
+        $counert_no = $_POST['counter_no'];
         $appointment_no = $_POST['appointment_no'];
-        $date_time = date("Y-m-d h:i:sa"); //time and date 
+        $date_time = date("Y-m-d h:i:sa"); //time and date
 
     // Check if appointment number already exists
     $sql_check = "SELECT * FROM tbl_queuing WHERE appointment_no='$appointment_no'";
@@ -150,6 +159,7 @@ if (mysqli_num_rows($res_number) == 0) {
         // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_queuing SET 
         queue_no = '$new_queue_no',
+        counter_no = '$next_counter',
         age='$diff->y',
         appointment_no = '$appointment_no',
         date_time = '$date_time'

@@ -48,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
     <h2>Appointment Scheduler</h2>
     <form id="appointmentForm">
         <label for="date">Select Date:</label>
-        <input type="date" id="date" name="date">
+        <!-- Set min attribute to current date -->
+        <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
         <br><br>
         <label for="time">Select Time:</label>
         <select id="time" name="time"></select>
@@ -59,6 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
     <script>
     $(document).ready(function() {
         $('#date').change(function() {
+            var selectedDate = new Date($(this).val());
+            // Check if the selected date is a Sunday (day 0)
+            if (selectedDate.getDay() === 0) {
+                // Reset the date to the next Monday
+                selectedDate.setDate(selectedDate.getDate() + 1);
+                $(this).val(selectedDate.toISOString().slice(0, 10));
+            }
             var date = $(this).val();
             $.ajax({
                 type: 'POST',
