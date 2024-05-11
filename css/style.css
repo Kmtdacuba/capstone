@@ -1166,8 +1166,8 @@ label {
     width: 100%;
     text-align: left;
   }
-  label {
-    font-size: 11px;
+  .b_date {
+    width: 100%;
   }
 }
 
@@ -1186,6 +1186,9 @@ label {
   .table-size {
     width: 100%;
     text-align: left;
+  }
+  .b_date {
+    width: 100%;
   }
 }
 
