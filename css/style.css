@@ -1158,10 +1158,16 @@ label {
   .add_admin_content{
     width: 95%;
     margin-top: 20px;
-    font-size: 10px;
   }
   .wrapper {
     width: 100%;
+  }
+  .table-size {
+    width: 100%;
+    text-align: left;
+  }
+  label {
+    font-size: 11px;
   }
 }
 
@@ -1176,6 +1182,10 @@ label {
   }
   .add_admin_content{
     width: 95%;
+  }
+  .table-size {
+    width: 100%;
+    text-align: left;
   }
 }
 
