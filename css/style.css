@@ -657,7 +657,7 @@ hr {
 }
 
 .table-size {
-  width: 80%;
+  width: 90%;
   text-align: left;
 }
 
@@ -1174,8 +1174,8 @@ label {
     font-size: 12px;
   }
   input[type="radio"] {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 }
 
@@ -1199,10 +1199,6 @@ label {
   }
   .b_date {
     width: 100%;
-  }
-  input[type="radio"] {
-    width: 10px;
-    height: 10px;
   }
 }
 

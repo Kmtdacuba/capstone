@@ -78,9 +78,7 @@ function checkForm() {
                     <a class="icons" href="../index.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
-                    <p class="reg">
                     <h1>Registration Form</h1>
-                    </p>
                     <br>
 
                     <?php
@@ -121,7 +119,7 @@ function checkForm() {
                             </tr>
                             <tr>
                                 <td>
-                                    Gender:
+                                    <label for="">Gender:</label>
                                     <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
                                     <label for="">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
@@ -130,7 +128,7 @@ function checkForm() {
                             </tr>
                             <tr>
                                 <td>
-                                    Status:
+                                    <label for="">Status:</label>
                                     <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
                                     <label for="">Single</label>
                                     <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
