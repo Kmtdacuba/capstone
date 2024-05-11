@@ -1159,6 +1159,7 @@ label {
     width: 95%;
     margin-top: 20px;
   }
+ 
   .wrapper {
     width: 100%;
   }
@@ -1172,12 +1173,17 @@ label {
   label {
     font-size: 12px;
   }
+  input[type="radio"] {
+    width: 10px;
+    height: 10px;
+}
 }
 
 /*For Tablet*/
 @media (min-width: 601px) and (max-width: 900px){
   .login {
     width: 95%;
+    font-size: 10px;
   }
 
   .wrapper {
@@ -1185,6 +1191,7 @@ label {
   }
   .add_admin_content{
     width: 95%;
+    font-size: 9px;
   }
   .table-size {
     width: 100%;
@@ -1192,6 +1199,10 @@ label {
   }
   .b_date {
     width: 100%;
+  }
+  input[type="radio"] {
+    width: 10px;
+    height: 10px;
   }
 }
 

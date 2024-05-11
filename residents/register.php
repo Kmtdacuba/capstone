@@ -78,7 +78,9 @@ function checkForm() {
                     <a class="icons" href="../index.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
+                    <p class="reg">
                     <h1>Registration Form</h1>
+                    </p>
                     <br>
 
                     <?php
@@ -112,14 +114,14 @@ function checkForm() {
                             <input class="file" type="hidden" name="image">
                             <tr>
                                 <td>
-                                    <label for="">Birthday:</label><br>
+                                    Birthday: <br>
                                     <input class="b_date" type="date" id="Birthday" name="Birthday"
                                         onkeyup="checkForm()" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="">Gender:</label>
+                                    Gender:
                                     <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
                                     <label for="">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
@@ -128,7 +130,7 @@ function checkForm() {
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="">Status:</label>
+                                    Status:
                                     <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
                                     <label for="">Single</label>
                                     <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
