@@ -1186,10 +1186,12 @@ label {
 .b {
   width: 98.5%;
   margin-bottom: 5px;
+  overflow: hidden;
 }
 .d_box {
   width: 22.8%;
   height: 110px;
+  overflow: hidden;
 }
 .h5 {
   font-size: 15px;
@@ -1223,10 +1225,12 @@ h4 {
   .b {
     width: 98.5%;
     margin-bottom: 5px;
+    overflow: hidden;
   }
   .d_box {
     width: 22.8%;
     height: 110px;
+    overflow: hidden;
   }
   .h5 {
     font-size: 15px;
