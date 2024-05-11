@@ -1149,7 +1149,7 @@ label {
   /*Login*/
 
   .login {
-    width: 100%;
+    width: 95%;
     margin-top: 30px;
     font-size: 10px;
   }
@@ -1181,6 +1181,7 @@ label {
 .terms {
   width: 95%;
   margin-top: 30px;
+  font-size: 10px;
 }
 }
 

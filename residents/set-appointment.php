@@ -4,6 +4,40 @@ $user_id = $_SESSION['user_id'];
 ob_start();
 ?>
 
+<?php
+// Get available timeslots for a specific date
+function getAvailableTimeslots($date) {
+    global $conn;
+    $sql = "SELECT time_slot FROM appointments WHERE date = '$date' AND is_available = 1";
+    $result = $conn->query($sql);
+    $timeslots = array();
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $timeslots[] = $row['time_slot'];
+        }
+    }
+    return $timeslots;
+}
+
+// Get available timeslots for a specific date
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
+    $date = $_POST['date'];
+    $sql = "SELECT time_slot FROM appointments WHERE date = '$date' AND is_available = 1";
+    $result = $conn->query($sql);
+    $options = "";
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            // Assuming time_slot is stored in HH:MM format in the database
+            $options .= "<option value='".$row['time_slot']."'>".$row['time_slot']."</option>";
+        }
+    } else {
+        $options .= "<option value='' disabled>No available timeslots for this date</option>";
+    }
+    echo $options;
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +48,9 @@ ob_start();
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="stylesheet" href="../css/style.css">
     <!-- Icon -->
+
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="bg">
@@ -49,7 +85,8 @@ ob_start();
                        }
                    }
         ?>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <form id="appointmentForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
+                        method="POST">
                         <table class="table-size">
                             <tr>
                                 <td>
@@ -94,82 +131,19 @@ ob_start();
                             </tr>
                             <tr>
                                 <td>
-                                    Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;Time:
-                                    <br><input class="date" type="date" id="selected_date" name="selected_date"
-                                        min="<?php echo date('Y-m-d'); ?>" required>
-                                    <?php
-             // Array of available time slots
-$selected_time = array(
-"8:00 AM",
-"8:10 AM",
-"8:20 AM",
-"8:30 AM",
-"8:40 AM",
-"8:50 AM",
-"9:00 AM",
-"9:10 AM",
-"9:20 AM",
-"9:30 AM",
-"9:40 AM",
-"9:50 AM",
-"10:00 AM",
-"10:10 AM",
-"10:20 AM",
-"10:30 AM",
-"10:40 AM",
-"10:50 AM",
-"11:00 AM",
-"11:10 AM",
-"11:20 AM",
-"11:30 AM",
-"11:40 AM",
-"11:50 AM",
-"12:00 NN",
-"12:10 PM",
-"12:20 PM",
-"12:30 PM",
-"12:40 PM",
-"12:50 PM",
-"1:00 PM",
-"1:10 PM",
-"1:20 PM",
-"1:30 PM",
-"1:40 PM",
-"1:50 PM",
-"2:00 PM",
-"2:10 PM",
-"2:20 PM",
-"2:30 PM",
-"2:40 PM",
-"2:50 PM",  
-"3:00 PM",
-"3:10 PM",
-"3:20 PM",
-"3:30 PM",
-"3:40 PM",
-"3:50 PM",
-"4:00 PM",
-"4:10 PM",
-"4:20 PM",
-"4:30 PM",
-"4:40 PM",
-"4:50 PM",
-"5:00 PM"
-);
-?>
-                                    <select class="time input-responsive" name="selected_time" required>
-                                        <option value="">Select Time</option>
-                                        <?php
-                                        foreach ($selected_time as $slot) {
-                                            if (!isset($_SESSION["bookedTimeSlots"]) || !in_array($slot, $_SESSION["bookedTimeSlots"])) {
-                                                echo "<option value='$slot'>$slot</option>";
-                                            }
-                                        }
-                                        ?>
-                                    </select>
+                                    <label for="date">Select Date:</label>
+                                    <input class="date" type="date" id="date" name="date"
+                                        min="<?php echo date('Y-m-d'); ?>">
                                 </td>
                             </tr>
+                            <br><br>
+                            <tr>
+                                <td>
+                                    <label for="time">Select Time:</label>
+                                    <select class="time input-responsive" id="time" name="time"></select>
+                                </td>
+                            </tr>
+
                             <tr>
                                 <td>
                                     <input type="submit" name="submit" value="Set" class="btn-second"
@@ -182,6 +156,47 @@ $selected_time = array(
             </div>
         </div>
     </center>
+    <script>
+    $(document).ready(function() {
+        $('#date').change(function() {
+            var selectedDate = new Date($(this).val());
+            // Check if the selected date is a Sunday (day 0)
+            if (selectedDate.getDay() === 0) {
+                // Reset the date to the next Monday
+                selectedDate.setDate(selectedDate.getDate() + 1);
+                $(this).val(selectedDate.toISOString().slice(0, 10));
+            }
+            var date = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: 'set-appointment.php',
+                data: {
+                    date: date
+                },
+                success: function(response) {
+                    $('#time').html(response);
+                }
+            });
+        });
+
+        $('#appointmentForm').submit(function(e) {
+            e.preventDefault();
+            var date = $('#date').val();
+            var time = $('#time').val();
+            $.ajax({
+                type: 'POST',
+                url: 'set-appointment.php',
+                data: {
+                    date: date,
+                    time: time
+                },
+                success: function(response) {
+                    alert(response);
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>
@@ -192,27 +207,9 @@ $username_smtp = 'info@brgymanagment.online';
 $password_smtp = 'Barangay#188';
 $from_email = 'info@brgymanagment.online';
 $from_name = 'Barangay 188 Tala Caloocan City'; 
-if (isset($_POST["selected_time"])) {
-    $selectedTimeSlot = $_POST["selected_time"];
+
     
-    // Check if the selected time slot is available
-    if (in_array($selectedTimeSlot, $selected_time)) {
-        // Check if the time slot is already booked
-        if (!isset($_SESSION["bookedTimeSlots"]) || !in_array($selectedTimeSlot, $_SESSION["bookedTimeSlots"])) {
-            // Book the time slot
-            $_SESSION["bookedTimeSlots"][] = $selectedTimeSlot;
-            echo "Time slot $selectedTimeSlot has been successfully booked.";
-        } else {
-            echo "Sorry, the selected time slot $selectedTimeSlot is already booked.";
-        }
-    } else {
-        echo "Invalid time slot selected.";
-    }
-}
-    // Function to check if a date is a weekend (Saturday or Sunday)
-    function isWeekend($date) {
-        return (date('N', strtotime($date)) >= 6);
-    }
+
 
   if(isset($_POST['email'])) {
 

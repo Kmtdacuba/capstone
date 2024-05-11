@@ -3,10 +3,12 @@ include('../config/connection.php');
 ?>
 
 <!DOCTYPE html>
+<html lang="en">
 <html>
 
 <head>
     <title>Barangay 188 Tala Caloocan City</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Icon -->
@@ -38,7 +40,7 @@ include('../config/connection.php');
 
         </div>
         <div class="login">
-            <a class="icons" href="../index.php">
+            <a class=" icons" href="../index.php">
                 <i class="fa-solid fa-square-xmark"></i>
             </a>
             <h1>Forgot Password</h1>

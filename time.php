@@ -41,22 +41,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
 
 <head>
     <title>Appointment Scheduler</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <h2>Appointment Scheduler</h2>
-    <form id="appointmentForm">
-        <label for="date">Select Date:</label>
-        <!-- Set min attribute to current date -->
-        <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
-        <br><br>
-        <label for="time">Select Time:</label>
-        <select id="time" name="time"></select>
-        <br><br>
-        <button type="submit">Book Appointment</button>
-    </form>
 
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="add_admin_content">
+                <h2>Appointment Scheduler</h2>
+                <form id="appointmentForm">
+                    <table class="table-size">
+                        <label for="date">Select Date:</label>
+                        <!-- Set min attribute to current date -->
+                        <input class="date" type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>">
+                        <br><br>
+                        <label for="time">Select Time:</label>
+                        <select class="time input-responsive" id="time" name="time"></select>
+                        <br><br>
+                        <button type="submit">Book Appointment</button>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
     <script>
     $(document).ready(function() {
         $('#date').change(function() {
