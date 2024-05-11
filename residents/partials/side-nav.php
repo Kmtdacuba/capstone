@@ -54,7 +54,7 @@ $_SESSION['last_activity'] = time();
 <style>
 </style>
 
-<body>
+<body style="background-color: #E4E9F7;">
     <div class="sidebar">
         <div class="logo-details">
             <img src="../images/Logo.png" class="icon">

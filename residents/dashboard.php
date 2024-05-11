@@ -59,7 +59,7 @@ ob_start();
                                 ?>
             <h4>Barangay</h4>
             <h4>Certificate</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Certificate; ?></h2>
         </div>
     </a>
@@ -74,7 +74,7 @@ ob_start();
                                 ?>
             <h4>Barangay</h4>
             <h4>Indigency</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Indigency; ?></h2>
         </div>
     </a>
@@ -89,7 +89,7 @@ ob_start();
                                 ?>
             <h4>Barangay</h4>
             <h4>Clearance</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Clearance; ?></h2>
         </div>
     </a>
@@ -104,7 +104,7 @@ ob_start();
                                 ?>
             <h4>Barangay</h4>
             <h4>Business Permit</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Business_Permit; ?></h2>
         </div>
     </a>
@@ -119,7 +119,7 @@ ob_start();
                                 ?>
             <h4>Barangay</h4>
             <h4>Facilities & Properties</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Facilities_Properties; ?></h2>
         </div>
     </a>
@@ -134,7 +134,7 @@ ob_start();
                                 ?>
             <h4>Barangay</h4>
             <h4>Identification Card</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Identification_Card; ?></h2>
         </div>
     </a>
@@ -150,7 +150,7 @@ ob_start();
                                 ?>
             <h4>Barangay Records,</h4>
             <h4>Data & Similar Documents</h4>
-            <br>
+
             <h2 class="h2"><?php echo $Barangay_Records; ?></h2>
         </div>
     </a>
@@ -165,12 +165,12 @@ ob_start();
                                 ?>
             <h4>Other</h4>
             <h4>Services</h4>
-            <br>
+
             <h2 class="h2"><?php echo $other; ?></h2>
         </div>
         <a>
             <div class="clear"></div>
-            <br>
+
             <hr><br>
 
             <!--Transaction Chart-->
@@ -213,6 +213,30 @@ $dataPoints1 = array(
                     }]
                 });
                 chart.render();
+                // Function to handle screen size change
+                function handleScreenSize() {
+                    if (window.matchMedia("(max-width: 600px)").matches) {
+                        // Change chart properties for smaller screens
+                        chart.options.title.fontSize = 20;
+                        chart.options.axisY.labelFontSize = 10;
+                        // Modify other properties as needed
+                    } else {
+                        // Reset chart properties for larger screens
+                        chart.options.title.fontSize = 30;
+                        chart.options.axisY.labelFontSize = 15;
+                        // Reset other properties as needed
+                    }
+
+                    // Re-render the chart with updated properties
+                    chart.render();
+                }
+
+                // Call the function initially
+                handleScreenSize();
+
+                // Attach an event listener for screen size change
+                window.addEventListener('resize', handleScreenSize);
+
             }
             </script>
             <div id="chartContainer1" style="height: 400px; width: 100%;"></div>

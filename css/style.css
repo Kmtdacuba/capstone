@@ -1189,15 +1189,52 @@ label {
   overflow: hidden;
 }
 .d_box {
-  width: 22.8%;
-  height: 110px;
+  width: 98%;
   overflow: hidden;
 }
 .h5 {
-  font-size: 15px;
+  font-size: 13px;
 }
 h4 {
   font-size: 11px;
+}
+.h2 {
+    padding-top: 5px;
+  font-size: 13px;
+}
+.btn-primary {
+  font-size: 11px;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid #1d1b31;
+  border-radius: 3px;
+}
+.btn-history {
+  font-size: 11px;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid #1d1b31;
+  border-radius: 3px;
+}
+.table-full {
+  width: 100%;
+  font-size: 9px;
+}
+.text{
+  font-size: 18px;
+}
+.requirement {
+  width: 98%;
+  height: 80px;
+  font-size: 12px;
+}
+.modal-content {
+  float: right;
+  margin-right: 10px;
+  margin-top: 70px;
+  width: 75%;
+  height: 60%;
+  font-size: 13px;
 }
 }
 
@@ -1228,16 +1265,55 @@ h4 {
     overflow: hidden;
   }
   .d_box {
-    width: 22.8%;
+    width: 98%;
     height: 110px;
     overflow: hidden;
   }
   .h5 {
+    padding-top: 5px;
     font-size: 15px;
   }
   h4 {
     font-size: 11px;
   }
+  .h2 {
+    padding-top: 5px;
+  font-size: 13px;
+}
+.btn-primary {
+  font-size: 11px;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid #1d1b31;
+  border-radius: 3px;
+}
+.btn-history {
+  font-size: 11px;
+  padding: 5px;
+  margin: 3px;
+  border: 1px solid #1d1b31;
+  border-radius: 3px;
+}
+.table-full {
+  width: 100%;
+  font-size: 9px;
+}
+.text{
+  font-size: 18px;
+}
+.requirement {
+  width: 98%;
+  height: 80px;
+  font-size: 15px;
+}
+.modal-content {
+  float: right;
+  margin-right: 80px;
+  margin-top: 70px;
+  width: 75%;
+  height: 60%;
+  font-size: 13px;
+}
 }
 
 
