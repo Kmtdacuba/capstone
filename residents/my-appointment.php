@@ -48,8 +48,8 @@ if(isset($_SESSION['sent']))
                                 $name = $row['name'];
                                 $type = $row['type'];
                                 $appointment_no = $row['appointment_no'];
-                                $selected_time = $row['selected_time'];
-                                $selected_date = $row['selected_date'];
+                                $time = $row['time'];
+                                $date = $row['date'];
                                 
                 ?>
 
@@ -58,8 +58,8 @@ if(isset($_SESSION['sent']))
             <td><?php echo $name;?></td>
             <td><?php echo $type;?></td>
             <td><?php echo $appointment_no;?></td>
-            <td><?php echo $selected_time;?></td>
-            <td><?php echo $selected_date;?></td>
+            <td><?php echo $time;?></td>
+            <td><?php echo $date;?></td>
         </tr>
 
         <?php

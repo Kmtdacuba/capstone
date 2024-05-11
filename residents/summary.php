@@ -105,8 +105,8 @@ $email = $_SESSION['email'];
             echo "Name: <br><strong>" . $row['name'] . "</strong><br><br>";
             echo "Service: <br><strong>". $row['type'] . "</strong><br><br>";
             echo "Appointment Number: <br><strong>". $row['appointment_no'] . "</strong><br><br>";
-            echo "Date: <br><strong>". $row['selected_date']. "</strong><br><br>";
-            echo "Time: <br><strong>". $row['selected_time']. "</strong><br><br><br>";
+            echo "Date: <br><strong>". $row['date']. "</strong><br><br>";
+            echo "Time: <br><strong>". $row['time']. "</strong><br><br><br>";
             
             } else {
             echo "No results found";

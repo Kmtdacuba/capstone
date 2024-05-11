@@ -2,40 +2,9 @@
 include('../config/connection.php');
 $user_id = $_SESSION['user_id'];
 ob_start();
-?>
 
-<?php
-// Get available timeslots for a specific date
-function getAvailableTimeslots($date) {
-    global $conn;
-    $sql = "SELECT time_slot FROM appointments WHERE date = '$date' AND is_available = 1";
-    $result = $conn->query($sql);
-    $timeslots = array();
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $timeslots[] = $row['time_slot'];
-        }
-    }
-    return $timeslots;
-}
 
-// Get available timeslots for a specific date
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
-    $date = $_POST['date'];
-    $sql = "SELECT time_slot FROM appointments WHERE date = '$date' AND is_available = 1";
-    $result = $conn->query($sql);
-    $options = "";
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            // Assuming time_slot is stored in HH:MM format in the database
-            $options .= "<option value='".$row['time_slot']."'>".$row['time_slot']."</option>";
-        }
-    } else {
-        $options .= "<option value='' disabled>No available timeslots for this date</option>";
-    }
-    echo $options;
-    exit();
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="stylesheet" href="../css/style.css">
     <!-- Icon -->
-
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -109,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
                                         class="input-responsive" readonly>
                                 </td>
                             </tr>
+
                             <tr>
                                 <td>
                                     <label for="type">Transaction Type:</label>
@@ -136,11 +105,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
                                         min="<?php echo date('Y-m-d'); ?>">
                                 </td>
                             </tr>
-                            <br><br>
                             <tr>
                                 <td>
                                     <label for="time">Select Time:</label>
-                                    <select class="time input-responsive" id="time" name="time"></select>
+                                    <select class="time input-responsive" id="time" name="time"
+                                        onchange='removeSelectedTime()'></select>
                                 </td>
                             </tr>
 
@@ -157,45 +126,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date'])) {
         </div>
     </center>
     <script>
-    $(document).ready(function() {
-        $('#date').change(function() {
-            var selectedDate = new Date($(this).val());
-            // Check if the selected date is a Sunday (day 0)
-            if (selectedDate.getDay() === 0) {
-                // Reset the date to the next Monday
-                selectedDate.setDate(selectedDate.getDate() + 1);
-                $(this).val(selectedDate.toISOString().slice(0, 10));
-            }
-            var date = $(this).val();
-            $.ajax({
-                type: 'POST',
-                url: 'set-appointment.php',
-                data: {
-                    date: date
-                },
-                success: function(response) {
-                    $('#time').html(response);
-                }
-            });
-        });
+    function removeSelectedTime() {
+        var selectElement = document.getElementById('time');
+        var selectedValue = selectElement.value;
 
-        $('#appointmentForm').submit(function(e) {
-            e.preventDefault();
-            var date = $('#date').val();
-            var time = $('#time').val();
-            $.ajax({
-                type: 'POST',
-                url: 'set-appointment.php',
-                data: {
-                    date: date,
-                    time: time
-                },
-                success: function(response) {
-                    alert(response);
-                }
-            });
-        });
-    });
+        // Remove the selected option from the dropdown
+        for (var i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].value === selectedValue) {
+                selectElement.remove(i);
+                break;
+            }
+        }
+    }
     </script>
 </body>
 
@@ -208,23 +150,16 @@ $password_smtp = 'Barangay#188';
 $from_email = 'info@brgymanagment.online';
 $from_name = 'Barangay 188 Tala Caloocan City'; 
 
-    
-
-
-  if(isset($_POST['email'])) {
-
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POST['time'])) {
+  
     // Get data from form
     $email = $_POST['email'];
     $appointment_no = rand(0, 99999);
     $name = $_POST['name'];
     $type = $_POST['type'];
-    $selectedDate = $_POST['selected_date'];
-    $selectedTime = $_POST['selected_time'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
 
-    if(isWeekend($selectedDate)) {
-        echo "Sorry, you cannot select Saturday or Sunday. Please choose a weekday.";
-    }
 
     $sql1 = "SELECT * FROM tbl_appointment";
     $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
@@ -238,8 +173,8 @@ $from_name = 'Barangay 188 Tala Caloocan City';
     name = '$name',
     age='$diff->y',
     type = '$type',
-    selected_time = '$selectedTime',
-    selected_date = '$selectedDate'
+    time = '$time',
+    date = '$date'
 ";
     // Send email confirmation
     $to = $email; 
@@ -248,8 +183,8 @@ $from_name = 'Barangay 188 Tala Caloocan City';
     $message .= "Your appointment has been scheduled successfully.\n\n";
     $message .= "Appointment for $type\n";
     $message .= "Appointment Number: $appointment_no\n";
-    $message .= "Date: $selectedDate\n";
-    $message .= "Time: $selectedTimeSlot\n";
+    $message .= "Date: $date\n";
+    $message .= "Time: $time\n";
     $message .= "\nThank you for choosing our service.\n\n";
     $message .= "Best Regards,\nBarangay 188 Tala Caloocan City";
 
@@ -283,4 +218,28 @@ header("location:".SITEURL.'residents/my-appointment.php');
 exit();
 }
 }
-?>
+?> <script>
+$(document).ready(function() {
+    $('#date').change(function() {
+        var selectedDate = new Date($(this).val());
+        // Check if the selected date is a Sunday (day 0)
+        if (selectedDate.getDay() === 0) {
+            // Reset the date to the next Monday
+            selectedDate.setDate(selectedDate.getDate() + 1);
+            $(this).val(selectedDate.toISOString().slice(0, 10));
+        }
+        var date = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: 'get_available_timeslots.php',
+            data: {
+                date: date
+            },
+            success: function(response) {
+                $('#time').html(response);
+            }
+        });
+    });
+
+});
+</script>
