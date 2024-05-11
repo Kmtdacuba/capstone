@@ -1149,7 +1149,7 @@ label {
   /*Login*/
 
   .login {
-    width: 95%;
+    width:95%;
     margin-top: 30px;
     font-size: 10px;
   }
@@ -1183,6 +1183,20 @@ label {
   margin-top: 30px;
   font-size: 10px;
 }
+.b {
+  width: 98.5%;
+  margin-bottom: 5px;
+}
+.d_box {
+  width: 22.8%;
+  height: 110px;
+}
+.h5 {
+  font-size: 15px;
+}
+h4 {
+  font-size: 11px;
+}
 }
 
 /*For Tablet*/
@@ -1206,9 +1220,19 @@ label {
   .b_date {
     width: 100%;
   }
-  .terms {
-    width: 95%;
-    margin-top: 30px;
+  .b {
+    width: 98.5%;
+    margin-bottom: 5px;
+  }
+  .d_box {
+    width: 22.8%;
+    height: 110px;
+  }
+  .h5 {
+    font-size: 15px;
+  }
+  h4 {
+    font-size: 11px;
   }
 }
 

@@ -241,6 +241,30 @@ $dataPoints1 = array(
                     }]
                 });
                 chart.render();
+
+                // Function to handle screen size change
+                function handleScreenSize() {
+                    if (window.matchMedia("(max-width: 600px)").matches) {
+                        // Change chart properties for smaller screens
+                        chart.options.title.fontSize = 10 px;
+                        chart.options.axisY.labelFontSize = 10 px;
+                        // Modify other properties as needed
+                    } else {
+                        // Reset chart properties for larger screens
+                        chart.options.title.fontSize = 30;
+                        chart.options.axisY.labelFontSize = 15;
+                        // Reset other properties as needed
+                    }
+
+                    // Re-render the chart with updated properties
+                    chart.render();
+                }
+
+                // Call the function initially
+                handleScreenSize();
+
+                // Attach an event listener for screen size change
+                window.addEventListener('resize', handleScreenSize);
             }
             </script>
             <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
