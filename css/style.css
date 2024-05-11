@@ -1169,6 +1169,9 @@ label {
   .b_date {
     width: 100%;
   }
+  label {
+    font-size: 12px;
+  }
 }
 
 /*For Tablet*/

@@ -121,20 +121,20 @@ function checkForm() {
                                 <td>
                                     <label for="">Gender:</label>
                                     <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
-                                    Male
+                                    <label for="">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
-                                    Female
+                                    <label for="">Female</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
                                     <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
-                                    Single
+                                    <label for="">Single</label>
                                     <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
-                                    Married
+                                    <label for="">Married</label>
                                     <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
-                                    Widowed
+                                    <label for="">Widowed</label>
                                 </td>
                             </tr>
                             <tr>
