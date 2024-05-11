@@ -1158,6 +1158,7 @@ label {
   .add_admin_content{
     width: 95%;
     margin-top: 20px;
+    font-size: 10px;
   }
  
   .wrapper {
@@ -1195,7 +1196,7 @@ label {
   }
   .add_admin_content{
     width: 95%;
-    font-size: 9px;
+    font-size: 10px;
   }
   .table-size {
     width: 100%;
