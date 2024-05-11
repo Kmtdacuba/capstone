@@ -1144,9 +1144,38 @@ label {
   }
 }
 
-@media (max-width: 480px) {
+/*For Mobile Phone*/
+@media (max-width: 600px) {
+  /*Login*/
+
   .login {
     width: 100%;
+    margin-top: 30px;
+    font-size: 10px;
+  }
+
+  /*Register Form*/
+  .add_admin_content{
+    width: 95%;
+    margin-top: 20px;
+    font-size: 10px;
+  }
+  .wrapper {
+    width: 100%;
+  }
+}
+
+/*For Tablet*/
+@media (min-width: 601px) and (max-width: 900px){
+  .login {
+    width: 95%;
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+  .add_admin_content{
+    width: 95%;
   }
 }
 
