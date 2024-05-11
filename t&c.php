@@ -25,20 +25,24 @@ include('config/connection.php');
                 <a class="icons" href="index.php">
                     <i class="fa-solid fa-square-xmark"></i>
                 </a>
-                <h1 class="text-center">Terms and Conditions</h1>
+                <h1 class="text-center">Terms and Conditions</h1> <br><br>
                 <p>By using our services, you agree to the following terms and conditions:</p>
                 <ol>
-                    <li>The data or information provided to Barangay 188 Tala, Caloocan City, is collected solely for
-                        the
-                        purpose of
-                        the capstone project.</li>
-                    <li>We assure you that the data and information collected will be kept safe and will not be used for
-                        any
-                        purpose
-                        other than the capstone project.</li>
-                    <li>We will not share your data or information with any third parties without your explicit consent.
-                    </li>
-                    <li>We are committed to maintaining the confidentiality and integrity of the data provided.</li>
+                    <pThe data or information provided to Barangay 188 Tala, Caloocan City, is collected solely for the
+                        purpose of the capstone project.>
+                        </p>
+                        <p>
+                            We assure you that the data and information collected will be kept safe and will not be used
+                            for
+                            any
+                            purpose
+                            other than the capstone project.
+                        </p>
+                        <p>
+                            We will not share your data or information with any third parties without your explicit
+                            consent.
+                        </p>
+                        <p>We are committed to maintaining the confidentiality and integrity of the data provided.</p>
                 </ol>
                 </form>
             </div>

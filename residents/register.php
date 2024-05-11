@@ -174,8 +174,9 @@ function checkForm() {
                                     <td>
                                         <input type="checkbox" id="terms" name="terms" onclick="checkForm()" required>
                                         <label for="terms">I viewed and accept the <a style="text-decoration: none;"
-                                                href="https://brgymanagment.online/t&c.php">Terms and
+                                                href="<?php echo SITEURL; ?>t&c.php">Terms and
                                                 conditions</a></label><br>
+
                                     </td>
                                 </tr>
                             </center>

@@ -1177,6 +1177,10 @@ label {
     width: 8px;
     height: 8px;
 }
+.terms {
+  width: 95%;
+  margin-top: 30px;
+}
 }
 
 /*For Tablet*/
@@ -1199,6 +1203,10 @@ label {
   }
   .b_date {
     width: 100%;
+  }
+  .terms {
+    width: 95%;
+    margin-top: 30px;
   }
 }
 
