@@ -108,8 +108,7 @@ ob_start();
                             <tr>
                                 <td>
                                     <label for="time">Select Time:</label>
-                                    <select class="time input-responsive" id="time" name="time"
-                                        onchange='removeSelectedTime()'></select>
+                                    <select class="time input-responsive" id="time" name="time"></select>
                                 </td>
                             </tr>
 
@@ -125,20 +124,7 @@ ob_start();
             </div>
         </div>
     </center>
-    <script>
-    function removeSelectedTime() {
-        var selectElement = document.getElementById('time');
-        var selectedValue = selectElement.value;
 
-        // Remove the selected option from the dropdown
-        for (var i = 0; i < selectElement.options.length; i++) {
-            if (selectElement.options[i].value === selectedValue) {
-                selectElement.remove(i);
-                break;
-            }
-        }
-    }
-    </script>
 </body>
 
 </html>
@@ -199,6 +185,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
         header('location:'. SITEURL.'set-appointment.php');
      } 
 // EXECUTE QUERY AND SAVE DATA IN DATABASE
+
+
+$date = mysqli_real_escape_string($conn, $date);
+$time = mysqli_real_escape_string($conn, $time);
+
+// Prepare the SQL statement
+$update = "UPDATE appointments SET is_available = 0 WHERE date = '$date' AND time_slot = '$time'";
+
+// Execute the SQL statement
+$result = mysqli_query($conn, $update);
+
+// Check if the update was successful
+if ($result) {
+    echo "Update successful!";
+} else {
+    echo "Error updating record: " . mysqli_error($conn);
+}
+
 $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
 // check if data is inserted or not and display message;
@@ -240,6 +244,7 @@ $(document).ready(function() {
             }
         });
     });
+
 
 });
 </script>
