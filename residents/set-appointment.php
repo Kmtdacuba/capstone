@@ -94,26 +94,25 @@ ob_start();
                                         <option value="Barangay Data  Similar Documents">Barangay Data Similar Documents
                                         </option>
                                         <option value="Other Services">Other Services</option>
-                                        <!-- Add more options as needed -->
-                                    </select><br><br>
+                                    </select><br>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="date">Select Date:</label>
+                                    Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <br>
                                     <input class="date" type="date" id="date" name="date"
-                                        min="<?php echo date('Y-m-d'); ?>">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="time">Select Time:</label>
-                                    <select class="time input-responsive" id="time" name="time"></select>
-                                </td>
-                            </tr>
+                                        min="<?php echo date('Y-m-d'); ?>"> <br><br>
 
+                                    Time:
+                                    <select class="time input-responsive" id="time" name="time"></select>
+
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
+
                                     <input type="submit" name="submit" value="Set" class="btn-second"
                                         class="input-responsive">
                                 </td>

@@ -819,7 +819,7 @@ table tr th {
 }
 
 .time {
-  width: 47%;
+  width: 100%;
   padding: 1%;
   margin-bottom: 3%;
   border-radius: 5px;
@@ -828,7 +828,7 @@ table tr th {
 }
 
 .date {
-  width: 50%;
+  width: 100%;
   padding: 1%;
   margin-bottom: 3%;
   border-radius: 5px;
