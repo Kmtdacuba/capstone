@@ -42,8 +42,9 @@ $email = $_SESSION['email'];
         font-family: Arial, sans-serif;
     }
 
-    .container {
-        max-width: 600px;
+    .containers {
+        width: 50%;
+        margin: 5px auto;
         padding: 20px;
         background-color: lightgray;
         border-radius: 10px;
@@ -60,6 +61,28 @@ $email = $_SESSION['email'];
         padding: 0.5%;
         margin: 0.5%;
     }
+
+    @media (max-width: 600px) {
+        .containers {
+            width: 90%;
+            font-size: 12px;
+            margin-top: 30px;
+
+        }
+
+        .label-profile {
+            text-align: left;
+            margin-left: 15px;
+        }
+
+        .btn-ok {
+            padding: 5px 10%;
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {}
     </style>
 </head>
 
@@ -69,22 +92,22 @@ $email = $_SESSION['email'];
             <img src="../images/Logo Name.png" alt="" width=100%>
         </a>
     </div>
-    <div class="container">
+    <div class="containers">
 
         <a class="icons" href="my-appointment.php">
             <i class="fa-solid fa-square-xmark"></i>
         </a><br>
-
-        <h1>Appointment Summary</h1><br>
-        <?php
+        <center>
+            <h1>Appointment Summary</h1><br>
+            <?php
             if(isset($_SESSION['appointment']))
             {
                 echo $_SESSION['appointment'];
                 unset($_SESSION['appointment']);
             }
             ?>
-        <br>
-        <?php
+            <br>
+            <?php
     $sql = "SELECT * FROM tbl_appointment WHERE email='$email' ORDER BY id DESC
     LIMIT 1";
 
@@ -99,8 +122,8 @@ $email = $_SESSION['email'];
                             
                                 // Print the username
                                 ?>
-        <div class="label-profile">
-            <?php
+            <div class="label-profile">
+                <?php
             
             echo "Name: <br><strong>" . $row['name'] . "</strong><br><br>";
             echo "Service: <br><strong>". $row['type'] . "</strong><br><br>";
@@ -112,14 +135,15 @@ $email = $_SESSION['email'];
             echo "No results found";
             }
             ?>
-        </div>
+            </div>
 
-        <center> <a href="<?php echo SITEURL; ?>residents/my-appointment.php" class="btn-ok">
-                Continue</a></center>
+            <center> <a href="<?php echo SITEURL; ?>residents/my-appointment.php" class="btn-ok">
+                    Continue</a></center>
     </div>
 
 
 
-</body>
+    </center>
+    </bodyc>
 
 </html>
