@@ -57,8 +57,8 @@ include('partials/side-nav.php')
                 $name = $row['name'];
                 $type = $row['type'];
                 $appointment_no = $row['appointment_no'];
-                $selected_time = $row['selected_time'];
-                $selected_date = $row['selected_date'];
+                $time = $row['time'];
+                $date = $row['date'];
                  ?>
         <div class="menu-box">
             <tr>
@@ -67,8 +67,8 @@ include('partials/side-nav.php')
                 <td><?php echo $name; ?></td>
                 <td><?php echo $type; ?></td>
                 <td><?php echo $appointment_no; ?></td>
-                <td><?php echo $selected_time; ?></td>
-                <td><?php echo $selected_date; ?></td>
+                <td><?php echo $time; ?></td>
+                <td><?php echo $date; ?></td>
                 <td>
                     <a href="<?php echo SITEURL; ?>admin/done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
                 </td>
@@ -116,8 +116,8 @@ include('partials/side-nav.php')
                                 $name = $row['name'];
                                 $type = $row['type'];
                                 $appointment_no = $row['appointment_no'];
-                                $selected_time = $row['selected_time'];
-                                $selected_date = $row['selected_date'];
+                                $time = $row['time'];
+                                $date = $row['date'];
                 ?>
 
 
@@ -126,8 +126,8 @@ include('partials/side-nav.php')
             <td><?php echo $name; ?></td>
             <td><?php echo $type; ?></td>
             <td><?php echo $appointment_no; ?></td>
-            <td><?php echo $selected_time; ?></td>
-            <td><?php echo $selected_date; ?></td>
+            <td><?php echo $time; ?></td>
+            <td><?php echo $date; ?></td>
 
             <td>
                 <a href="<?php echo SITEURL; ?>admin/done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>

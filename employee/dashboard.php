@@ -46,7 +46,7 @@
     </div>
     <div class="b daily text-center">
         <?php
-                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(selected_date) = CURDATE()";
+                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(date) = CURDATE()";
                                 $daily_transactions_result = $conn->query($daily_transactions_query);
                                 $daily_transactions_row = $daily_transactions_result->fetch_assoc();
                                 $daily_transactions = $daily_transactions_row['daily_transactions'];
@@ -57,7 +57,7 @@
 
     <div class="b weekly text-center">
         <?php
-                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(selected_date) = WEEK(CURDATE())";
+                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(date) = WEEK(CURDATE())";
                                 $weekly_transactions_result = $conn->query($weekly_transactions_query);
                                 $weekly_transactions_row = $weekly_transactions_result->fetch_assoc();
                                 $weekly_transactions = $weekly_transactions_row['weekly_transactions'];

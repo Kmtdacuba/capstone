@@ -43,7 +43,7 @@ $email = $_SESSION['email'];
     }
 
     .containers {
-        width: 50%;
+        width: 40%;
         margin: 5px auto;
         padding: 20px;
         background-color: lightgray;
