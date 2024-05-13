@@ -68,7 +68,7 @@ ob_start();
                                 <td>
                                     <label for="name">Email Address:</label> <br>
                                     <input type="email" name="email" placeholder="Input Email Address"
-                                        class="input-responsive">
+                                        class="input-responsive" required>
                                 </td>
                             </tr>
                             <tr>
