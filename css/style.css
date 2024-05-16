@@ -1321,9 +1321,17 @@ h4 {
 @media print {
   body * {
       visibility: hidden;
+      
   }
   .content, .content * {
       visibility: visible;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-size: 24px; /* Adjust the font size as needed */
+      text-align: center;
   }
   .content {
       position: absolute;
