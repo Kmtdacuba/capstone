@@ -1236,6 +1236,33 @@ h4 {
   height: 60%;
   font-size: 13px;
 }
+.print-only {
+  display: none;
+}
+
+.content,
+.content * {
+  visibility: visible;
+  margin: auto 100px;
+  font-size: 25px;
+}
+
+.screen-only {
+  display: block;
+}
+
+@media print {
+body {
+  visibility: hidden;
+}
+  .print-only {
+      display: block;
+  }
+
+  .screen-only {
+      display: none;
+  }
+}
 }
 
 /*For Tablet*/
