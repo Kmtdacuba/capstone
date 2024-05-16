@@ -58,8 +58,20 @@ $queuing_id = $_SESSION['queuing_id'];
                 <button class="btn-print" onclick="printContent()">Print</button>
                 <script>
                 function printContent() {
-                    window.print();
-                    window.location.href = 'queuing.php';
+                    // Check if the browser is mobile
+                    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                    // If it's mobile, just initiate print, else initiate print and redirect after a delay
+                    if (isMobile) {
+                        window.print();
+                    } else {
+                        window.print();
+                        setTimeout(function() {
+                            window.location.href = 'queuing.php';
+                        }, 1000); // Redirect after 1 second (adjust the delay as needed)
+                    }
+                }
+                f = 'queuing.php';
                 }
                 </script>
             </div>
