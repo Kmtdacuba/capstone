@@ -71,8 +71,6 @@ $queuing_id = $_SESSION['queuing_id'];
                         }, 1000); // Redirect after 1 second (adjust the delay as needed)
                     }
                 }
-                f = 'queuing.php';
-                }
                 </script>
             </div>
         </div>
