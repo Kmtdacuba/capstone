@@ -1318,30 +1318,31 @@ h4 {
 
 
 /*Open Print App*/
+
+.print-only {
+  display: none;
+}
+
+.content,
+.content * {
+  visibility: visible;
+  margin: auto 100px;
+  font-size: 25px;
+}
+
+.screen-only {
+  display: block;
+}
+
 @media print {
-  body * {
-      visibility: hidden;
-      
-  }
-  .content, .content * {
-      visibility: visible;
-      margin: auto 100px;
-      font-size: 25px;
-  }
-  .content {
-      position: absolute;
-  }
-  
+body {
+  visibility: hidden;
+}
   .print-only {
-    display: none;
-}
+      display: block;
+  }
 
-@media print {
-    .print-only {
-        display: block;
-    }
-}
-
-
-
+  .screen-only {
+      display: none;
+  }
 }

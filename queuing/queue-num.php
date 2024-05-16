@@ -16,32 +16,7 @@ $queuing_id = $_SESSION['queuing_id'];
     <title>Barangay 188 Tala Caloocan City</title>
 </head>
 
-<style>
-.print-only {
-    display: none;
-}
 
-.content,
-.content * {
-    visibility: visible;
-    margin: auto 100px;
-    font-size: 25px;
-}
-
-.screen-only {
-    display: block;
-}
-
-@media print {
-    .print-only {
-        display: block;
-    }
-
-    .screen-only {
-        display: none;
-    }
-}
-</style>
 
 <body class="bg">
     <center>
