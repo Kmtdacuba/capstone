@@ -39,7 +39,7 @@ $queuing_id = $_SESSION['queuing_id'];
             <div class="login">
                 <div class="content">
                     <h6>Your Queue Number is:</h6><br>
-                    <h1 style="color:#21618C;"> Queue - 00<?php echo $row['queue_no'];?></h1>
+                    <h1 style="color:#21618C;"> Queue - 0<?php echo $row['queue_no'];?></h1>
                 </div>
                 <button class="btn-print" onclick="printContent()">Print</button>
                 <script>
