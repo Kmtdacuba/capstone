@@ -58,19 +58,36 @@ $queuing_id = $_SESSION['queuing_id'];
                 <button class="btn-print" onclick="printContent()">Print</button>
                 <script>
                 function printContent() {
-                    // Check if the browser is mobile
-                    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-                    // If it's mobile, just initiate print, else initiate print and redirect after a delay
-                    if (isMobile) {
-                        window.print();
-                    } else {
-                        window.print();
-                        setTimeout(function() {
-                            window.location.href = 'queuing.php';
-                        }, 1000); // Redirect after 1 second (adjust the delay as needed)
+                    window.print();
+                    window.location.href = 'queuing.php';
+                } <
+                script >
+                    function printContent() {
+                        var content = document.getElementById('printContent').innerHTML;
+                        var mywindow = window.open('', 'Print', 'height=600,width=800');
+                        mywindow.document.write('<html><head><title>Print</title>');
+                        mywindow.document.write('</head><body>');
+                        mywindow.document.write(content);
+                        mywindow.document.write('</body></html>');
+                        mywindow.document.close();
+                        mywindow.focus();
+                        mywindow.print();
+                        mywindow.close();
+                        return true;
                     }
-                }
+                </script>
+            </div>
+            This script will only show the content inside the <div class="print-only"> when the print button is clicked,
+                hiding the rest of the content. It opens a new window with just that content for printing.
+
+
+
+
+
+
+
+
+
                 </script>
             </div>
         </div>
