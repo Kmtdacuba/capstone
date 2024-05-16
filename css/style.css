@@ -1240,13 +1240,6 @@ h4 {
   display: none;
 }
 
-.content,
-.content * {
-  visibility: visible;
-  margin: auto 100px;
-  font-size: 25px;
-}
-
 .screen-only {
   display: block;
 }
