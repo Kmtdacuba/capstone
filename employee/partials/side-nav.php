@@ -69,7 +69,7 @@ $_SESSION['last_activity'] = time();
                 <span class="tooltip">My Profile</span>
             </li>
             <li>
-                <a href="queuing.php">
+                <a href="counter.php">
                     <i class="fa-solid fa-users-line"></i>
                     <span class="links_name">Queuing</span>
                 </a>

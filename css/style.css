@@ -571,6 +571,39 @@ hr {
   border: 1px solid green;
 }
 
+.counter1 {
+  background-color:skyblue;
+  border: 1px solid lightseagreen;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.counter2 {
+  background-color: lightcoral;
+  border: 1px solid coral;
+  cursor: pointer;
+  text-decoration: none;
+}
+.counter3 {
+  background-color: #4CBB17;
+  border: 1px solid green;
+  cursor: pointer;
+  text-decoration: none;
+}
+.counter4 {
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.counter5 {
+  background-color: lightseagreen;
+  border: 1px solid  lightseagreen;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 
 /*CS for Requirements*/
 .requirement {
