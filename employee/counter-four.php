@@ -183,16 +183,14 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                 <td><?php echo $status; ?></td>
                 <td>
 
-                    <a href="<?php echo SITEURL; ?>employee/queuing-call.php?queue_no=<?php echo $queue_no - 1; ?>"
+                    <a href="<?php echo SITEURL; ?>employee/counter-call/counter4-call.php?queue_no=<?php echo $queue_no - 1; ?>"
                         class="btn-fifth">Call</a>
 
-                    <a href="<?php echo SITEURL; ?>employee/queuing-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
+                    <a href="<?php echo SITEURL; ?>employee/counter-serve/counter4-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
                         class="btn-third">Serve</a>
 
-                    <a href="<?php echo SITEURL; ?>employee/queuing-done.php?queue_no=<?php echo $queue_no - 1; ?>"
+                    <a href="<?php echo SITEURL; ?>employee/counter-done/counter4-done.php?queue_no=<?php echo $queue_no - 1; ?>"
                         class="btn-second">Done</a>
-
-
                 </td>
                 </td>
             </tr>
