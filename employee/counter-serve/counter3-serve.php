@@ -2,7 +2,7 @@
 include('../../config/connection.php');
 ob_start();
 $queue_no = $_GET['queue_no'];
-$query = "UPDATE tbl_queuing SET status = 'Serving' WHERE queue_no =$queue_no AND counter_no=1";
+$query = "UPDATE tbl_queuing SET status = 'Serving' WHERE queue_no =$queue_no";
 $sql = mysqli_query($conn,$query);
 if($sql == TRUE) {
 
