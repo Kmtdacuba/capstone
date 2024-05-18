@@ -108,7 +108,7 @@ setTimeout(function() {
         <a href="priority-queue.php">
             <div class="queues text-center">
                 <?php
-                                $total_priority_query = "SELECT COUNT(*) AS total_priority FROM tbl_queuing WHERE age>=60";
+                                $total_priority_query = "SELECT COUNT(*) AS total_priority FROM tbl_queuing WHERE age>=60 AND counter_no=1";
                                 $total_priority_result = $conn->query($total_priority_query);
                                 $total_priority_row = $total_priority_result->fetch_assoc();
                                 $total_priority = $total_priority_row['total_priority'];
@@ -120,7 +120,7 @@ setTimeout(function() {
         <a href="regular-queue.php">
             <div class="queues text-center">
                 <?php
-                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age>1 AND age<59 ";
+                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age>1 AND age<59";
                                 $total_regular_result = $conn->query($total_regular_query);
                                 $total_regular_row = $total_regular_result->fetch_assoc();
                                 $total_regular = $total_regular_row['total_regular'];
@@ -141,11 +141,10 @@ setTimeout(function() {
                 <th>DATE & TIME</th>
                 <th>APPOINTMENT NUMBER</th>
                 <th>STATUS</th>
-                <th>ACTION</th>
             </tr>
 
             <?php
-                        $sql = "SELECT * FROM tbl_queuing WHERE age>1 AND age<59 ";
+                        $sql = "SELECT * FROM tbl_queuing WHERE age>1 AND age<59";
 
                         $res = mysqli_query($conn, $sql);
 
@@ -172,17 +171,6 @@ setTimeout(function() {
                 <td><?php echo $date_time; ?></td>
                 <td><?php echo $appointment_no; ?></td>
                 <td><?php echo $status; ?></td>
-                <td>
-
-                    <a href="<?php echo SITEURL; ?>employee/queuing-call.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-fifth" id="callButton">Call</a>
-
-                    <a href="<?php echo SITEURL; ?>employee/queuing-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-third" id="serveButton">Serve</a>
-
-                    <a href="<?php echo SITEURL; ?>employee/queuing-done.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-second">Done</a>
-                </td>
                 </td>
             </tr>
             <?php

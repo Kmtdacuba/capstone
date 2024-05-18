@@ -4,26 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barangay 188 Tala Caloocan City</title>
+    <title>Baranagy 188 Tala Caloocan City</title>
 
     <link rel="icon" type="image/png" href="../favicon.png">
-    <style>
-    .btn-fifth,
-    .btn-third,
-    .btn-second {
-        margin: 5px;
-        padding: 10px;
-        color: white;
-        background-color: grey;
-        border: none;
-        cursor: pointer;
-    }
-
-    .disabled {
-        background-color: lightgrey;
-        cursor: not-allowed;
-    }
-    </style>
+    <meta http-equiv="refresh" content="1">
 </head>
 <script>
 document.getElementById('callButton').addEventListener('click', function(event) {
@@ -69,12 +53,18 @@ document.getElementById('serveButton').addEventListener('click', function(event)
 
 </body>
 
-</html>
-<?php 
+</html><?php 
     include ('partials/side-nav.php');
     ob_start();
 ?>
 
+
+<!--Refresh every 1 seconds -->
+<script>
+setTimeout(function() {
+    window.location.reload();
+}, 1000);
+</script>
 
 
 <section class="home-section">
@@ -83,8 +73,9 @@ document.getElementById('serveButton').addEventListener('click', function(event)
             <i class="fa-solid fa-arrows-rotate"></i>
         </a>
     </div>
-    <div class="text">Counter 1
+    <div class="text">Priority Queue in Counter 1
     </div>
+
     <br>
     <?php 
     if(isset($_SESSION['done']))
@@ -100,7 +91,7 @@ document.getElementById('serveButton').addEventListener('click', function(event)
    
             ?>
     <div class="text-center">
-        <br>
+
 
 
         <a href="counter-one.php">
@@ -131,7 +122,7 @@ document.getElementById('serveButton').addEventListener('click', function(event)
         <a href="counter1-regular.php">
             <div class="queues text-center">
                 <?php
-                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age>1 AND age<59 AND counter_no=1";
+                                $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age>1 AND age<59 AND counter_no=1 ";
                                 $total_regular_result = $conn->query($total_regular_query);
                                 $total_regular_row = $total_regular_result->fetch_assoc();
                                 $total_regular = $total_regular_row['total_regular'];
@@ -152,11 +143,10 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                 <th>DATE & TIME</th>
                 <th>APPOINTMENT NUMBER</th>
                 <th>STATUS</th>
-                <th>ACTION</th>
             </tr>
 
             <?php
-                        $sql = "SELECT * FROM tbl_queuing WHERE counter_no=1";
+                        $sql = "SELECT * FROM tbl_queuing WHERE age>=60 AND counter_no=1";
 
                         $res = mysqli_query($conn, $sql);
 
@@ -176,12 +166,14 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                                 $appointment_no = $row['appointment_no'];
                                 $status= $row['status'];
                 ?>
+
             <tr>
                 <td>Queue-00<?php echo $queue_no++; ?></td>
                 <td><?php echo $queue_type; ?></td>
                 <td><?php echo $date_time; ?></td>
                 <td><?php echo $appointment_no; ?></td>
                 <td><?php echo $status; ?></td>
+                </td>
                 <td>
 
                     <a href="<?php echo SITEURL; ?>employee/counter-call/counter1-call.php?queue_no=<?php echo $queue_no - 1; ?>"
@@ -195,14 +187,17 @@ document.getElementById('serveButton').addEventListener('click', function(event)
 
 
                 </td>
-                </td>
             </tr>
             <?php
+        
                             }
                         }
 
                     ?>
         </table>
+
+
+
 </section>
 <?php 
     include ('partials/footer.php');

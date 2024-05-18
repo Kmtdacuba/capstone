@@ -101,9 +101,8 @@ document.getElementById('serveButton').addEventListener('click', function(event)
             ?>
     <div class="text-center">
         <br>
-
-        <a href="">
-            <div class="queues text-center">
+        <a href="counter-three.php">
+            <div class="queueee text-center">
                 <?php
                                 $total_queuing_query = "SELECT COUNT(*) AS total_queuing FROM tbl_queuing";
                                 $total_queuing_result = $conn->query($total_queuing_query);
@@ -113,47 +112,47 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                 <h5 class="h5">TOTAL QUEUES</h5>
                 <h2 class="h2"><?php echo $total_queuing; ?></h2>
             </div>
-        </a>
-        <a href="priority-queue.php">
-            <div class="queues text-center">
-                <?php
+
+            <a href="priority-counter3.php">
+                <div class="queues text-center">
+                    <?php
                                 $total_priority_query = "SELECT COUNT(*) AS total_priority FROM tbl_queuing WHERE age>=60 AND counter_no=3";
                                 $total_priority_result = $conn->query($total_priority_query);
                                 $total_priority_row = $total_priority_result->fetch_assoc();
                                 $total_priority = $total_priority_row['total_priority'];
                                 ?>
-                <h5 class="h5">PRIORITY RESIDENT</h5>
-                <h2 class="h2"><?php echo $total_priority; ?></h2>
-            </div>
-        </a>
-        <a href="regular-queue.php">
-            <div class="queues text-center">
-                <?php
+                    <h5 class="h5">PRIORITY RESIDENT</h5>
+                    <h2 class="h2"><?php echo $total_priority; ?></h2>
+                </div>
+            </a>
+            <a href="counter3-regular.php">
+                <div class="queues text-center">
+                    <?php
                                 $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age>1 AND age<59 AND counter_no=3";
                                 $total_regular_result = $conn->query($total_regular_query);
                                 $total_regular_row = $total_regular_result->fetch_assoc();
                                 $total_regular = $total_regular_row['total_regular'];
                                 ?>
-                <h5 class="h5">REGULAR RESIDENT</h5>
-                <h2 class="h2"><?php echo $total_regular; ?></h2>
-            </div>
-        </a>
-        <br><br>
+                    <h5 class="h5">REGULAR RESIDENT</h5>
+                    <h2 class="h2"><?php echo $total_regular; ?></h2>
+                </div>
+            </a>
+            <br><br>
 
-        <table class="table-full">
+            <table class="table-full">
 
 
 
-            <tr>
-                <th>QUEUING NUMBER</th>
-                <th>RESIDENT TYPE</th>
-                <th>DATE & TIME</th>
-                <th>APPOINTMENT NUMBER</th>
-                <th>STATUS</th>
-                <th>ACTION</th>
-            </tr>
+                <tr>
+                    <th>QUEUING NUMBER</th>
+                    <th>RESIDENT TYPE</th>
+                    <th>DATE & TIME</th>
+                    <th>APPOINTMENT NUMBER</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                </tr>
 
-            <?php
+                <?php
                         $sql = "SELECT * FROM tbl_queuing WHERE counter_no=3";
 
                         $res = mysqli_query($conn, $sql);
@@ -175,34 +174,34 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                                 $status= $row['status'];
                 ?>
 
-            <tr>
-                <td>Queue-00<?php echo $queue_no++; ?></td>
-                <td><?php echo $queue_type; ?></td>
-                <td><?php echo $date_time; ?></td>
-                <td><?php echo $appointment_no; ?></td>
-                <td><?php echo $status; ?></td>
-                <td>
+                <tr>
+                    <td>Queue-00<?php echo $queue_no++; ?></td>
+                    <td><?php echo $queue_type; ?></td>
+                    <td><?php echo $date_time; ?></td>
+                    <td><?php echo $appointment_no; ?></td>
+                    <td><?php echo $status; ?></td>
+                    <td>
 
-                    <a href="<?php echo SITEURL; ?>employee/counter-call/counter3-call.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-fifth">Call</a>
+                        <a href="<?php echo SITEURL; ?>employee/counter-call/counter3-call.php?queue_no=<?php echo $queue_no - 1; ?>"
+                            class="btn-fifth">Call</a>
 
-                    <a href="<?php echo SITEURL; ?>employee/counter-serve/counter3-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-third">Serve</a>
+                        <a href="<?php echo SITEURL; ?>employee/counter-serve/counter3-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
+                            class="btn-third">Serve</a>
 
-                    <a href="<?php echo SITEURL; ?>employee/counter-done/counter3-done.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-second">Done</a>
+                        <a href="<?php echo SITEURL; ?>employee/counter-done/counter3-done.php?queue_no=<?php echo $queue_no - 1; ?>"
+                            class="btn-second">Done</a>
 
 
-                </td>
-                </td>
-            </tr>
-            <?php
+                    </td>
+                    </td>
+                </tr>
+                <?php
         
                             }
                         }
 
                     ?>
-        </table>
+            </table>
 
 
 

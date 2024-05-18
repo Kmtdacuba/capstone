@@ -102,8 +102,8 @@ document.getElementById('serveButton').addEventListener('click', function(event)
     <div class="text-center">
         <br>
 
-        <a href="">
-            <div class="queues text-center">
+        <a href="counter-five.php">
+            <div class="queueee text-center">
                 <?php
                                 $total_queuing_query = "SELECT COUNT(*) AS total_queuing FROM tbl_queuing";
                                 $total_queuing_result = $conn->query($total_queuing_query);
@@ -114,7 +114,8 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                 <h2 class="h2"><?php echo $total_queuing; ?></h2>
             </div>
         </a>
-        <a href="priority-queue.php">
+
+        <a href="priority-counter5.php">
             <div class="queues text-center">
                 <?php
                                 $total_priority_query = "SELECT COUNT(*) AS total_priority FROM tbl_queuing WHERE age>=60 AND counter_no=5";
@@ -126,7 +127,7 @@ document.getElementById('serveButton').addEventListener('click', function(event)
                 <h2 class="h2"><?php echo $total_priority; ?></h2>
             </div>
         </a>
-        <a href="regular-queue.php">
+        <a href="counter5-regular.php">
             <div class="queues text-center">
                 <?php
                                 $total_regular_query = "SELECT COUNT(*) AS total_regular FROM tbl_queuing WHERE age>1 AND age<59 AND counter_no=5";

@@ -141,7 +141,6 @@ setTimeout(function() {
                 <th>DATE & TIME</th>
                 <th>APPOINTMENT NUMBER</th>
                 <th>STATUS</th>
-                <th>ACTION</th>
             </tr>
 
             <?php
@@ -172,17 +171,6 @@ setTimeout(function() {
                 <td><?php echo $date_time; ?></td>
                 <td><?php echo $appointment_no; ?></td>
                 <td><?php echo $status; ?></td>
-                <td>
-
-                    <a href="<?php echo SITEURL; ?>employee/queuing-call.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-fifth" id="callButton">Call</a>
-
-                    <a href="<?php echo SITEURL; ?>employee/queuing-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-third" id="serveButton">Serve</a>
-
-                    <a href="<?php echo SITEURL; ?>employee/queuing-done.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-second">Done</a>
-                </td>
                 </td>
             </tr>
             <?php

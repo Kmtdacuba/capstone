@@ -70,6 +70,13 @@ $_SESSION['last_activity'] = time();
             </li>
             <li>
                 <a href="counter.php">
+                    <i class="fa-solid fa-list-ol"></i>
+                    <span class="links_name">Counter</span>
+                </a>
+                <span class="tooltip">Counter</span>
+            </li>
+            <li>
+                <a href="queuing.php">
                     <i class="fa-solid fa-users-line"></i>
                     <span class="links_name">Queuing</span>
                 </a>

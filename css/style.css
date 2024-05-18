@@ -1161,12 +1161,19 @@ label {
   cursor: pointer;
 }
 
+.queueee {
+  width: 32.7%;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+  float: left;
+  background-color: lightgrey;
+  border: 1px solid lightgray;
+}
+
 .queues:hover {
   background-color: lightpink;
   border: 1px solid pink;
-  cursor: pointer;
-  padding: 3px;
-  margin: 3px;
 }
 
 
