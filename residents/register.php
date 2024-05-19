@@ -76,7 +76,7 @@ function calculateAge(birthday) {
     return age;
 }
 
-function checkForm() {
+function checkBirthday() {
     const birthdayInput = document.getElementById('Birthday').value;
     const age = calculateAge(birthdayInput);
     if (age < 18) {
@@ -155,7 +155,7 @@ function validateInput(input) {
                                 <td>
                                     Birthday: <br>
                                     <input class="b_date" type="date" id="Birthday" name="Birthday"
-                                        onkeyup="checkForm()" required>
+                                        onkeyup="checkBirthday()" required>
                                 </td>
                             </tr>
                             <tr>
