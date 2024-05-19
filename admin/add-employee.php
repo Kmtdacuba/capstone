@@ -1,4 +1,6 @@
-<?php include('../config/connection.php') ?>
+<?php include('../config/connection.php');
+ob_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +71,7 @@
                             <tr>
                                 <td>
                                     <label class="b_date" for="">Birthday: </label>
-                                    <input type="date" id="Birthday" name="Bithrday" required>
+                                    <input type="date" id="Birthday" name="Birthday" required>
                                 </td>
                             </tr>
 
@@ -119,7 +121,7 @@
         $Mname = $_POST['Mname'];
         $Lname = $_POST['Lname'];
         $email = $_POST['email'];
-        $Birthday = date("Y-m-d");
+        $Birthday = date('Y-m-d', strtotime($_POST['Birthday']));
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -152,7 +154,6 @@
     } else {
         $img_name = ""; // Set img_name to empty if no image is selected
     }
-
 
         // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_employee SET
