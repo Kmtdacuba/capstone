@@ -95,7 +95,7 @@ ob_start();
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </label><label class="lbl_update" for="age">Age:</label><br>
                                     <input class="b_date" type="date" name="Birthday" value="<?php echo $Birthday;?>"
-                                        class="input-responsive" readonly>
+                                        class="input-responsive">
                                     <input type="number" name="age" value="<?php echo $age;?>" class="input-responsive "
                                         readonly>
                                 </td>
