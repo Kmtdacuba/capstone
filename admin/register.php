@@ -13,49 +13,108 @@ ob_start();
     <link rel="icon" type="image/png" href="../favicon.png">
     <!-- Icon -->
     <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
+    <script>
+    // Message will disappear after 2 seconds 
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.error');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the error message
+        }
+    }, 2000);
+
+    setTimeout(function() {
+        var errorDiv = document.querySelector('.success');
+        if (errorDiv) {
+            errorDiv.remove(); // Remove the success message
+        }
+    }, 2000);
+    </script>
 </head>
+<script>
+function checkForm() {
+    var Fname = document.getElementById('Fname').value;
+    var Lname = document.getElementById('Lname').value;
+    var Birthday = document.getElementById('Birthday').value;
+    var femaleChecked = document.getElementById("female").checked;
+    var maleChecked = document.getElementById("male").checked;
+    var singleChecked = document.getElementById("single").checked;
+    var marriedChecked = document.getElementById("married").checked;
+    var widowedChecked = document.getElementById("widowed").checked;
+    var email = document.getElementById('email').value;
+    var a = document.getElementById('a').value;
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    var termsChecked = document.getElementById("terms").checked;
+
+    // Check if all fields are filled
+    if (Fname !== '' &&
+        Lname !== '' &&
+        Birthday.trim() !== '' &&
+        email !== '' &&
+        a !== '' &&
+        username !== '' &&
+        password !== '' &&
+        termsChecked &&
+        (femaleChecked || maleChecked) &&
+        (singleChecked || marriedChecked || widowedChecked)) {
+        document.getElementById('submit').disabled = false;
+    } else {
+        document.getElementById('submit').disabled = true;
+    }
+}
+</script>
 
 <body class="bg">
     <center>
         <div>
-            <a href="../index.php">
+            <a href="register.php">
                 <img src="../images/Logo Name.png" alt="" width=100%>
             </a>
         </div>
-
         <!--Main Content Ends-->
         <div class="main-content">
             <div class="wrapper">
                 <div class="add_admin_content">
-                    <a class="icons" href="residents.php">
+                    <a class="icons" href="../index.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Registration Form</h1>
+                    <br>
+
+                    <?php
+                    if(isset($_SESSION['exist']))
+                    {
+                        echo $_SESSION['exist'];
+                        unset($_SESSION['exist']);
+                    }
+                    ?>
 
                     <form action="" method="POST" enctype="multipart/form-data">
                         <table class="table-size">
                             <tr>
                                 <td>
-                                    <input type="text" name="Fname" placeholder="Enter First Name"
-                                        class="input-responsive" required>
+                                    <input type="text" id="Fname" name="Fname" placeholder="Enter First Name"
+                                        onkeyup="checkForm()" class="input-responsive" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="Mname" placeholder="Middle Name" class="input-responsive">
+                                    <input type="text" id="Mname" name="Mname" placeholder="Middle Name"
+                                        class="input-responsive">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="text" name="Lname" placeholder="Last Name" class="input-responsive"
-                                        required>
+                                    <input type="text" id="Lname" name="Lname" placeholder="Last Name"
+                                        onkeyup="checkForm()" class="input-responsive" required>
                                 </td>
                             </tr>
                             <input class="file" type="hidden" name="image">
                             <tr>
                                 <td>
-                                    <label for="">Birthday:</label><br>
-                                    <input class="b_date" type="date" id="Birthday" name="Birthday" required>
+                                    Birthday: <br>
+                                    <input class="b_date" type="date" id="Birthday" name="Birthday"
+                                        onkeyup="checkForm()" required>
                                 </td>
                             </tr>
                             <tr>
@@ -70,27 +129,18 @@ ob_start();
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
-                                    <input type="radio" name="s" value="Single"> Single
-                                    <input type="radio" name="s" value="Married"> Married
-                                    <input type="radio" name="s" value="Widowed"> Widowed
+                                    <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
+                                    <label for="">Single</label>
+                                    <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
+                                    <label for="">Married</label>
+                                    <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
+                                    <label for="">Widowed</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="email" name="email" placeholder="Email Address"
-                                        class="input-responsive" required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="a" placeholder="Home Address" class="input-responsive"
-                                        required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="username" placeholder="Username" class="input-responsive"
-                                        required>
+                                    <input type="email" id="email" name="email" placeholder="Email Address"
+                                        onkeyup="checkForm()" class="input-responsive" required>
                                     <?php
                     if(isset($_SESSION['unique']))
                     {
@@ -102,13 +152,38 @@ ob_start();
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="password" name="password" placeholder="Password"
+                                    <input type="text" id="a" name="a" placeholder="Home Address" onkeyup="checkForm()"
                                         class="input-responsive" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="submit" name="submit" value="Register" class="btn-second">
+                                    <input type="text" id="username" name="username" placeholder="Username"
+                                        onkeyup="checkForm()" class="input-responsive" required>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" id="password" name="password" placeholder="Password"
+                                        onkeyup="checkForm()" class="input-responsive" required>
+                                </td>
+                            </tr>
+                            <center>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" id="terms" name="terms" onclick="checkForm()" required>
+                                        <label for="terms">I viewed and accept the <a style="text-decoration: none;"
+                                                href="<?php echo SITEURL; ?>t&c.php">Terms and
+                                                conditions</a></label><br>
+
+                                    </td>
+                                </tr>
+                            </center>
+                            <tr>
+                                <td>
+                                    <input type="submit" id="submit" name="submit" value="Register" class="btn-second"
+                                        disabled>
                                 </td>
                             </tr>
                         </table>
@@ -121,8 +196,6 @@ ob_start();
 
 </html>
 <?php
-    // Process value from form and save to database;
-    // Check whether submit button is clicked or not
     if(isset($_POST['submit'])) {
 
         // Get data from form
@@ -136,7 +209,7 @@ ob_start();
         $a = $_POST['a'];
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
+        $date_time = date("Y-m-d h:i:sa"); //time and date 
 
          //Upload the image
        if(isset($_FILES['image']['name'])) {
@@ -159,27 +232,39 @@ ob_start();
     
         // Check if the image was uploaded successfully
         if($upload == false) {
-            $_SESSION['upload'] = "<div class='error'> &nbsp; Failed to upload image</div>";
+            $_SESSION['upload'] = "<div class='error'>Failed to upload image</div>";
             header('location:' . SITEURL . "admin/register.php");
             die(); // Stop execution if upload fails
         }
     } else {
         $img_name = ""; // Set img_name to empty if no image is selected
     }
-        $sql1 = "SELECT * FROM tbl_resident WHERE username='$username'";
-        $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
 
-        if (mysqli_num_rows($res1) > 0) {
-            $_SESSION['unique'] = "<div class='success'> &nbsp; Username already take.</div>";
-            header("Location:".SITEURL.'eadmin/register.php');?>
+         // check if user have an account
+$sql2 = "SELECT * FROM tbl_resident WHERE Fname='$Fname' AND Lname='$Lname' AND Birthday='$Birthday' AND gender='$gender'";
+$res2 = mysqli_query($conn, $sql2) or die(mysqli_error);
+
+if (mysqli_num_rows($res2) > 0) {
+    $_SESSION['exist'] = "<div class='error'>Already have an account</div>";
+    header("Location:".SITEURL.'admin/register.php');
+    exit();
+    }
+
+    //check if email aready used 
+    $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
+    $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
+
+    if (mysqli_num_rows($res1) > 0) {
+        $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
+        header("Location:".SITEURL.'admin/register.php');?>
 <?php
-        exit();
-        }
+    exit();
+    }
         else{
 
             $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
             $today = new Datetime(date('Y-m-d')); // Creating a DateTime object representing today's date.
-            $diff = $today->diff($bday);
+            $diff = $today->diff($bday); 
 
              // Sql query to serve the data into database
         $sql = "INSERT INTO tbl_resident SET
@@ -194,7 +279,8 @@ ob_start();
         email = '$email',
         a = '$a',
         username = '$username',
-        password = '$password'
+        password = '$password',
+        date_time = '$date_time'
     ";
     // EXECUTE QUERY AND SAVE DATA IN DATABASE
    $res = mysqli_query($conn, $sql) or die(mysqli_error());
@@ -204,13 +290,13 @@ ob_start();
    if($res == TRUE){
     // data inserted
     // variable to display message;
-    $_SESSION['add']="<div class='success'> &nbsp; Successful Registration</div>";
+    $_SESSION['add-resident']="<div class='success'> &nbsp; Resident Resister Successfully</div>";
     header("Location:".SITEURL.'admin/residents.php');
     exit();
    }
    else{
     // data not inserted
-    $_SESSION['add'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
+    $_SESSION['add-resident'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
     header("location:".SITEURL.'admin/register.php');
     exit();
    }

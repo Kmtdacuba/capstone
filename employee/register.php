@@ -75,7 +75,7 @@ function checkForm() {
         <div class="main-content">
             <div class="wrapper">
                 <div class="add_admin_content">
-                    <a class="icons" href="residents.php">
+                    <a class="icons" href="../index.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Registration Form</h1>
@@ -129,11 +129,11 @@ function checkForm() {
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
-                                    <input type="radio" id="Single" name="s" value="Single" onclick="checkForm()">
+                                    <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
                                     <label for="">Single</label>
-                                    <input type="radio" id="Married" name="s" value="Married" onclick="checkForm()">
+                                    <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
                                     <label for="">Married</label>
-                                    <input type="radio" id="Widowed" name="s" value="Widowed" onclick="checkForm()">
+                                    <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
                                     <label for="">Widowed</label>
                                 </td>
                             </tr>
@@ -290,14 +290,14 @@ if (mysqli_num_rows($res2) > 0) {
    if($res == TRUE){
     // data inserted
     // variable to display message;
-    $_SESSION['register']="<div class='success'> &nbsp; Successful Registration</div>";
+    $_SESSION['add-resident']="<div class='success'> &nbsp; Resident Resister Successfully</div>";
     header("Location:".SITEURL.'employee/residents.php');
     exit();
    }
    else{
     // data not inserted
-    $_SESSION['register'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
-    header("location:".SITEURL.'remployee/register.php');
+    $_SESSION['add-resident'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
+    header("location:".SITEURL.'employee/register.php');
     exit();
    }
 }

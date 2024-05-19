@@ -17,9 +17,9 @@ include('partials/side-nav.php')
     <a href="<?php echo SITEURL; ?>admin/register.php" class="btn-primary">Add Resident</a>
     <br><br><br>
     <?php 
-                if(isset($_SESSION['add'])) {
-                    echo $_SESSION['add']; // display session message
-                    unset($_SESSION['add']); // remove session message
+                if(isset($_SESSION['add-resident'])) {
+                    echo $_SESSION['add-resident']; // display session message
+                    unset($_SESSION['add-resident']); // remove session message
                 }
                 if(isset($_SESSION['update']))
                     {

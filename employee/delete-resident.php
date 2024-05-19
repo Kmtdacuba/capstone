@@ -1,46 +1,58 @@
 <?php
 include('../config/connection.php');
 ob_start();
-
 $id = $_GET['id'];
 
-$sql = "DELETE FROM tbl_employee WHERE id=$id";
+$sql_select = "SELECT * FROM tbl_resident WHERE id=$id";
+    $result = $conn->query($sql_select);
 
-$res = mysqli_query($conn, $sql);
-
-        $id = $_POST['id'];
-        $employee_no = $_POST['employee_no'];
-        $Fname = $_POST['Fname'];
-        $Mname = $_POST['Mname'];
-        $Lname = $_POST['Lname'];
-        $Birthday = $_POST['Birthday'];
-        $img = $_POST['img'];
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-
-        $sql2 = "INSERT INTO employee_archive SET
-            id = '$id',
-            Fname = '$Fname',
-            Mname = '$Mname',
-            Lname = '$Lname',
-            Birthday = '$Birthday',
-            img = '$img',
-            username = '$username',
-            password = '$password'
-        ";
-       $res2 = mysqli_query($conn, $sql2) or die(mysqli_error());
-
-if ($res==true)
-{
-    if ($res2==true)
-    {
-    $_SESSION['delete'] = "<div class='success'>Employee Deleted Successfully </div>";
-    header('location:' . SITEURL . 'admin/employee.php');
+    if ($result->num_rows > 0) {
+        // Step 4: Insert the retrieved data into the second table
+        while ($row = $result->fetch_assoc()) {
+            $data_to_insert = $row['Fname'];
+            $data_to_insert1 = $row['Mname'];
+            $data_to_insert2 = $row['Lname'];
+            $data_to_insert3 = $row['img_name'];
+            $data_to_insert4 = $row['Birthday'];
+            $data_to_insert5 = $row['age'];
+            $data_to_insert6 = $row['gender'];
+            $data_to_insert7 = $row['s'];
+            $data_to_insert8 = $row['email'];
+            $data_to_insert9 = $row['a'];
+            $data_to_insert10 = $row['username'];
+            $data_to_insert11 = $row['password'];
+            
+            $sql_insert = "INSERT INTO resident_archive (Fname, Mname, Lname, img_name, Birthday, age, s, email, a, username, password) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5', '$data_to_insert6', '$data_to_insert7', '$data_to_insert8' '$data_to_insert9', '$data_to_insert10', '$data_to_insert11')";
+            
+            if ($conn->query($sql_insert) === FALSE) {
+                echo "Error: " . $sql_insert . "<br>" . $conn->error;
+                $_SESSION['delete'] = "<div class='error'>&nbsp Error: Try Again Later </div>";
+                header('location:' . SITEURL . 'employee/residents.php');
+            }
+        }
+        echo "Data successfully moved to second table.";
+        $_SESSION['delete'] = "<div class='success'>&nbsp Resident Deleted Successfully </div>";
+        header('location:' . SITEURL . 'employee/residents.php');
+    } else {
+        echo "No data found to move.";
+        $_SESSION['delete'] = "<div class='error'>&nbsp Error: Try Again Later </div>";
+    header('location:' . SITEURL . 'employee/residents.php');
     }
+
+// Step 2: Delete data from the first table
+$sql_delete = "DELETE FROM tbl_resident WHERE id=$id";
+
+if ($conn->query($sql_delete) === TRUE) {
+    // Step 3: Retrieve the deleted data
+    $_SESSION['delete'] = "<div class='success'>&nbsp Resident Deleted Successfully </div>";
+    header('location:' . SITEURL . 'employee/residents.php');
+    
+} else {
+    echo "Error deleting data: " . $conn->error;
+    $_SESSION['delete'] = "<div class='error'>&nbsp Error: Try Again Later </div>";
+    header('location:' . SITEURL . 'employee/residents.php');
 }
-else
-{
-    $_SESSION['delete'] = "<div class='error'>Error: Try Aggain Later </div>";
-    header('location:' . SITEURL . 'admin/employee.php');
-}
+
+// Close connection
+$conn->close();
 ?>
