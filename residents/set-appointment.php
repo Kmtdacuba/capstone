@@ -105,7 +105,7 @@ ob_start();
                                     <input class="date" type="date" id="date" name="date"
                                         min="<?php echo date('Y-m-d'); ?>"> <br><br>
 
-                                    Time:
+                                    Time:<label for="" style="color: gray;">(Military Time)</label>
                                     <select class="time input-responsive" id="time" name="time"></select>
 
                                 </td>
@@ -170,7 +170,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     $message .= "Appointment Number: $appointment_no\n";
     $message .= "Date: $date\n";
     $message .= "Time: $time\n";
-    $message .= "\nThank you for choosing our service.\n\n";
+    $message .= "\nThank you for choosing our service. Please bring your requirements.\n\n";
+    $message .= "\n<p>Valid ID (indicates your identity and address) such us:</p>
+    \n
+    <p>- Barangay ID</p>
+    <p>- Government ID</p>
+    <p>- School ID</p>
+    <p>- Company ID</p><br>\n\n";
     $message .= "Best Regards,\nBarangay 188 Tala Caloocan City";
 
     $headers = "From: $from_name <$from_email>";
