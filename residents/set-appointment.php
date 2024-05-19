@@ -175,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     - Barangay ID
     - Government ID
     - School ID
-    - Company ID\n";
+    - Company ID\n\n";
     $message .= "Best Regards,\nBarangay 188 Tala Caloocan City";
 
     $headers = "From: $from_name <$from_email>";

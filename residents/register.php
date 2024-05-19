@@ -64,6 +64,45 @@ function checkForm() {
 }
 </script>
 
+<script>
+function calculateAge(birthday) {
+    const today = new Date();
+    const birthDate = new Date(birthday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+function checkForm() {
+    const birthdayInput = document.getElementById('Birthday').value;
+    const age = calculateAge(birthdayInput);
+    if (age < 18) {
+        alert('You must be at least 18 years old to register.');
+        return false;
+    }
+    return true;
+}
+</script>
+<script>
+function validateInput(input) {
+    const regex = /^[a-zA-Z\s]*$/;
+    if (!regex.test(input.value)) {
+        input.classList.add('error');
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+    } else {
+        input.classList.remove('error');
+    }
+}
+</script>
+<style>
+.error {
+    border-color: red;
+}
+</style>
+
 <body class="bg">
     <center>
         <div>
@@ -89,24 +128,26 @@ function checkForm() {
                     }
                     ?>
 
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form onsubmit="return checkForm()" action="" method="POST" enctype="multipart/form-data">
                         <table class="table-size">
                             <tr>
                                 <td>
                                     <input type="text" id="Fname" name="Fname" placeholder="Enter First Name"
-                                        onkeyup="checkForm()" class="input-responsive" required>
+                                        onkeyup="checkForm()" oninput="validateInput(this)" class="input-responsive"
+                                        required>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="text" id="Mname" name="Mname" placeholder="Middle Name"
-                                        class="input-responsive">
+                                        oninput="validateInput(this)" class="input-responsive">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="text" id="Lname" name="Lname" placeholder="Last Name"
-                                        onkeyup="checkForm()" class="input-responsive" required>
+                                        onkeyup="checkForm()" oninput="validateInput(this)" class="input-responsive"
+                                        required>
                                 </td>
                             </tr>
                             <input class="file" type="hidden" name="image">
