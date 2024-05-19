@@ -100,24 +100,24 @@ ob_start();
                                         readonly>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <label class="lbl_update" for="">Gender:</label>
-                                    <input <?php if($gender == "male"){echo "checked";}?> type="radio" name="gender"
-                                        value="male"> Male
-                                    <input <?php if($gender == "female"){echo "checked";}?> type="radio" name="gender"
-                                        value="female"> Female
-                                </td>
+                            </tr>
+                            <td>
+                                <label class="lbl_update" for="">Gender:</label>
+                                <input <?php if($gender == "Male"){echo "checked";}?> type="radio" name="gender"
+                                    value="Male"> Male
+                                <input <?php if($gender == "Female"){echo "checked";}?> type="radio" name="gender"
+                                    value="Female"> Female
+                            </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label class="lbl_update" for="">Status:</label>
-                                    <input <?php if($s == "single"){echo "checked";}?> type="radio" name="s"
-                                        value="single"> Single
-                                    <input <?php if($s == "married"){echo "checked";}?> type="radio" name="s"
-                                        value="married"> Married
-                                    <input <?php if($s == "widowed"){echo "checked";}?> type="radio" name="s"
-                                        value="widowed"> Widowed
+                                    <input <?php if($s == "Single"){echo "checked";}?> type="radio" name="s"
+                                        value="Single"> Single
+                                    <input <?php if($s == "Married"){echo "checked";}?> type="radio" name="s"
+                                        value="Married"> Married
+                                    <input <?php if($s == "Widowed"){echo "checked";}?> type="radio" name="s"
+                                        value="Widowed"> Widowed
                                 </td>
                             </tr>
                             <tr>
@@ -193,7 +193,7 @@ ob_start();
         $sql2 = mysqli_query($conn,$update);
         if($sql2){
            /*Successful*/
-           header("location: http://localhost/capstone/admin/residents.php");
+           header("location: https://brgymanagment.online/admin/residents.php");
            $_SESSION['update']="<div class='success'> &nbsp; Resident's Profile Successfully Updated</div>";
            exit();
        }

@@ -61,16 +61,18 @@ ob_start();
                             <tr>
                                 <td>
                                     <label for="">Gender:</label>
-                                    <input type="radio" name="gender" value="male"> Male
-                                    <input type="radio" name="gender" value="female"> Female
+                                    <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
+                                    <label for="">Male</label>
+                                    <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
+                                    <label for="">Female</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
-                                    <input type="radio" name="s" value="single"> Single
-                                    <input type="radio" name="s" value="married"> Married
-                                    <input type="radio" name="s" value="widowed"> Widowed
+                                    <input type="radio" name="s" value="Single"> Single
+                                    <input type="radio" name="s" value="Married"> Married
+                                    <input type="radio" name="s" value="Widowed"> Widowed
                                 </td>
                             </tr>
                             <tr>

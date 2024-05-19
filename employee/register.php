@@ -79,6 +79,15 @@ function checkForm() {
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Registration Form</h1>
+                    <br>
+
+                    <?php
+                    if(isset($_SESSION['exist']))
+                    {
+                        echo $_SESSION['exist'];
+                        unset($_SESSION['exist']);
+                    }
+                    ?>
 
                     <form action="" method="POST" enctype="multipart/form-data">
                         <table class="table-size">
@@ -103,7 +112,7 @@ function checkForm() {
                             <input class="file" type="hidden" name="image">
                             <tr>
                                 <td>
-                                    <label for="">Birthday:</label><br>
+                                    Birthday: <br>
                                     <input class="b_date" type="date" id="Birthday" name="Birthday"
                                         onkeyup="checkForm()" required>
                                 </td>
@@ -112,20 +121,20 @@ function checkForm() {
                                 <td>
                                     <label for="">Gender:</label>
                                     <input type="radio" id="male" name="gender" value="Male" onclick="checkForm()">
-                                    Male
+                                    <label for="">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
-                                    Female
+                                    <label for="">Female</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
-                                    <input type="radio" id="single" name="s" value="Single" onclick="checkForm()">
-                                    Single
-                                    <input type="radio" id="married" name="s" value="Married" onclick="checkForm()">
-                                    Married
-                                    <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
-                                    Widowed
+                                    <input type="radio" id="Single" name="s" value="Single" onclick="checkForm()">
+                                    <label for="">Single</label>
+                                    <input type="radio" id="Married" name="s" value="Married" onclick="checkForm()">
+                                    <label for="">Married</label>
+                                    <input type="radio" id="Widowed" name="s" value="Widowed" onclick="checkForm()">
+                                    <label for="">Widowed</label>
                                 </td>
                             </tr>
                             <tr>
@@ -165,8 +174,9 @@ function checkForm() {
                                     <td>
                                         <input type="checkbox" id="terms" name="terms" onclick="checkForm()" required>
                                         <label for="terms">I viewed and accept the <a style="text-decoration: none;"
-                                                href="http://localhost/capstone/t&c.php">Terms and
+                                                href="<?php echo SITEURL; ?>t&c.php">Terms and
                                                 conditions</a></label><br>
+
                                     </td>
                                 </tr>
                             </center>
@@ -186,8 +196,6 @@ function checkForm() {
 
 </html>
 <?php
-    // Process value from form and save to database;
-    // Check whether submit button is clicked or not
     if(isset($_POST['submit'])) {
 
         // Get data from form
@@ -231,15 +239,27 @@ function checkForm() {
     } else {
         $img_name = ""; // Set img_name to empty if no image is selected
     }
-        $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
-        $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
 
-        if (mysqli_num_rows($res1) > 0) {
-            $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
-            header("Location:".SITEURL.'employee/register.php');?>
+         // check if user have an account
+$sql2 = "SELECT * FROM tbl_resident WHERE Fname='$Fname' AND Lname='$Lname' AND Birthday='$Birthday' AND gender='$gender'";
+$res2 = mysqli_query($conn, $sql2) or die(mysqli_error);
+
+if (mysqli_num_rows($res2) > 0) {
+    $_SESSION['exist'] = "<div class='error'>Already have an account</div>";
+    header("Location:".SITEURL.'employee/register.php');
+    exit();
+    }
+
+    //check if email aready used 
+    $sql1 = "SELECT * FROM tbl_resident WHERE email='$email'";
+    $res1 = mysqli_query($conn, $sql1) or die(mysqli_error);
+
+    if (mysqli_num_rows($res1) > 0) {
+        $_SESSION['unique'] = "<div class='error'>Emial is already used</div>";
+        header("Location:".SITEURL.'employee/register.php');?>
 <?php
-        exit();
-        }
+    exit();
+    }
         else{
 
             $bday = new Datetime(date('Y-m-d', strtotime($_POST['Birthday']))); // Creating a DateTime object representing your date of birth.
@@ -277,7 +297,7 @@ function checkForm() {
    else{
     // data not inserted
     $_SESSION['register'] = " <div class='error'> &nbsp; Failed to Register, Please try again </div>";
-    header("location:".SITEURL.'employee/register.php');
+    header("location:".SITEURL.'remployee/register.php');
     exit();
    }
 }

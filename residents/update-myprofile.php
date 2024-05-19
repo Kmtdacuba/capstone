@@ -132,20 +132,20 @@ ob_start();
                             <td>
                                 <label class="lbl_update" for="">Gender:</label>
                                 <input <?php if($gender == "Male"){echo "checked";}?> type="radio" name="gender"
-                                    value="male"> Male
+                                    value="Male"> Male
                                 <input <?php if($gender == "Female"){echo "checked";}?> type="radio" name="gender"
-                                    value="female"> Female
+                                    value="Female"> Female
                             </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label class="lbl_update" for="">Status:</label>
                                     <input <?php if($s == "Single"){echo "checked";}?> type="radio" name="s"
-                                        value="single"> Single
+                                        value="Single"> Single
                                     <input <?php if($s == "Married"){echo "checked";}?> type="radio" name="s"
-                                        value="married"> Married
+                                        value="Married"> Married
                                     <input <?php if($s == "Widowed"){echo "checked";}?> type="radio" name="s"
-                                        value="widowed"> Widowed
+                                        value="Widowed"> Widowed
                                 </td>
                             </tr>
                             <tr>
