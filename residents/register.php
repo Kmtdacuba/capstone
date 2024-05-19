@@ -132,7 +132,7 @@ function validateInput(input) {
                         <table class="table-size">
                             <tr>
                                 <td>
-                                    <input type="text" id="Fname" name="Fname" placeholder="Enter First Name"
+                                    <input type="text" id="Fname" name="Fname" placeholder="First Name"
                                         onkeyup="checkForm()" oninput="validateInput(this)" class="input-responsive"
                                         required>
                                 </td>
