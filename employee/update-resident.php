@@ -192,7 +192,7 @@ ob_start();
         $sql2 = mysqli_query($conn,$update);
         if($sql2){
            /*Successful*/
-           header("location: http://localhost/capstone/employee/residents.php");
+           header("location: https://brgymanagment.online/employee/residents.php");
            $_SESSION['update']="<div class='success'> &nbsp; Resident's Profile Successfully Updated</div>";
            exit();
        }
