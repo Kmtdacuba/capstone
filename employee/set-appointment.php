@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="main-content">
             <div class="wrapper">
                 <div class="add_admin_content">
-                    <a class="icons" href="appointment.php">
+                    <a class="icons" href="appointments.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Appointment Form</h1><br>
