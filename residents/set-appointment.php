@@ -170,12 +170,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     $message .= "Appointment Number: $appointment_no\n";
     $message .= "Date: $date\n";
     $message .= "Time: $time\n";
-    $message .= "\nThank you for choosing our service. Please bring your requirements.\n\n";
+    $message .= "\nThank you for choosing our service. Please bring your requirements.\n";
     $message .= "\nValid ID (indicates your identity and address) such us:
-    \n- Barangay ID
+    - Barangay ID
     - Government ID
     - School ID
-    - Company ID\n\n";
+    - Company ID\n";
     $message .= "Best Regards,\nBarangay 188 Tala Caloocan City";
 
     $headers = "From: $from_name <$from_email>";
