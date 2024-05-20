@@ -21,16 +21,16 @@ $sql_select = "SELECT * FROM tbl_appointment WHERE id=$id";
             if ($conn->query($sql_insert) === FALSE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
                 $_SESSION['done'] = " <div class='error'> &nbsp; Error: Try again!</div>";
-                header("location:".SITEURL.'admin/appointments.php');
+                header("location:".SITEURL.'employee/counter.php');
             }
         }
         echo "Data successfully moved to second table.";
-            $_SESSION['done'] = " <div class='success'> &nbsp; Transaction done </div>";
-                header("location:".SITEURL.'admin/appointments.php');
+            $_SESSION['done'] = " <div class='success'> &nbsp; Appointment done </div>";
+                header("location:".SITEURL.'employee/counter.php');
     } else {
         echo "No data found to move.";
         $_SESSION['done'] = " <div class='error'> &nbsp; Error: Try again!</div>";
-        header("location:".SITEURL.'admin/appointments.php');
+        header("location:".SITEURL.'employee/counter.php');
     }
 
 // Step 2: Delete data from the first table
@@ -38,13 +38,13 @@ $sql_delete = "DELETE FROM tbl_appointment WHERE id=$id";
 
 if ($conn->query($sql_delete) === TRUE) {
     // Step 3: Retrieve the deleted data
-    $_SESSION['done'] = " <div class='success'> &nbsp; Transaction done </div>";
-    header("location:".SITEURL.'admin/appointments.php');
+    $_SESSION['done'] = " <div class='success'> &nbsp; Appointment done </div>";
+    header("location:".SITEURL.'employee/counter.php');
     
 } else {
     echo "Error deleting data: " . $conn->error;
     $_SESSION['done'] = " <div class='error'> &nbsp; Error: Try again!</div>";
-    header("location:".SITEURL.'admin/appointments.php');
+    header("location:".SITEURL.'employee/counter.php');
 }
 
 // Close connection

@@ -6,8 +6,8 @@ $query = "UPDATE tbl_queuing SET status = 'Serving' WHERE queue_no =$queue_no";
 $sql = mysqli_query($conn,$query);
 if($sql == TRUE) {
 
-    $_SESSION['call'] = "<div class='success'> &nbsp Now serving Queue-00$queue_no </div>";
-    header("location:" .SITEURL.'employee/counter-five.php');
+    $_SESSION['call'] = "<div class='success'></div>";
+    header("location:" .SITEURL.'employee/document.php');
     exit;
     
    }

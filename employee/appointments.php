@@ -7,7 +7,7 @@ include('partials/side-nav.php')
     <section class="search text-center">
         <div class="container">
 
-            <form action="<?php echo SITEURL;?>admin/appointments.php" method="POST">
+            <form action="<?php echo SITEURL;?>employee/appointments.php" method="POST">
                 <input type="submit" name="submit" value="Search" class="btn btn-search">
                 <input type="search" name="search" placeholder="Search Here...">
             </form>
@@ -70,7 +70,7 @@ include('partials/side-nav.php')
                 <td><?php echo $time; ?></td>
                 <td><?php echo $date; ?></td>
                 <td>
-                    <a href="<?php echo SITEURL; ?>admin/done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
+                    <a href="<?php echo SITEURL; ?>employee/done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
                 </td>
 
             </tr>
@@ -130,7 +130,7 @@ include('partials/side-nav.php')
             <td><?php echo $date; ?></td>
 
             <td>
-                <a href="<?php echo SITEURL; ?>admin/done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
+                <a href="<?php echo SITEURL; ?>employee/done.php?id=<?php echo $id; ?>" class="btn-second">Done</a>
             </td>
         </tr>
         <div class="clear"></div>

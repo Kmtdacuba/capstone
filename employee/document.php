@@ -1,4 +1,5 @@
 <?php include('../config/connection.php');
+
 ob_start();
 ?>
 
@@ -9,261 +10,46 @@ ob_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Barangay 188 Tala Caloocan City</title>
-    <style>
-    /*CSS for Barangay Certificate*/
-    .body-certificate {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
 
+</head>
+
+<style>
+/* Add CSS styles to make content visible when printing */
+@media print {
+
+
+    /* Show all elements */
     .container-certificate {
-        background: white;
-        padding: 20px;
-        border: 2px solid black;
-        width: 600px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .background-img-certificate {
-        position: absolute;
-        top: 160px;
-        left: 160px;
-        width: 300px;
-        height: 300px;
-        background-image: url('../images/logoo.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 5;
-        z-index: 0;
-    }
-
-    .header-certificate {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .header-certificate .logo-certificate {
-        width: 100px;
-        height: 100px;
-    }
-
-    .header-certificate .text-certificate {
-        text-align: center;
-        flex: 1;
-        margin: 0 20px;
-    }
-
-    .header-certificate h1 {
-        margin: 15px 0;
-        font-size: 25px;
-        text-decoration: underline;
-    }
-
-    .header-certificate p {
-        margin: 0;
-    }
-
-    .content-certificate {
-        margin-top: 25px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .content-certificate p {
-        margin: 30px;
-    }
-
-    .signature-certificate {
-        margin-top: 50px;
-        text-align: right;
-        position: relative;
-        z-index: 1;
-    }
-
-    /*CSS for Barangay Permit*/
-    .body-permit {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    .Permit-container {
-        background: white;
-        padding: 20px;
-        border: 2px solid black;
-        width: 600px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .background-img {
-        position: absolute;
-        top: 160px;
-        left: 160px;
-        width: 300px;
-        height: 300px;
-        background-image: url('../images/logoo.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 5;
-        z-index: 0;
-    }
-
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .header .logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    .header .text {
-        text-align: center;
-        flex: 1;
-        margin: 0 20px;
-    }
-
-    .header h1 {
-        margin: 15px 0;
-        font-size: 15px;
-    }
-
-    .header p {
-        margin: 0;
-    }
-
-    .content {
-        margin-top: 25px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .content p {
-        margin: 30px;
-    }
-
-    .signature {
-        margin-top: 50px;
-        text-align: right;
-        position: relative;
-        z-index: 1;
-    }
-
-    /*CSS for Barangay Indigency*/
-
-    .body-indigency {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+        display: block !important;
+        visibility: visible !important;
     }
 
     .Indigency-container {
-        background: white;
-        padding: 20px;
-        border: 2px solid black;
-        width: 600px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
+        display: block !important;
+        visibility: visible !important;
     }
 
-    .background-img {
-        position: absolute;
-        top: 100px;
-        left: 160px;
-        width: 300px;
-        height: 300px;
-        background-image: url('../images/logoo.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 5;
-        z-index: 0;
+    .Permit-container {
+        display: block !important;
+        visibility: visible !important;
     }
 
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 1;
+    /* Hide the button for printing */
+    .btn-print {
+        display: none;
     }
 
-    .header .logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    .header .text {
-        text-align: center;
-        flex: 1;
-        margin: 0 20px;
-    }
-
-    .header h1 {
-        margin: 15px 0;
-        font-size: 25px;
-        text-decoration: underline;
-    }
-
-    .header p {
-        margin: 0;
-    }
-
-    .content {
-        margin-top: 20px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .content p {
-        margin: 15px;
-    }
-
-    .signature {
-        margin-top: 50px;
-        text-align: right;
-        position: relative;
-        z-index: 1;
-    }
-    </style>
-</head>
+}
+</style>
 <!--BARANGAY CERTIFICATE-->
 
+
 <body>
+    <br><br><br>
+
+
     <div class="body-certificate">
 
         <div class="container-certificate">
@@ -271,44 +57,49 @@ ob_start();
             <div class="header-certificate">
                 <img src="../images/123.png" alt="logo" class="logo-certificate">
                 <div class="text-certificate">
-                    <p>Republic of the Philippines</p>
-                    <p>City of Caloocan</p>
-                    <p>OFFICE OF THE CITY MAYOR</p>
+                    <p>Republic of the Philippines <br>
+                        City of Caloocan <br>
+                        OFFICE OF THE CITY MAYOR</p>
                     <h1>Barangay Clearance</h1>
                 </div>
                 <img src="../images/logo1.jpg" alt="another logo" class="logo-certificate">
             </div>
             <div class="content-certificate">
-                <p>TO WHOM IT MAY CONCERN:</p>
-                <p>This is to certify that [name], of legal age with postal Address at [address] Zipcode [zipcode] is a
-                    bonafide resident for [months/years] and </p>
-                <p>he/she has no derogatory record on file of this date. </p>
-                <p>Issued this [date] day of [month] 2024 City of Caloocan.</p>
+                <p>This is to certify that name, age years old,
+                    a residents of Barangay188, Tala Caloocan City </p>
+                <p>To be of a good moral character and law-abiding citizen in the cmmunity </p>
+                <p>To Certify further, that he/she has no derogatory and/or criminal records filed in this Barangay.</p>
+                <p> ISSUED this <?php echo date('F'); ?>
+                    day of <?php echo date('j, Y '); ?>at Barangay 188, Tala Caloocan
+                    City upon request of the
+                    interested party for whatever legal purposes it may serve. </p>
             </div>
             <div class="signature-certificate">
-                <p><strong>[Signature]</strong></p>
-                <p>Hon. Ma. Elise Liezel Chan</p>
+                <p><strong>Hon. Ma. Elise Liezel Chan</strong></p>
                 <p>Barangay Captain</p>
+                <br>
+                <button class="btn-print" onclick="printContent()">Print</button>
             </div>
         </div>
     </div>
+    <br><br><br>
 
     <!--BARANGAY PERMIT-->
     <div class="body-permit">
         <div class="Permit-container">
-            <div class="background-img"></div>
-            <div class="header">
-                <img src="../images/123.png" alt="logo" class="logo">
-                <div class="text">
-                    <p>Republic of the Philippines</p>
-                    <p>City of Caloocan</p>
-                    <p>OFFICE OF THE CITY MAYOR</p>
-                    <p>BARANGAY PERMIT</p>
-                    <h1>Date</h1>
+            <div class="background-img-permit"></div>
+            <div class="header-permit">
+                <img src="../images/123.png" alt="logo" class="logo-permit">
+                <div class="text-permit">
+                    <p>Republic of the Philippines <br>
+                        City of Caloocan <br>
+                        OFFICE OF THE CITY MAYOR <br>
+                        BARANGAY PERMIT</p>
+                    <h1><?php echo date('F j, Y'); ?></h1>
                 </div>
-                <img src="../images/logo1.jpg" alt="another logo" class="logo">
+                <img src="../images/logo1.jpg" alt="another logo" class="logo-permit">
             </div>
-            <div class="content">
+            <div class="content-permit">
                 <p>Dear P/B Punongbayan:</p>
                 <p>As part of the mandate of our office to regulate and monitor the operation of business in the City of
                     Caloocan, our office intends to conduct
@@ -327,45 +118,70 @@ ob_start();
                 <p> Hoping for your usual cooperation.</p>
                 <p> Thank you Very much.</p>
             </div>
-            <div class="signature">
+            <div class="permit-signature">
                 <p><strong>Very Truely yours</strong></p>
-                <p>atty.</p>
+                <p>atty.</p> <br><br>
+                <button class="btn-print" onclick="printContent()">Print</button>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <!--BARANGAY INDIGENDY-->
+    <div class="body-indigency">
+        <div class="Indigency-container">
+            <div class="background-img-indigency"></div>
+            <div class="header-indigency">
+                <img src="../images/123.png" alt="logo" class="logo-indigency">
+                <div class="text-indigency">
+                    <p>Republic of the Philippines <br>
+                        City of Caloocan <br>
+                        OFFICE OF THE CITY MAYOR</p>
+                    <h1>Certificate of Indigency</h1>
+                </div>
+                <img src="../images/logo1.jpg" alt="another logo" class="logo-indigency">
+            </div>
+            <div class="content-indigency">
+                <p>TO WHOM IT MAY CONCERN:</p>
+                <p> This is to certify that <?php echo $name; ?> of legal age, in a resident </p>
+                <p>of Caloocan City member or indigent person in the barangay. </p>
+                <p>Further, certify that the above-named person belongs to the Indigent Family in this Barangay.
+                </p>
+                <p> This Certification is being issued upon the request of the interested party in connection
+                    with the
+                    requirement for whatever legal purpose serves them best.</p>
+                <p>Issued this <?php echo date('F'); ?>
+                    day of <?php echo date('j, Y '); ?> the Barangay Office, Barangay 188 Tala Caloocan City
+                    Philippines
+                </p>
+            </div>
+            <div class="signature-indigency">
+                <p><strong>Hon. Ma. Elise Liezel Chan</strong></p>
+                <p>Barangay Captain</p>
+                <br><br>
+                <button class="btn-print" onclick="printContent()">Print</button>
             </div>
         </div>
     </div>
 
-    <!--BARANGAY INDIGENDY-->
-    <div class="body-indigency">
-        <div class="Indigency-container">
-            <div class="background-img"></div>
-            <div class="header">
-                <img src="../images/123.png" alt="logo" class="logo">
-                <div class="text">
-                    <p>Republic of the Philippines</p>
-                    <p>City of Caloocan</p>
-                    <p>OFFICE OF THE CITY MAYOR</p>
-                    <h1>Certificate of Indigency</h1>
-                </div>
-                <img src="../images/logo1.jpg" alt="another logo" class="logo">
-            </div>
-            <div class="content">
-                <p>TO WHOM IT MAY CONCERN:</p>
-                <p> This is to certify that __________________________ of legal age, in a resident </p>
-                <p>of __________________________member or indigent person in the barangay. </p>
-                <p>Further, certify that the above-named person belongs to the Indigent Family in this Barangay.</p>
-                <p> This Certification is being issued upon the request of the interested party in connection with the
-                    requirement for whatever legal purpose serves them best.</p>
-                <p>Issued this ____ day of __________, at the Barangay Office, Barangay 188 Tala Caloocan City
-                    Philippines
-                </p>
-            </div>
-            <div class="signature">
-                <p><strong>[Signature]</strong></p>
-                <p>Hon. Ma. Elise Liezel Chan</p>
-                <p>Barangay Captain</p>
-            </div>
-        </div>
-    </div>
+
+
 </body>
+<script>
+function printContent() {
+    // Check if the browser is mobile
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    // If it's mobile, just initiate print, else initiate print and redirect after a delay
+    if (isMobile) {
+        window.print();
+    } else {
+        window.print();
+        setTimeout(function() {
+            window.location.href = 'appointments.php';
+        }, 1000); // Redirect after 1 second (adjust the delay as needed)
+    }
+}
+</script>
+
 
 </html>

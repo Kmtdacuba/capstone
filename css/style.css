@@ -1176,6 +1176,261 @@ label {
   border: 1px solid pink;
 }
 
+/*CSS for Barangay Certificate*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.body-certificate {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 150px;
+}
+
+.container-certificate {
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.background-img-certificate {
+    position: absolute;
+    top: 160px;
+    left: 160px;
+    width: 300px;
+    height: 300px;
+    background-image: url('../images/logoo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 5;
+    z-index: 0;
+}
+
+.header-certificate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header-certificate .logo-certificate {
+    width: 100px;
+    height: 100px;
+}
+
+.header-certificate .text-certificate {
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.header-certificate h1 {
+    margin: 15px 0;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.header-certificate p {
+    margin: 0;
+}
+
+.content-certificate {
+    margin-top: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.content-certificate p {
+    margin: 30px;
+}
+
+.signature-certificate {
+    margin-top: 50px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/*CSS for Barangay Permit*/
+.body-permit {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Permit-container {
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.background-img-permit {
+    position: absolute;
+    top: 160px;
+    left: 160px;
+    width: 300px;
+    height: 300px;
+    background-image: url('../images/logoo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 5;
+    z-index: 0;
+}
+
+.header-permit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header-permit .logo-permit {
+    width: 100px;
+    height: 100px;
+}
+
+.header-permit .text-permit {
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.header-permit h1 {
+    margin: 15px 0;
+    font-size: 15px;
+}
+
+.header-permit p {
+    margin: 0;
+}
+
+.content-permit {
+    margin-top: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.content-permit p {
+    margin: 30px;
+}
+
+.signature-permit {
+    margin-top: 50px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
+
+/*CSS for Barangay Indigency*/
+
+.body-indigency {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.Indigency-container {
+    background: white;
+    padding: 20px;
+    border: 2px solid black;
+    width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.background-img-indigency {
+    position: absolute;
+    top: 100px;
+    left: 160px;
+    width: 300px;
+    height: 300px;
+    background-image: url('../images/logoo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 5;
+    z-index: 0;
+}
+
+.header-indigency {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header-indigency .logo-indigency {
+    width: 100px;
+    height: 100px;
+}
+
+.header-indigency .text-indigency {
+    text-align: center;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.header-indigency h1 {
+    margin: 15px 0;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.header-indigency p {
+    margin: 0;
+}
+
+.content--indigency {
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.content-indigency p {
+    margin: 15px;
+}
+
+.signature-indigency {
+    margin-top: 50px;
+    text-align: right;
+    position: relative;
+    z-index: 1;
+}
 
 /*Qmedia Query*/
 @media (max-width: 420px) {
