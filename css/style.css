@@ -525,6 +525,34 @@ hr {
   border: 1px solid #21618C;
 }
 
+/*CSS for Paymanet*/
+.content-payment{
+  background-color: lightgray;
+  border: gray;
+  border-radius: 10px;
+  width: 80%;
+  height: 35vh;
+  padding: 1%;
+  margin: 1%;
+}
+.payment {
+  width: 31%;
+  height: 40%;
+  background-color: #9DB2BF;
+  border: 1px solid #526D82;
+  border-radius: 5px;
+  font-size: 25px;
+  padding: 2.5%;
+  margin: 1%;
+  float: left;
+  cursor: pointer;
+}
+
+.payment:hover {
+  background-color: #21618C;
+  border: 1px solid #21618C;
+}
+
 .b {
   width: 32.3%;
   margin: 0.5%;

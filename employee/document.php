@@ -1,5 +1,5 @@
 <?php include('../config/connection.php');
-
+$queue_no = $_SESSION['queue_no'];
 ob_start();
 ?>
 
@@ -11,6 +11,8 @@ ob_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="icon" type="image/png" href="../favicon.png">
     <title>Barangay 188 Tala Caloocan City</title>
 
 </head>
@@ -18,7 +20,6 @@ ob_start();
 <style>
 /* Add CSS styles to make content visible when printing */
 @media print {
-
 
     /* Show all elements */
     .container-certificate {
@@ -49,7 +50,23 @@ ob_start();
 <body>
     <br><br><br>
 
-
+    <?php
+                   $sql = "SELECT * FROM tbl_queuing WHERE queue_no=$queue_no";
+       
+                   $result = mysqli_query($conn, $sql);
+       
+                   if ($result == TRUE)
+                   {
+                       $count= mysqli_num_rows($result);
+       
+                       if($count==1)
+                       {
+                           $row = mysqli_fetch_assoc($result);
+                           $name = $row['name'];
+                           $age = $row['age'];
+                       }
+                   }
+        ?>
     <div class="body-certificate">
 
         <div class="container-certificate">
@@ -65,12 +82,13 @@ ob_start();
                 <img src="../images/logo1.jpg" alt="another logo" class="logo-certificate">
             </div>
             <div class="content-certificate">
-                <p>This is to certify that name, age years old,
+                <p>This is to certify that <?php echo "<strong>$name</strong>"; ?>,
+                    <?php echo "<strong>$age</strong>"; ?> years old,
                     a residents of Barangay188, Tala Caloocan City </p>
                 <p>To be of a good moral character and law-abiding citizen in the cmmunity </p>
                 <p>To Certify further, that he/she has no derogatory and/or criminal records filed in this Barangay.</p>
-                <p> ISSUED this <?php echo date('F'); ?>
-                    day of <?php echo date('j, Y '); ?>at Barangay 188, Tala Caloocan
+                <p> ISSUED this <strong><?php echo date('F'); ?></strong>
+                    day of <strong><?php echo date('j, Y '); ?></strong> at Barangay 188, Tala Caloocan
                     City upon request of the
                     interested party for whatever legal purposes it may serve. </p>
             </div>
@@ -95,7 +113,7 @@ ob_start();
                         City of Caloocan <br>
                         OFFICE OF THE CITY MAYOR <br>
                         BARANGAY PERMIT</p>
-                    <h1><?php echo date('F j, Y'); ?></h1>
+                    <h1><strong><?php echo date('F j, Y'); ?></strong></h1>
                 </div>
                 <img src="../images/logo1.jpg" alt="another logo" class="logo-permit">
             </div>
@@ -142,15 +160,16 @@ ob_start();
             </div>
             <div class="content-indigency">
                 <p>TO WHOM IT MAY CONCERN:</p>
-                <p> This is to certify that <?php echo $name; ?> of legal age, in a resident </p>
+                <p> This is to certify that <?php echo "<strong>$name</strong>"; ?> of legal age, in a resident </p>
                 <p>of Caloocan City member or indigent person in the barangay. </p>
                 <p>Further, certify that the above-named person belongs to the Indigent Family in this Barangay.
                 </p>
                 <p> This Certification is being issued upon the request of the interested party in connection
                     with the
                     requirement for whatever legal purpose serves them best.</p>
-                <p>Issued this <?php echo date('F'); ?>
-                    day of <?php echo date('j, Y '); ?> the Barangay Office, Barangay 188 Tala Caloocan City
+                <p>Issued this <strong><?php echo date('F'); ?></strong>
+                    day of <strong><?php echo date('j, Y '); ?></strong> the Barangay Office, Barangay 188 Tala Caloocan
+                    City
                     Philippines
                 </p>
             </div>

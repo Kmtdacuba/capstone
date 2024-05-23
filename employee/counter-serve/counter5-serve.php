@@ -5,7 +5,7 @@ $queue_no = $_GET['queue_no'];
 $query = "UPDATE tbl_queuing SET status = 'Serving' WHERE queue_no =$queue_no";
 $sql = mysqli_query($conn,$query);
 if($sql == TRUE) {
-
+    $_SESSION['queue_no'] = $queue_no;
     $_SESSION['call'] = "<div class='success'></div>";
     header("location:" .SITEURL.'employee/document.php');
     exit;

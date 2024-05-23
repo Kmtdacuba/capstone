@@ -79,6 +79,9 @@ function limitInput(field) {
                        {
                            $row = mysqli_fetch_assoc($result);
                            $Birthday = $row['Birthday'];
+                           $Fname = $row['Fname'];
+                           $Mname = $row['Mname'];
+                           $Lname = $row['Lname'];
                        }
                    }
         ?>
@@ -95,6 +98,12 @@ function limitInput(field) {
                     <tr>
                         <td>
                             <input type="hidden" name="Birthday" value="<?php echo $Birthday; ?>"
+                                class="input-responsive" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="name" value="<?php echo $Fname, ' ', $Mname, ' ', $Lname; ?>"
                                 class="input-responsive" readonly>
                         </td>
                     </tr>
@@ -118,7 +127,8 @@ function limitInput(field) {
 if(isset($_POST['submit'])) {
     $appointment_no = $_POST['appointment_no'];
     $date_time = date("Y-m-d h:i:sa"); //time and date
-
+    $name = $_POST['name'];
+    
     // Check if appointment number already exists
     $sql_check = "SELECT * FROM tbl_queuing WHERE appointment_no='$appointment_no'";
     $res_check = mysqli_query($conn, $sql_check) or die(mysqli_error($conn));
@@ -158,6 +168,7 @@ if(isset($_POST['submit'])) {
     // Sql query to serve the data into database
     $sql = "INSERT INTO tbl_queuing SET 
     counter_no = '$counter_no',
+    name = '$name',
     age = '{$diff->y}',
     appointment_no = '$appointment_no',
     date_time = '$date_time'

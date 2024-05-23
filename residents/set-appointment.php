@@ -216,7 +216,7 @@ if($res == TRUE){
 // variable to display message;
 $_SESSION['email'] = $email;
 $_SESSION['appointment']="<div class='success'>Successful to set appointment</div>";
-header("Location:".SITEURL.'residents/summary.php');
+header("Location:".SITEURL.'residents/payment.php');
 exit();
 }
 else{
