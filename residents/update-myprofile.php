@@ -91,6 +91,7 @@ ob_start();
                                     <input type="text" name="Lname" value="<?php echo $Lname;?>"
                                         class="input-responsive">
                                 </td>
+                            </tr>
                             <tr>
                                 <td>
                                     <?php 
@@ -119,23 +120,35 @@ ob_start();
                             </tr>
                             <tr>
                                 <td>
-                                    <label
-                                        for="Birthday">Birthday:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </label><label class="lbl_update" for="age">Age:</label><br>
+                                    Birthday:<label class="age-label" for="age">Age:</label>
+                                    <label class="type-label" for="age">Resident Type:</label><br>
                                     <input class="b_date" type="date" name="Birthday" value="<?php echo $Birthday;?>"
                                         class="input-responsive">
                                     <input type="number" name="age" value="<?php echo $age;?>" class="input-responsive"
                                         readonly>
+                                    <select class="resident-type input-responsive" id="type" name="resident_type">
+                                        <option value="Regular Resident">
+                                        </option>
+                                        <option value="Senior Citizen">Senior Citizen</option>
+                                        <option value="Person with Disability">Person with Disability</option>
+                                        <option value="Solo Parent">Solo Parent</option>
+                                        <option value="4p's Member">4p's Member </option>
+                                        <option value="Pregnant">Pregnant</option>
+                                        <option value="Youth">Youth</option>
+                                        <option value="Out of school youth">Out of school youth
+                                        </option>
+
+                                    </select>
                                 </td>
                             </tr>
-                            <td>
-                                <label class="lbl_update" for="">Gender:</label>
-                                <input <?php if($gender == "Male"){echo "checked";}?> type="radio" name="gender"
-                                    value="Male"> Male
-                                <input <?php if($gender == "Female"){echo "checked";}?> type="radio" name="gender"
-                                    value="Female"> Female
-                            </td>
+                            <tr>
+                                <td>
+                                    <label class="lbl_update" for="">Gender:</label>
+                                    <input <?php if($gender == "Male"){echo "checked";}?> type="radio" name="gender"
+                                        value="Male"> Male
+                                    <input <?php if($gender == "Female"){echo "checked";}?> type="radio" name="gender"
+                                        value="Female"> Female
+                                </td>
                             </tr>
                             <tr>
                                 <td>

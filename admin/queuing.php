@@ -141,7 +141,6 @@ setTimeout(function() {
                 <th>DATE & TIME</th>
                 <th>APPOINTMENT NUMBER</th>
                 <th>STATUS</th>
-                <th>ACTION</th>
             </tr>
 
             <?php
@@ -172,18 +171,7 @@ setTimeout(function() {
                 <td><?php echo $date_time; ?></td>
                 <td><?php echo $appointment_no; ?></td>
                 <td><?php echo $status; ?></td>
-                <td>
 
-                    <a href="<?php echo SITEURL; ?>admin/queuing-call.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-fifth" id="callButton">Call</a>
-
-                    <a href="<?php echo SITEURL; ?>admin/queuing-serve.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-third" id="serveButton">Serve</a>
-
-                    <a href="<?php echo SITEURL; ?>admin/queuing-done.php?queue_no=<?php echo $queue_no - 1; ?>"
-                        class="btn-second">Done</a>
-                </td>
-                </td>
             </tr>
             <?php
         
@@ -198,4 +186,23 @@ setTimeout(function() {
 </section>
 <?php 
     include ('partials/footer.php');
+?> <?php
+// Define the age
+$age = 65; // example age
+
+if ($age > 60) {
+    // Prepare the SQL statement to update the priority
+    $sql = "UPDATE tbl_queuing SET queue_type = 'Senior' WHERE age >= 60";
+
+    // Execute the statement
+    if ($conn->query($sql) === TRUE) {
+        echo "Records updated successfully";
+    } else {
+        echo "Error updating records: " . $conn->error;
+    }
+} else {
+    echo "User is not over 60, no priority update needed.";
+}
+
+
 ?>

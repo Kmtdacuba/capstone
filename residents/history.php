@@ -20,7 +20,8 @@
             <th>Appointment Number</th>
             <th>Time</th>
             <th>Date</th>
-            <th>Action</th>
+            <th>Payment</th>
+            <th>Status</th>
 
         </tr>
 
@@ -44,7 +45,9 @@
                                 $appointment_no = $row['appointment_no'];
                                 $time = $row['time'];
                                 $date = $row['date'];
+                                $payment = $row['payment'];
                                 $action = $row['action'];
+                               
                                 
                 ?>
 
@@ -55,7 +58,8 @@
             <td><?php echo $appointment_no;?></td>
             <td><?php echo $time;?></td>
             <td><?php echo $date;?></td>
-            <td style="color: red;"><?php echo $action;?></td>
+            <td style="color: green;"><?php echo $payment?></td>
+            <td style="color: red;"><?php echo $action?></td>
 
         </tr>
 

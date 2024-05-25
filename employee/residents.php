@@ -45,6 +45,8 @@ include('partials/side-nav.php')
             <th>Age</th>
             <th>Gender</th>
             <th>Status</th>
+            <th>Voters type</th>
+            <th>Resident Type</th>
             <th>Email</th>
             <th>Address</th>
             <th>Username</th>
@@ -75,6 +77,8 @@ include('partials/side-nav.php')
                  $age = $row['age'];
                  $gender = $row['gender'];
                  $s = $row['s'];
+                 $resident_type = $row['resident_type'];
+                 $voters_type = $row['voters_type'];
                  $email = $row['email'];
                  $a = $row['a'];
                  $username = $row['username'];
@@ -87,13 +91,13 @@ include('partials/side-nav.php')
                                             if($img_name=="")
                                             {
                                                 ?>
-                    <img src="../images/profile-user.png" alt="" width=100px>
+                    <img src="../images/profile-user.png" alt="" width=30px>
                     <?php
                                             }
                                             else
                                             {
                                                 ?>
-                    <img src="<?php echo SITEURL; ?>/images/user/<?php echo $img_name; ?>" width="100px">
+                    <img src="<?php echo SITEURL; ?>/images/user/<?php echo $img_name; ?>" width="30px">
                     <?php
                                             }
                                         
@@ -106,6 +110,8 @@ include('partials/side-nav.php')
                 <td><?php echo $age;?></td>
                 <td><?php echo $gender;?></td>
                 <td><?php echo $s;?></td>
+                <td><?php echo $resident_type;?></td>
+                <td><?php echo $voters_type;?></td>
                 <td><?php echo $email;?></td>
                 <td><?php echo $a;?></td>
                 <td><?php echo $username;?></td>
@@ -163,6 +169,8 @@ include('partials/side-nav.php')
                                 $age = $row['age'];
                                 $gender = $row['gender'];
                                 $s = $row['s'];
+                 $resident_type = $row['resident_type'];
+                 $voters_type = $row['voters_type'];
                                 $email = $row['email'];
                                 $a = $row['a'];
                                 $username = $row['username'];
@@ -174,13 +182,13 @@ include('partials/side-nav.php')
                                             if($img_name=="")
                                             {
                                                 ?>
-                <img src="../images/profile-user.png" alt="" width=100px>
+                <img src="../images/profile-user.png" alt="" width=30px>
                 <?php
                                             }
                                             else
                                             {
                                                 ?>
-                <img src="<?php echo SITEURL; ?>/images/user/<?php echo $img_name; ?>" width="100px">
+                <img src="<?php echo SITEURL; ?>/images/user/<?php echo $img_name; ?>" width="30px">
                 <?php
                                             }
                                         
@@ -193,6 +201,8 @@ include('partials/side-nav.php')
             <td><?php echo $age;?></td>
             <td><?php echo $gender;?></td>
             <td><?php echo $s;?></td>
+            <td><?php echo $resident_type;?></td>
+            <td><?php echo $voters_type;?></td>
             <td><?php echo $email;?></td>
             <td><?php echo $a;?></td>
             <td><?php echo $username;?></td>

@@ -37,6 +37,8 @@ function checkForm() {
     var Birthday = document.getElementById('Birthday').value;
     var femaleChecked = document.getElementById("female").checked;
     var maleChecked = document.getElementById("male").checked;
+    var registeredChecked = document.getElementById("registered").checked;
+    var nonregisteredChecked = document.getElementById("non-registered").checked;
     var singleChecked = document.getElementById("single").checked;
     var marriedChecked = document.getElementById("married").checked;
     var widowedChecked = document.getElementById("widowed").checked;
@@ -56,6 +58,7 @@ function checkForm() {
         password !== '' &&
         termsChecked &&
         (femaleChecked || maleChecked) &&
+        (registeredChecked || nonregisteredChecked) &&
         (singleChecked || marriedChecked || widowedChecked)) {
         document.getElementById('submit').disabled = false;
     } else {
@@ -150,14 +153,6 @@ function validateInput(input) {
                                         required>
                                 </td>
                             </tr>
-                            <input class="file" type="hidden" name="image">
-                            <tr>
-                                <td>
-                                    Birthday: <br>
-                                    <input class="b_date" type="date" id="Birthday" name="Birthday"
-                                        onkeyup="checkBirthday()" required>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <label for="">Gender:</label>
@@ -165,6 +160,29 @@ function validateInput(input) {
                                     <label for="">Male</label>
                                     <input type="radio" id="female" name="gender" value="Female" onclick="checkForm()">
                                     <label for="">Female</label>
+                                </td>
+                            </tr>
+                            <input class="file" type="hidden" name="image">
+                            <tr>
+                                <td>
+                                    Birthday:
+                                    <label class="type-label" for="resident_type">Resident Type:</label><br>
+                                    <input class="b_date" type="date" id="Birthday" name="Birthday"
+                                        onkeyup="checkBirthday()" required>
+                                    <select class="resident-type input-responsive" id="type" name="resident_type"
+                                        required>
+                                        <option value="Regular Resident">
+                                        </option>
+                                        <option value="Senior Citizen">Senior Citizen</option>
+                                        <option value="Person with Disability">Person with Disability</option>
+                                        <option value="Solo Parent">Solo Parent</option>
+                                        <option value="4p's Member">4p's Member </option>
+                                        <option value="Pregnant">Pregnant</option>
+                                        <option value="Youth">Youth</option>
+                                        <option value="Out of school youth">Out of school youth
+                                        </option>
+
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
@@ -176,6 +194,17 @@ function validateInput(input) {
                                     <label for="">Married</label>
                                     <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
                                     <label for="">Widowed</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="">Voters Type:</label>
+                                    <input type="radio" id="registered" name="voters_type" value="Registered Voter"
+                                        onclick="checkForm()">
+                                    <label for="">Registered Voter</label>
+                                    <input type="radio" id="non-registered" name="voters_type"
+                                        value="Non-registered Voter" onclick="checkForm()">
+                                    <label for="">Non-registered Voter</label>
                                 </td>
                             </tr>
                             <tr>
@@ -244,8 +273,10 @@ function validateInput(input) {
         $Mname = $_POST['Mname'];
         $Lname = $_POST['Lname'];
         $Birthday = date('Y-m-d', strtotime($_POST['Birthday']));
+        $resident_type = $_POST['resident_type'];
         $gender = $_POST['gender'];
         $s = $_POST['s'];
+        $voters_type = $_POST['voters_type'];
         $email = $_POST['email'];
         $a = $_POST['a'];
         $username = $_POST['username'];
@@ -314,9 +345,11 @@ if (mysqli_num_rows($res2) > 0) {
         Mname = '$Mname',
         Lname = '$Lname',
         Birthday = '$Birthday',
+        resident_type = '$resident_type',
         age='$diff->y',
         gender = '$gender',
         s = '$s',
+        voters_type = '$voters_type',
         email = '$email',
         a = '$a',
         username = '$username',

@@ -36,6 +36,7 @@ $user_id = $_SESSION['user_id'];
                         $age = $row['age'];
                         $gender = $row['gender'];
                         $s = $row['s'];
+                        $voters_type = $row['voters_type'];
                         $email = $row['email'];
                         $a = $row['a'];
                         $username = $row['username'];
@@ -45,52 +46,55 @@ $user_id = $_SESSION['user_id'];
                                             if($img_name=="")
                                             {
                                                 ?>
-                        <img src="../images/profile-user.png" alt="" width=120px>
+                        <img src="../images/profile-user.png" alt="" width=100px>
                         <?php
                                             }
                                             else
                                             {
                                                 ?>
                         <img class="image" src="<?php echo SITEURL; ?>/images/user/<?php echo $img_name; ?>"
-                            width="120px">
+                            width="100px">
                         <?php
                                             }
                                         ?>
                     </td>
                 </div>
+                <div class="">
+                    <td><strong><?php echo $voters_type; ?></strong></td>
+                </div>
                 <br>
                 <tr>
                     <div class="label-profile">
                         <div class="">
-                            <td>Name: <?php echo $Fname, ' ', $Mname, ' ',$Lname;?></td>
+                            <td><strong>Name:</strong> <?php echo $Fname, ' ', $Mname, ' ',$Lname;?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Birthdate: <?php echo $Birthday; ?></td>
+                            <td><strong>Birthdate:</strong> <?php echo $Birthday; ?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Age: <?php echo $age; ?></td>
+                            <td><strong>Age: </strong><?php echo $age; ?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Gender:<?php echo $gender; ?></td>
+                            <td><strong>Gender: </strong><?php echo $gender; ?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Status: <?php echo $s; ?></td>
+                            <td><strong>Status:</strong> <?php echo $s; ?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Email Address: <?php echo $email; ?></td>
+                            <td><strong>Email Address:</strong> <?php echo $email; ?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Home Address: <?php echo $a; ?></td>
+                            <td><strong>Home Address:</strong> <?php echo $a; ?></td>
                         </div>
                         <br>
                         <div class="">
-                            <td>Username: <?php echo $username; ?></td>
+                            <td><strong>Username:</strong> <?php echo $username; ?></td>
                         </div>
                     </div>
                     <br><br>

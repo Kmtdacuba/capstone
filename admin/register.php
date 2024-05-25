@@ -37,6 +37,8 @@ function checkForm() {
     var Birthday = document.getElementById('Birthday').value;
     var femaleChecked = document.getElementById("female").checked;
     var maleChecked = document.getElementById("male").checked;
+    var registeredChecked = document.getElementById("registered").checked;
+    var nonregisteredChecked = document.getElementById("non-registered").checked;
     var singleChecked = document.getElementById("single").checked;
     var marriedChecked = document.getElementById("married").checked;
     var widowedChecked = document.getElementById("widowed").checked;
@@ -56,6 +58,7 @@ function checkForm() {
         password !== '' &&
         termsChecked &&
         (femaleChecked || maleChecked) &&
+        (registeredChecked || nonregisteredChecked) &&
         (singleChecked || marriedChecked || widowedChecked)) {
         document.getElementById('submit').disabled = false;
     } else {
@@ -75,7 +78,7 @@ function checkForm() {
         <div class="main-content">
             <div class="wrapper">
                 <div class="add_admin_content">
-                    <a class="icons" href="../index.php">
+                    <a class="icons" href="residents.php">
                         <i class="fa-solid fa-square-xmark"></i>
                     </a>
                     <h1>Registration Form</h1>
@@ -109,14 +112,6 @@ function checkForm() {
                                         onkeyup="checkForm()" class="input-responsive" required>
                                 </td>
                             </tr>
-                            <input class="file" type="hidden" name="image">
-                            <tr>
-                                <td>
-                                    Birthday: <br>
-                                    <input class="b_date" type="date" id="Birthday" name="Birthday"
-                                        onkeyup="checkForm()" required>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <label for="">Gender:</label>
@@ -126,6 +121,30 @@ function checkForm() {
                                     <label for="">Female</label>
                                 </td>
                             </tr>
+                            <input class="file" type="hidden" name="image">
+                            <tr>
+                                <td>
+                                    Birthday:
+                                    <label class="type-label" for="resident_type">Resident Type:</label><br>
+                                    <input class="b_date" type="date" id="Birthday" name="Birthday"
+                                        onkeyup="checkForm()" required>
+                                    <select class="resident-type input-responsive" id="type" name="resident_type"
+                                        required>
+                                        <option value="Regular Resident">
+                                        </option>
+                                        <option value="Senior Citizen">Senior Citizen</option>
+                                        <option value="Person with Disability">Person with Disability</option>
+                                        <option value="Solo Parent">Solo Parent</option>
+                                        <option value="4p's Member">4p's Member </option>
+                                        <option value="Pregnant">Pregnant</option>
+                                        <option value="Youth">Youth</option>
+                                        <option value="Out of school youth">Out of school youth
+                                        </option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
                             <tr>
                                 <td>
                                     <label for="">Status:</label>
@@ -135,6 +154,17 @@ function checkForm() {
                                     <label for="">Married</label>
                                     <input type="radio" id="widowed" name="s" value="Widowed" onclick="checkForm()">
                                     <label for="">Widowed</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="">Voters Type:</label>
+                                    <input type="radio" id="registered" name="voters_type" value="Registered Voter"
+                                        onclick="checkForm()">
+                                    <label for="">Registered Voter</label>
+                                    <input type="radio" id="non-registered" name="voters_type"
+                                        value="Non-registered Voter" onclick="checkForm()">
+                                    <label for="">Non-registered Voter</label>
                                 </td>
                             </tr>
                             <tr>
@@ -204,7 +234,9 @@ function checkForm() {
         $Lname = $_POST['Lname'];
         $Birthday = date('Y-m-d', strtotime($_POST['Birthday']));
         $gender = $_POST['gender'];
+        $resident_type = $_POST['resident_type'];
         $s = $_POST['s'];
+        $voters_type = $_POST['voters_type'];
         $email = $_POST['email'];
         $a = $_POST['a'];
         $username = $_POST['username'];
@@ -273,9 +305,11 @@ if (mysqli_num_rows($res2) > 0) {
         Mname = '$Mname',
         Lname = '$Lname',
         Birthday = '$Birthday',
+        resident_type = '$resident_type',
         age='$diff->y',
         gender = '$gender',
         s = '$s',
+        voters_type = '$voters_type',
         email = '$email',
         a = '$a',
         username = '$username',

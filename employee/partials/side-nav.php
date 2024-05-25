@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Check last activity time
-if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 600) { // 300 seconds = 5 minutes
+if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 300) { // 300 seconds = 5 minutes
     // Destroy session and logout user
     session_unset();
     session_destroy();

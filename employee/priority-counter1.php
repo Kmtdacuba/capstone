@@ -143,6 +143,7 @@ setTimeout(function() {
                 <th>DATE & TIME</th>
                 <th>APPOINTMENT NUMBER</th>
                 <th>STATUS</th>
+                <th>ACTION</th>
             </tr>
 
             <?php

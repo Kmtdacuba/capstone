@@ -21,8 +21,10 @@ $sql_select = "SELECT * FROM tbl_resident WHERE id=$id";
             $data_to_insert9 = $row['a'];
             $data_to_insert10 = $row['username'];
             $data_to_insert11 = $row['password'];
+            $data_to_insert12 = $row['resident_type'];
+            $data_to_insert13 = $row['voters_type'];
             
-            $sql_insert = "INSERT INTO resident_archive (Fname, Mname, Lname, img_name, Birthday, age, s, email, a, username, password) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5', '$data_to_insert6', '$data_to_insert7', '$data_to_insert8' '$data_to_insert9', '$data_to_insert10', '$data_to_insert11')";
+            $sql_insert = "INSERT INTO resident_archive (Fname, Mname, Lname, img_name, Birthday, age, s, email, a, username, password, resident_type, voters_type) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5', '$data_to_insert6', '$data_to_insert7', '$data_to_insert8' '$data_to_insert9', '$data_to_insert10', '$data_to_insert11', '$data_to_insert12', '$data_to_insert13')";
             
             if ($conn->query($sql_insert) === FALSE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;

@@ -746,7 +746,7 @@ table tr th {
 
 
 .table-size input[type="number"] {
-  width: 27.5%;
+  width: 13%;
   padding: 1%;
   border-radius: 5px;
 }
@@ -898,12 +898,29 @@ table tr th {
 }
 
 .b_date {
-  width: 70%;
+  width: 30%;
   padding: 1%;
   margin-bottom: 3%;
   border-radius: 5px;
   font-size: 1rem;
   color: #11101D;
+}
+
+.resident-type {
+  width: 53%;
+  padding: 1%;
+  margin-bottom: 3%;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #11101D;
+}
+
+.type-label {
+  margin-left: 19px;
+}
+
+.age-label {
+  margin-left: 85px;
 }
 
 .type {
@@ -957,6 +974,7 @@ table tr th {
 form {
   overflow: hidden;
 }
+
 
 .btn-reg:hover {
   color: white;

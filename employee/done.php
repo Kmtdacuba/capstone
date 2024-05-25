@@ -12,11 +12,11 @@ $sql_select = "SELECT * FROM tbl_appointment WHERE id=$id";
             $data_to_insert = $row['name'];
             $data_to_insert1 = $row['type'];
             $data_to_insert2 = $row['appointment_no'];
-            $data_to_insert3 = $row['selected_time'];
-            $data_to_insert4 = $row['selected_date'];
+            $data_to_insert3 = $row['time'];
+            $data_to_insert4 = $row['date'];
             $data_to_insert5 = $row['email'];
             
-            $sql_insert = "INSERT INTO appointment_archive (name, type, appointment_no, selected_time, selected_date, email) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5')";
+            $sql_insert = "INSERT INTO appointment_archive (name, type, appointment_no, time, date, email) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5')";
             
             if ($conn->query($sql_insert) === FALSE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
