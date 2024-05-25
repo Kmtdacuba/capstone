@@ -5,7 +5,8 @@ $user_id = $_SESSION['user_id'];
 
 if (!isset($_SESSION['user_id'])) {
     // Redirect to login page or handle accordingly
-    eader('location:'.SITEURL.'index.php');    exit();
+    eader('location:'.SITEURL.'index.php');    
+    exit();
 }
 
 // Check last activity time
