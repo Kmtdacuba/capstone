@@ -94,13 +94,13 @@ ob_start();
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close2">&times;</span>
-                    <h6 class="text-center">Scan Using Gcash</h6><br>
+                    <h6 class="text-center">Scan Using Paymaya</h6><br>
                     <hr><br>
                     <b>
                         <img src="../images/paymaya.jpg" alt="" width=70%>
-                        <p id="phone-number" class="copy-button">+639358019043</p>
+                        <p id="paymaya-number" class="copy-button">+639358019043</p>
                         <script>
-                        document.getElementById('phone-number').addEventListener('click', function() {
+                        document.getElementById('paymaya-number').addEventListener('click', function() {
                             const phoneNumber = this.innerText;
                             const tempInput = document.createElement('input');
                             tempInput.value = phoneNumber;

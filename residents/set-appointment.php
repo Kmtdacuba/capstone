@@ -99,8 +99,7 @@ ob_start();
                             </tr>
                             <tr>
                                 <td>
-                                    Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Date:
                                     <br>
                                     <input class="date" type="date" id="date" name="date"
                                         min="<?php echo date('Y-m-d'); ?>"> <br><br>
