@@ -48,6 +48,14 @@ function limitAmount(field) {
 
             <h1>Payment Process</h1><br>
 
+            <?php
+                    if(isset($_SESSION['appointment']))
+                    {
+                        echo $_SESSION['appointment'];
+                        unset($_SESSION['appointment']);
+                    }
+                    ?>
+
 
             <form action="" method="POST" enctype="multipart/form-data">
                 <table class="table-size">
