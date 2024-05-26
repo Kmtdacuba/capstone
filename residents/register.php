@@ -174,12 +174,10 @@ function validateInput(input) {
                                         <option value="Regular Resident">
                                         </option>
                                         <option value="Senior Citizen">Senior Citizen</option>
-                                        <option value="Person with Disability">Person with Disability</option>
+                                        <option value="PWD">Person with Disability</option>
                                         <option value="Solo Parent">Solo Parent</option>
-                                        <option value="4p's Member">4p's Member </option>
+                                        <option value="4ps Member">4p's Member </option>
                                         <option value="Pregnant">Pregnant</option>
-                                        <option value="Youth">Youth</option>
-                                        <option value="Out of school youth">Out of school youth
                                         </option>
 
                                     </select>
