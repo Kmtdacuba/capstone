@@ -22,7 +22,7 @@
                                 $count = mysqli_num_rows($res);
                                 ?>
         <h2><?php echo $count; ?></h2>
-        <h4>TOTAL REGISTERED RESIDENT</h4>
+        <h4>REGISTERED RESIDENT</h4>
     </div>
     <div class="total female text-center">
         <?php
@@ -43,6 +43,85 @@
                             ?>
         <h2><?php echo $male; ?></h2>
         <h4>TOTAL MALE</h4>
+    </div>
+
+    <br>
+    <div class="box-category text-center">
+        <?php
+                                $sql = "SELECT * FROM tbl_resident WHERE voters_type='Registered Voter'";
+
+                                $res = mysqli_query($conn, $sql);
+
+                                $count = mysqli_num_rows($res);
+                                ?>
+        <h2><?php echo $count; ?></h2>
+        <h4>REGISTERED</h4>
+        <h4>VOTERS</h4>
+    </div>
+    <div class="box-category text-center">
+        <?php
+                                $sql = "SELECT * FROM tbl_resident WHERE voters_type='Non-registered Voter'";
+
+                                $res = mysqli_query($conn, $sql);
+
+                                $count = mysqli_num_rows($res);
+                                ?>
+        <h2><?php echo $count; ?></h2>
+        <h4>NON-REGISTERED</h4>
+        <h4>VOTERS</h4>
+    </div>
+
+    <div class="box-category text-center">
+        <?php
+                                $sql = "SELECT * FROM tbl_resident WHERE voters_type='Senior Citizen'";
+
+                                $res = mysqli_query($conn, $sql);
+
+                                $count = mysqli_num_rows($res);
+                                ?>
+        <h2><?php echo $count; ?></h2>
+        <h4>SENIOR</h4>
+        <h4>CITIZEN</h4>
+
+    </div>
+
+    <div class="box-category text-center">
+        <?php
+                                $sql = "SELECT * FROM tbl_resident WHERE voters_type='PWD'";
+
+                                $res = mysqli_query($conn, $sql);
+
+                                $count = mysqli_num_rows($res);
+                                ?>
+        <h2><?php echo $count; ?></h2>
+        <h4>PERSON WITH</h4>
+        <h4>DISABILITY</h4>
+    </div>
+
+    <div class="box-category text-center">
+        <?php
+                                $sql = "SELECT * FROM tbl_resident WHERE voters_type='Solo Parent'";
+
+                                $res = mysqli_query($conn, $sql);
+
+                                $count = mysqli_num_rows($res);
+                                ?>
+        <h2><?php echo $count; ?></h2>
+        <h4>SOLO</h4>
+        <h4>PARENT</h4>
+    </div>
+
+    <div class="box-category text-center">
+        <?php
+                                $sql = "SELECT * FROM tbl_resident WHERE voters_type='4ps Member'";
+
+                                $res = mysqli_query($conn, $sql);
+
+                                $count = mysqli_num_rows($res);
+                                ?>
+        <h2><?php echo $count; ?></h2>
+        <h4>4P'S</h4>
+        <h4>MEMBER</h4>
     </div>
     <div class="b daily text-center">
         <?php

@@ -47,7 +47,6 @@
         <h4>TOTAL MALE</h4>
     </div>
     <br>
-    <br>
     <div class="box-category text-center">
         <?php
                                 $sql = "SELECT * FROM tbl_resident WHERE voters_type='Registered Voter'";

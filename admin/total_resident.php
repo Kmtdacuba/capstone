@@ -43,7 +43,7 @@ function printContent() {
     } else {
         window.print();
         setTimeout(function() {
-            window.location.href = 'dashboard.php';
+            window.location.href = 'analytics.php';
         }, 1000); // Redirect after 1 second (adjust the delay as needed)
     }
 }
