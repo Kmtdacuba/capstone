@@ -117,8 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $result1 = $conn->query($sql1);
  
      if ($result1->num_rows > 0) {
-         $user = $result1->fetch_assoc();
-         $hashed_password = $user['password'];
+         $user1 = $result1->fetch_assoc();
+         $hashed_password = $user1['password'];
  
          // Verify the temporary password against the hashed password
          if (password_verify($temp_password, $hashed_password)) {
