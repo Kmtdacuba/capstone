@@ -74,32 +74,49 @@ $email = $_SESSION['email'];
 </html>
 
 <?php
+// Start the session
+session_start();
+
+// Include your database connection file
+include('config.php');
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the email and new password from the POST request
+    $email = $_POST['email'];
     $new_password = $_POST['new_password'];
 
-    // Retrieve the user from the database using the email - ADMIN
-    $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
-    $result = $conn->query($sql);
+    // Validate and sanitize inputs
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['change'] = "<div class='error text-center'>Invalid email format.</div>";
+        header('location:'.SITEURL.'forgot/change-pass.php');
+        exit;
+    }
 
-    $hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
-    $sql_update = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
-    $conn->query($sql_update); 
+    // Hash the new password
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-    if ($sql_update->num_rows > 0) {
-        $user = $sql_update->fetch_assoc();
-        $hashed_password = $user['password'];
+    // Prepare and execute the SQL query to update the password
+    $sql_update = $conn->prepare("UPDATE tbl_admin SET password = ? WHERE email = ?");
+    $sql_update->bind_param('ss', $hashed_password, $email);
+    
+    if ($sql_update->execute()) {
+        if ($sql_update->affected_rows > 0) {
             $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
             // Redirect user to login page
             header('location:'.SITEURL.'index.php');
-            exit; // Ensure no further execution of the script after redirection
-        }else {
+            exit;
+        } else {
             $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
             // Redirect user back to change password page
             header('location:'.SITEURL.'forgot/change-pass.php');
             exit;
         }
-    } 
-
-
+    } else {
+        $_SESSION['change'] = "<div class='error text-center'>Error executing query. Please try again later.</div>";
+        // Redirect user back to change password page
+        header('location:'.SITEURL.'forgot/change-pass.php');
+        exit;
+    }
+}
 ?>
