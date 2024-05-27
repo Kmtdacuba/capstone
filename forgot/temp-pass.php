@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //EMPLOYEE
      // Retrieve the user from the database using the email - ADMIN
      $sql1 = "SELECT * FROM tbl_employee WHERE email='$email'";
-     $result = $conn->query($sql1);
+     $result1 = $conn->query($sql1);
  
      if ($result1->num_rows > 0) {
          $user = $result1->fetch_assoc();
