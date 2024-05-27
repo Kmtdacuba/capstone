@@ -1,10 +1,11 @@
 <?php
 include('../config/connection.php');
+session_start(); // Make sure to start the session
+$email = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <title>Barangay 188 Tala Caloocan City</title>
@@ -23,9 +24,9 @@ include('../config/connection.php');
     }, 2000);
 
     setTimeout(function() {
-        var errorDiv = document.querySelector('.success');
-        if (errorDiv) {
-            errorDiv.remove(); // Remove the success message
+        var successDiv = document.querySelector('.success');
+        if (successDiv) {
+            successDiv.remove(); // Remove the success message
         }
     }, 2000);
     </script>
@@ -33,9 +34,7 @@ include('../config/connection.php');
 
 <body class="bg">
     <div>
-
         <img src="../images/Logo Name.png" alt="" width=100%>
-
     </div>
     <center>
         <div class="login">
@@ -44,13 +43,11 @@ include('../config/connection.php');
             </a>
             <h1>Change Password</h1>
             <?php
-                if(isset($_SESSION['change']))
-                {
+                if(isset($_SESSION['change'])) {
                     echo $_SESSION['change'];
                     unset($_SESSION['change']);
                 }
-                if(isset($_SESSION['temp']))
-                {
+                if(isset($_SESSION['temp'])) {
                     echo $_SESSION['temp'];
                     unset($_SESSION['temp']);
                 }
@@ -72,46 +69,41 @@ include('../config/connection.php');
             </form>
         </div>
     </center>
-
 </body>
 
 </html>
 
 <?php
-
-/* FOR ADMIN */
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
 
-    // Verify if passwords match
-    if ($new_password === $confirm_password) {
-        // Hash the new password
-        $password = password_hash($new_password, PASSWORD_DEFAULT); // Use $new_password here
-        // Update password in the database
-        $email = $_SESSION['email'];
-        $sql = "UPDATE tbl_admin SET password='$password' WHERE email='$email'";
+    // Retrieve the user from the database using the email - ADMIN
+    $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
+    $result = $conn->query($sql);
 
-        // Database connection and query execution code here...
-        if ($conn->query($sql) === TRUE) {
-            // Set session variable to indicate successful password change
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $hashed_password = $user['password'];
+
+        // Verify the temporary password against the hashed password
+        if (password_verify($new_password, $hashed_password)) {
+            // Temporary password matches, set session variables and redirect to change password page
             $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
             // Redirect user to login page
             header('location:'.SITEURL.'index.php');
-            exit;
+            exit; // Ensure no further execution of the script after redirection
         } else {
-            // Error in updating password
             $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
             // Redirect user back to change password page
             header('location:'.SITEURL.'forgot/change-pass.php');
             exit;
         }
     } else {
-        // Passwords do not match
-        $_SESSION['change'] = "<div class='error text-center'>Passwords do not match!</div>";
-        // Redirect user back to change password page
-        header('location:'.SITEURL.'forgot/change-pass.php');
-        exit;
+        $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
+            // Redirect user back to change password page
+            header('location:'.SITEURL.'forgot/change-pass.php');
+            exit;
     }
 }
 
