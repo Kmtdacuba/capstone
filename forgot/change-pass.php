@@ -43,13 +43,17 @@ $email = $_SESSION['email'];
             </a>
             <h1>Change Password</h1>
             <?php
-                if(isset($_SESSION['pass'])) {
-                    echo $_SESSION['pass'];
-                    unset($_SESSION['pass']);
+                if(isset($_SESSION['change'])) {
+                    echo $_SESSION['change'];
+                    unset($_SESSION['change']);
                 }
                 if(isset($_SESSION['temp'])) {
                     echo $_SESSION['temp'];
                     unset($_SESSION['temp']);
+                }
+                if(isset($_SESSION['pass'])) {
+                    echo $_SESSION['pass'];
+                    unset($_SESSION['pass']);
                 }
             ?><br>
             <form method="post" action="change-pass.php">
