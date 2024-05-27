@@ -82,29 +82,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM tbl_admin WHERE email='$email'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $hashed_password = $user['password'];
+    $hashed_password =  password_hash($new_password, PASSWORD_DEFAULT);
+    $sql_update = "UPDATE tbl_admin SET password = '$hashed_password' WHERE email = '$email'";
+    $conn->query($sql_update); 
 
-        // Verify the temporary password against the hashed password
-        if (password_verify($new_password, $hashed_password)) {
-            // Temporary password matches, set session variables and redirect to change password page
+    if ($sql_update->num_rows > 0) {
+        $user = $sql_update->fetch_assoc();
+        $hashed_password = $user['password'];
             $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
             // Redirect user to login page
             header('location:'.SITEURL.'index.php');
             exit; // Ensure no further execution of the script after redirection
-        } else {
+        }else {
             $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
             // Redirect user back to change password page
             header('location:'.SITEURL.'forgot/change-pass.php');
             exit;
         }
-    } else {
-        $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
-            // Redirect user back to change password page
-            header('location:'.SITEURL.'forgot/change-pass.php');
-            exit;
-    }
-}
+    } 
+
 
 ?>
