@@ -57,6 +57,10 @@ ob_start();
     echo $_SESSION['register']; // display session message
     unset($_SESSION['register']); // remove session message
     }
+    if(isset($_SESSION['change'])) {
+        echo $_SESSION['change']; // display session message
+        unset($_SESSION['change']); // remove session message
+        }
 
             ?>
 
