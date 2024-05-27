@@ -123,165 +123,191 @@
         <h4>4P'S</h4>
         <h4>MEMBER</h4>
     </div>
-    <div class="b daily text-center">
+    <div class="square daily text-center">
         <?php
-                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(date) = CURDATE()";
+                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(created_date) = CURDATE()";
                                 $daily_transactions_result = $conn->query($daily_transactions_query);
                                 $daily_transactions_row = $daily_transactions_result->fetch_assoc();
                                 $daily_transactions = $daily_transactions_row['daily_transactions'];
                                 ?>
-        <h5 class="h5">DAILY TRANSACTION</h5>
+        <h5 class="h5">DAILY</h5>
+        <h5 class="h5">TRANSACTION</h5>
         <h2 class="h2"><?php echo $daily_transactions; ?></h2>
     </div>
 
-    <div class="b weekly text-center">
+    <div class="square weekly text-center">
         <?php
-                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(date) = WEEK(CURDATE())";
+                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(created_date) = WEEK(CURDATE())";
                                 $weekly_transactions_result = $conn->query($weekly_transactions_query);
                                 $weekly_transactions_row = $weekly_transactions_result->fetch_assoc();
                                 $weekly_transactions = $weekly_transactions_row['weekly_transactions'];
                                 ?>
-        <h5 class="h5">WEEKLY TRANSACTIONS</h5>
+        <h5 class="h5">WEEKLY</h5>
+        <h5 class="h5">TRANSACTIONS</h5>
         <h2 class="h2"><?php echo $weekly_transactions; ?></h2>
     </div>
 
-    <div class="b overall text-center">
+    <div class="square overall text-center">
         <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS total_transactions FROM tbl_appointment";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $total_transactions = $total_transactions_row['total_transactions'];
                                 ?>
-        <h5 class="h5">TOTAL OVERALL TRANSACTIONS</h5>
+        <h5 class="h5">OVERALL</h5>
+        <h5 class="h5">TRANSACTIONS</h5>
         <h2 class="h2"><?php echo $total_transactions; ?></h2>
     </div>
     <br>
 
-    <a href="certficate.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="square male text-center">
+        <?php
+                                $daily_revenue_query = "SELECT SUM(amount) AS daily_revenue FROM tbl_payment WHERE DATE(created_date) = CURDATE()";
+                                $daily_revenue_result = $conn->query($daily_revenue_query);
+                                $daily_revenue_row = $daily_revenue_result->fetch_assoc();
+                                $daily_revenue = $daily_revenue_row['daily_revenue'];
+                                ?>
+        <h5 class="h5">DAILY</h5>
+        <h5 class="h5">REVENUE</h5>
+        <h2 class="h2"><?php echo "₱".$daily_revenue; ?></h2>
+    </div>
+
+    <div class="square female text-center">
+        <?php
+                                $monthly_revenue_query = "SELECT SUM(amount) AS monthly_revenue FROM tbl_payment WHERE MONTH(created_date) = MONTH(CURDATE())";
+                                $monthly_revenue_result = $conn->query($monthly_revenue_query);
+                                $monthly_revenue_row = $monthly_revenue_result->fetch_assoc();
+                                $monthly_revenue = $monthly_revenue_row['monthly_revenue'];
+                                ?>
+        <h5 class="h5">MONTHLY</h5>
+        <h5 class="h5">REVENUE</h5>
+        <h2 class="h2"><?php echo "₱".$monthly_revenue; ?></h2>
+    </div>
+
+    <div class="square resident text-center">
+        <?php
+                                $yearly_transactions_query = "SELECT SUM(amount) AS yearly_transactions FROM tbl_payment WHERE YEAR(created_date) = YEAR(CURDATE())";
+                                $yearly_transactions_result = $conn->query($yearly_transactions_query);
+                                $yearly_transactions_row = $yearly_transactions_result->fetch_assoc();
+                                $yearly_transactions = $yearly_transactions_row['yearly_transactions'];
+                                ?>
+        <h5 class="h5">YEARLY</h5>
+        <h5 class="h5">REVENUE</h5>
+        <h2 class="h2"><?php echo "₱".$yearly_transactions; ?></h2>
+    </div>
+
+
+
+    <div class="d_box text-center">
+        <?php
                                 $certificate = "SELECT COUNT(*) AS Barangay_Certificate FROM tbl_appointment WHERE type = 'Barangay Certificate'";
                                 $certificate_result = $conn->query($certificate);
                                 $certificate_row = $certificate_result->fetch_assoc();
                                 $Barangay_Certificate = $certificate_row['Barangay_Certificate'];
                                 ?>
-            <h4>Barangay</h4>
-            <h4>Certificate</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Certificate; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay</h4>
+        <h4>Certificate</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Certificate; ?></h2>
+    </div>
 
-    <a href="indigendy.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $indigency = "SELECT COUNT(*) AS Barangay_Indigency FROM tbl_appointment WHERE type = 'Barangay Indigency'";
                                 $indigency_result = $conn->query($indigency);
                                 $indigency_row = $indigency_result->fetch_assoc();
                                 $Barangay_Indigency= $indigency_row['Barangay_Indigency'];
                                 ?>
-            <h4>Barangay</h4>
-            <h4>Indigency</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Indigency; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay</h4>
+        <h4>Indigency</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Indigency; ?></h2>
+    </div>
 
-    <a href="clearance.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS Barangay_Clearance FROM tbl_appointment WHERE type = 'Barangay Clearance'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Clearance= $total_transactions_row['Barangay_Clearance'];
                                 ?>
-            <h4>Barangay</h4>
-            <h4>Clearance</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Clearance; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay</h4>
+        <h4>Clearance</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Clearance; ?></h2>
+    </div>
 
-    <a href="bp.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS Barangay_Business_Permit FROM tbl_appointment WHERE type = 'Barangay Business Permit'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Business_Permit= $total_transactions_row['Barangay_Business_Permit'];
                                 ?>
-            <h4>Barangay</h4>
-            <h4>Business Permit</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Business_Permit; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay</h4>
+        <h4>Business Permit</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Business_Permit; ?></h2>
+    </div>
 
-    <a href="bfp.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS Barangay_Facilities_Properties FROM tbl_appointment WHERE type = 'Barangay Facilities & Properties'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Facilities_Properties = $total_transactions_row['Barangay_Facilities_Properties'];
                                 ?>
-            <h4>Barangay</h4>
-            <h4>Facilities & Properties</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Facilities_Properties; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay</h4>
+        <h4>Facilities & Properties</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Facilities_Properties; ?></h2>
+    </div>
 
-    <a href="id.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS Barangay_Identification_Card FROM tbl_appointment WHERE type = 'Barangay Identification Card'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Identification_Card = $total_transactions_row['Barangay_Identification_Card'];
                                 ?>
-            <h4>Barangay</h4>
-            <h4>Identification Card</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Identification_Card; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay</h4>
+        <h4>Identification Card</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Identification_Card; ?></h2>
+    </div>
 
-    <a href="record.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS Barangay_Records FROM tbl_appointment WHERE type = 'Barangay Records, Data & Similar Documents'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $Barangay_Records= $total_transactions_row['Barangay_Records'];
                                 ?>
-            <h4>Barangay Records,</h4>
-            <h4>Data & Similar Documents</h4>
-            <br>
-            <h2 class="h2"><?php echo $Barangay_Records; ?></h2>
-        </div>
-    </a>
+        <h4>Barangay Records,</h4>
+        <h4>Data & Similar Documents</h4>
+        <br>
+        <h2 class="h2"><?php echo $Barangay_Records; ?></h2>
+    </div>
 
-    <a href="others.php">
-        <div class="d_box text-center">
-            <?php
+    <div class="d_box text-center">
+        <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS other FROM tbl_appointment WHERE type = 'other'";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $other = $total_transactions_row['other'];
                                 ?>
-            <h4>Other</h4>
-            <h4>Services</h4>
-            <br>
-            <h2 class="h2"><?php echo $other; ?></h2>
-        </div>
-        <a>
-            <div class="clear"></div>
-            <br>
-            <hr><br>
+        <h4>Other</h4>
+        <h4>Services</h4>
+        <br>
+        <h2 class="h2"><?php echo $other; ?></h2>
+    </div>
 
-            <!--Transaction Chart-->
-            <?php 
+    <div class="clear"></div>
+    <br>
+    <hr><br>
+
+    <!--Transaction Chart-->
+    <?php 
 $dataPoints1 = array(
 	array("label"=> "Barangay Cetrificate", "y"=> $Barangay_Certificate),
 	array("label"=> "Barangay Indigency", "y"=> $Barangay_Indigency),
@@ -294,42 +320,42 @@ $dataPoints1 = array(
 );
 	
 ?>
-            <script>
-            window.onload = function() {
+    <script>
+    window.onload = function() {
 
-                var chart = new CanvasJS.Chart("chartContainer1", {
-                    animationEnabled: true,
-                    exportEnabled: true,
-                    backgroundColor: "#E4E9F7",
-                    theme: "light1", // "light1", "light2", "dark1", "dark2"
-                    title: {
-                        fontFamily: "'Courier New', Courier, monospace",
-                        text: "Transaction Report"
-                    },
-                    axisY: {
-                        includeZero: true,
-                        FontFamily: "'Courier New', Courier, monospace"
-                    },
-                    data: [{
-                        type: "column",
-                        yValueFormatString: "#,##0\"\"",
-                        indexLabel: "{y}",
-                        indexLabelPlacement: "inside",
-                        indexLabelFontColor: "white",
-                        dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-                chart.render();
-            }
-            </script>
-            <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
-            <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+        var chart = new CanvasJS.Chart("chartContainer1", {
+            animationEnabled: true,
+            exportEnabled: true,
+            backgroundColor: "#E4E9F7",
+            theme: "light1", // "light1", "light2", "dark1", "dark2"
+            title: {
+                fontFamily: "'Courier New', Courier, monospace",
+                text: "Transaction Report"
+            },
+            axisY: {
+                includeZero: true,
+                FontFamily: "'Courier New', Courier, monospace"
+            },
+            data: [{
+                type: "column",
+                yValueFormatString: "#,##0\"\"",
+                indexLabel: "{y}",
+                indexLabelPlacement: "inside",
+                indexLabelFontColor: "white",
+                dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+    }
+    </script>
+    <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 
-            <!--Transaction Chart Ends-->
+    <!--Transaction Chart Ends-->
 
 
 
-            <!--Main Section Ends-->
+    <!--Main Section Ends-->
 </section>
 <?php 
     include ('partials/footer.php');

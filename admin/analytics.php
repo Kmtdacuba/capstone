@@ -125,39 +125,79 @@
         <h4>4P'S</h4>
         <h4>MEMBER</h4>
     </div>
-    <div class="b daily text-center">
+    <div class="square daily text-center">
         <?php
-                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(date) = CURDATE()";
+                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(created_date) = CURDATE()";
                                 $daily_transactions_result = $conn->query($daily_transactions_query);
                                 $daily_transactions_row = $daily_transactions_result->fetch_assoc();
                                 $daily_transactions = $daily_transactions_row['daily_transactions'];
                                 ?>
-        <h5 class="h5">DAILY TRANSACTION</h5>
+        <h5 class="h5">DAILY</h5>
+        <h5 class="h5">TRANSACTION</h5>
         <h2 class="h2"><?php echo $daily_transactions; ?></h2>
     </div>
 
-    <div class="b weekly text-center">
+    <div class="square weekly text-center">
         <?php
-                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(date) = WEEK(CURDATE())";
+                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(created_date) = WEEK(CURDATE())";
                                 $weekly_transactions_result = $conn->query($weekly_transactions_query);
                                 $weekly_transactions_row = $weekly_transactions_result->fetch_assoc();
                                 $weekly_transactions = $weekly_transactions_row['weekly_transactions'];
                                 ?>
-        <h5 class="h5">WEEKLY TRANSACTIONS</h5>
+        <h5 class="h5">WEEKLY</h5>
+        <h5 class="h5">TRANSACTIONS</h5>
         <h2 class="h2"><?php echo $weekly_transactions; ?></h2>
     </div>
 
-    <div class="b overall text-center">
+    <div class="square overall text-center">
         <?php
                                 $total_transactions_query = "SELECT COUNT(*) AS total_transactions FROM tbl_appointment";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $total_transactions = $total_transactions_row['total_transactions'];
                                 ?>
-        <h5 class="h5">TOTAL OVERALL TRANSACTIONS</h5>
+        <h5 class="h5">OVERALL</h5>
+        <h5 class="h5">TRANSACTIONS</h5>
         <h2 class="h2"><?php echo $total_transactions; ?></h2>
     </div>
     <br>
+
+    <div class="square male text-center">
+        <?php
+                                $daily_revenue_query = "SELECT SUM(amount) AS daily_revenue FROM tbl_payment WHERE DATE(created_date) = CURDATE()";
+                                $daily_revenue_result = $conn->query($daily_revenue_query);
+                                $daily_revenue_row = $daily_revenue_result->fetch_assoc();
+                                $daily_revenue = $daily_revenue_row['daily_revenue'];
+                                ?>
+        <h5 class="h5">DAILY</h5>
+        <h5 class="h5">REVENUE</h5>
+        <h2 class="h2"><?php echo "₱".$daily_revenue; ?></h2>
+    </div>
+
+    <div class="square female text-center">
+        <?php
+                                $monthly_revenue_query = "SELECT SUM(amount) AS monthly_revenue FROM tbl_payment WHERE MONTH(created_date) = MONTH(CURDATE())";
+                                $monthly_revenue_result = $conn->query($monthly_revenue_query);
+                                $monthly_revenue_row = $monthly_revenue_result->fetch_assoc();
+                                $monthly_revenue = $monthly_revenue_row['monthly_revenue'];
+                                ?>
+        <h5 class="h5">MONTHLY</h5>
+        <h5 class="h5">REVENUE</h5>
+        <h2 class="h2"><?php echo "₱".$monthly_revenue; ?></h2>
+    </div>
+
+    <div class="square resident text-center">
+        <?php
+                                $yearly_transactions_query = "SELECT SUM(amount) AS yearly_transactions FROM tbl_payment WHERE YEAR(created_date) = YEAR(CURDATE())";
+                                $yearly_transactions_result = $conn->query($yearly_transactions_query);
+                                $yearly_transactions_row = $yearly_transactions_result->fetch_assoc();
+                                $yearly_transactions = $yearly_transactions_row['yearly_transactions'];
+                                ?>
+        <h5 class="h5">YEARLY</h5>
+        <h5 class="h5">REVENUE</h5>
+        <h2 class="h2"><?php echo "₱".$yearly_transactions; ?></h2>
+    </div>
+
 
     <a href="certficate.php">
         <div class="d_box text-center">

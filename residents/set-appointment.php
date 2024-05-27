@@ -143,6 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     $type = $_POST['type'];
     $date = $_POST['date'];
     $time = $_POST['time'];
+    $created_date = date("Y-m-d");
 
 
     $sql1 = "SELECT * FROM tbl_appointment";
@@ -158,7 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     age='$diff->y',
     type = '$type',
     time = '$time',
-    date = '$date'
+    date = '$date',
+    created_date = '$created_date'
 ";
     // Send email confirmation
     $to = $email; 

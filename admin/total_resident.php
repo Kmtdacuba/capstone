@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../favicon.png">
+    <script src="https://kit.fontawesome.com/4a6db1b6a3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css">
     <title>Barangay 188 Tala Caloocan City</title>
 </head>
@@ -29,8 +30,13 @@
 ob_start();
 include('../config/connection.php');
 ?>
-<br>
+<div class="refresh">
+    <a class="icons" href="analytics.php">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+</div>
 <h2 class="print-content">Residents Profile</h2>
+
 <button class="print-record" onclick="printContent()">Print</button>
 <script>
 function printContent() {
@@ -48,7 +54,7 @@ function printContent() {
     }
 }
 </script>
-<br>
+
 <table class="table-full print-content">
     <tr>
         <th class="copy">Full Name</th>

@@ -94,6 +94,7 @@ function limitAmount(field) {
         $amount = $_POST['amount'];
         $reference = $_POST['reference'];
         $currentDateTime = date("Y-m-d-H:i");
+        $created_date = date("Y-m-d");
 
          //Upload the image
        if(isset($_FILES['image']['name'])) {
@@ -128,7 +129,8 @@ function limitAmount(field) {
         $sql = "INSERT INTO tbl_payment SET
         img_name = '$img_name',
         amount = '$amount',
-        reference = '$reference'
+        reference = '$reference',
+        created_date = '$created_date'
     ";
     // EXECUTE QUERY AND SAVE DATA IN DATABASE
    $res = mysqli_query($conn, $sql) or die(mysqli_error());

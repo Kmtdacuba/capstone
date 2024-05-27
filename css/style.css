@@ -274,8 +274,9 @@ h4 {
 }
 
 .h5 {
-  font-size: 20px;
-  color: #D22B2B;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
 }
 
 h6{
@@ -535,7 +536,6 @@ hr {
   padding: 1%;
   margin: 1%;
   float: left;
-  cursor: pointer;
 }
 
 .box-category {
@@ -546,13 +546,8 @@ hr {
   padding: 1%;
   margin: 1%;
   float: left;
-  cursor: pointer;
 }
 
-.d_box:hover {
-  background-color: #526D82;
-  border: 1px solid #21618C;
-}
 
 /*CSS for Paymanet*/
 .content-payment{
@@ -617,6 +612,14 @@ hr {
   float: left;
 }
 
+.square {
+  width: 15.6%;
+  margin: 0.5%;
+  padding: 0.5%;
+  border-radius: 5px;
+  float: left;
+}
+
 .daily {
   background-color: peachpuff;
   border: 1px solid burlywood;
@@ -647,12 +650,12 @@ hr {
 }
 
 .female {
-  background-color: lightcoral;
-  border: 1px solid coral;
+  background-color: lightpink;
+  border: 1px solid lightcoral;
 }
 .male {
-  background-color: #4CBB17;
-  border: 1px solid green;
+  background-color: lightgreen;
+  border: 1px solid  #4CBB17;
 }
 
 .counter1 {
