@@ -74,21 +74,24 @@ $email = $_SESSION['email'];
 </html>
 
 <?php
-// Start the session
-session_start();
-
-// Include your database connection file
-include('config.php');
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the email and new password from the POST request
-    $email = $_POST['email'];
+    // Get the new password from the POST request
     $new_password = $_POST['new_password'];
 
-    // Validate and sanitize inputs
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['change'] = "<div class='error text-center'>Invalid email format.</div>";
+    // Retrieve the email from the session
+    if (isset($_SESSION['email'])) {
+        $email = $_SESSION['email'];
+    } else {
+        $_SESSION['change'] = "<div class='error text-center'>No email found in session. Please try again.</div>";
+        header('location:'.SITEURL.'forgot/change-pass.php');
+        exit;
+    }
+
+    // Validate and sanitize the new password (additional checks can be added)
+    if (empty($new_password)) {
+        $_SESSION['change'] = "<div class='error text-center'>Password cannot be empty.</div>";
         header('location:'.SITEURL.'forgot/change-pass.php');
         exit;
     }
