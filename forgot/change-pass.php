@@ -43,9 +43,9 @@ $email = $_SESSION['email'];
             </a>
             <h1>Change Password</h1>
             <?php
-                if(isset($_SESSION['change'])) {
-                    echo $_SESSION['change'];
-                    unset($_SESSION['change']);
+                if(isset($_SESSION['pass'])) {
+                    echo $_SESSION['pass'];
+                    unset($_SESSION['pass']);
                 }
                 if(isset($_SESSION['temp'])) {
                     echo $_SESSION['temp'];
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate and sanitize the new password (additional checks can be added)
     if (empty($new_password)) {
-        $_SESSION['change'] = "<div class='error text-center'>Password cannot be empty.</div>";
+        $_SESSION['pass'] = "<div class='error text-center'>Password cannot be empty.</div>";
         header('location:'.SITEURL.'forgot/change-pass.php');
         exit;
     }
@@ -105,18 +105,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($sql_update->execute()) {
         if ($sql_update->affected_rows > 0) {
-            $_SESSION['change'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
+            $_SESSION['pass'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
             // Redirect user to login page
             header('location:'.SITEURL.'index.php');
             exit;
         } else {
-            $_SESSION['change'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
+            $_SESSION['pass'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
             // Redirect user back to change password page
             header('location:'.SITEURL.'forgot/change-pass.php');
             exit;
         }
     } else {
-        $_SESSION['change'] = "<div class='error text-center'>Error executing query. Please try again later.</div>";
+        $_SESSION['pass'] = "<div class='error text-center'>Error executing query. Please try again later.</div>";
         // Redirect user back to change password page
         header('location:'.SITEURL.'forgot/change-pass.php');
         exit;
