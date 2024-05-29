@@ -15,9 +15,9 @@ $sql_select = "SELECT * FROM tbl_appointment WHERE id=$id";
             $data_to_insert3 = $row['time'];
             $data_to_insert4 = $row['date'];
             $data_to_insert5 = $row['email'];
+            $data_to_insert5 = $row['created_date'];
             
-            $sql_insert = "INSERT INTO appointment_archive (name, type, appointment_no, time, date, email) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5')";
-            
+            $sql_insert = "INSERT INTO appointment_archive (name, type, appointment_no, time, date, email, created_date) VALUES ('$data_to_insert', '$data_to_insert1', '$data_to_insert2', '$data_to_insert3', '$data_to_insert4', '$data_to_insert5', '$data_to_insert6')";
             if ($conn->query($sql_insert) === FALSE) {
                 echo "Error: " . $sql_insert . "<br>" . $conn->error;
                 $_SESSION['done'] = " <div class='error'> &nbsp; Error: Try again!</div>";

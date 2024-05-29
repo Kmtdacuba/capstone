@@ -36,9 +36,6 @@ include('../config/connection.php');
     </div>
     <center>
         <div class="login">
-            <a class="icons" href="../index.php">
-                <i class="fa-solid fa-square-xmark"></i>
-            </a>
             <h1>Temporary Password</h1><br>
 
             <?php

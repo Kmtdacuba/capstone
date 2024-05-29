@@ -1,6 +1,7 @@
 <?php include('../config/connection.php');
 $queue_no = $_SESSION['queue_no'];
 ob_start();
+date_default_timezone_set('Asia/Manila');
 ?>
 
 

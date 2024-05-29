@@ -143,7 +143,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['date']) && isset($_POS
     $type = $_POST['type'];
     $date = $_POST['date'];
     $time = $_POST['time'];
-    $created_date = date("Y-m-d");
+    date_default_timezone_set('Asia/Manila');
+    $created_date = date("Y-m-d H:i:s");
 
 
     $sql1 = "SELECT * FROM tbl_appointment";

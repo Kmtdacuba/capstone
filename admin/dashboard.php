@@ -1,5 +1,6 @@
 <?php 
     include ('partials/side-nav.php');
+    date_default_timezone_set('Asia/Manila');
 ?>
 
 <section class="home-section">
@@ -126,41 +127,47 @@
     </div>
 
 
-    <div class="square daily text-center">
-        <?php
-                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM tbl_appointment WHERE DATE(created_date) = CURDATE()";
+    <a href="daily_transaction.php">
+        <div class="square daily text-center">
+            <?php
+                                $daily_transactions_query = "SELECT COUNT(*) AS daily_transactions FROM appointment_archive WHERE DATE(created_date) = CURDATE()";
                                 $daily_transactions_result = $conn->query($daily_transactions_query);
                                 $daily_transactions_row = $daily_transactions_result->fetch_assoc();
                                 $daily_transactions = $daily_transactions_row['daily_transactions'];
                                 ?>
-        <h5 class="h5">DAILY</h5>
-        <h5 class="h5">TRANSACTION</h5>
-        <h2 class="h2"><?php echo $daily_transactions; ?></h2>
-    </div>
+            <h5 class="h5">DAILY</h5>
+            <h5 class="h5">TRANSACTION</h5>
+            <h2 class="h2"><?php echo $daily_transactions; ?></h2>
+        </div>
+    </a>
 
-    <div class="square weekly text-center">
-        <?php
-                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM tbl_appointment WHERE WEEK(created_date) = WEEK(CURDATE())";
+    <a href="monthly_transaction.php">
+        <div class="square weekly text-center">
+            <?php
+                                $weekly_transactions_query = "SELECT COUNT(*) AS weekly_transactions FROM appointment_archive WHERE MONTH(created_date) = MONTH(CURDATE())";
                                 $weekly_transactions_result = $conn->query($weekly_transactions_query);
                                 $weekly_transactions_row = $weekly_transactions_result->fetch_assoc();
                                 $weekly_transactions = $weekly_transactions_row['weekly_transactions'];
                                 ?>
-        <h5 class="h5">WEEKLY</h5>
-        <h5 class="h5">TRANSACTIONS</h5>
-        <h2 class="h2"><?php echo $weekly_transactions; ?></h2>
-    </div>
+            <h5 class="h5">MONTHLY</h5>
+            <h5 class="h5">TRANSACTIONS</h5>
+            <h2 class="h2"><?php echo $weekly_transactions; ?></h2>
+        </div>
+    </a>
 
-    <div class="square overall text-center">
-        <?php
-                                $total_transactions_query = "SELECT COUNT(*) AS total_transactions FROM tbl_appointment";
+    <a href="all_transaction.php">
+        <div class="square overall text-center">
+            <?php
+                                $total_transactions_query = "SELECT COUNT(*) AS total_transactions FROM appointment_archive";
                                 $total_transactions_result = $conn->query($total_transactions_query);
                                 $total_transactions_row = $total_transactions_result->fetch_assoc();
                                 $total_transactions = $total_transactions_row['total_transactions'];
                                 ?>
-        <h5 class="h5">OVERALL</h5>
-        <h5 class="h5">TRANSACTIONS</h5>
-        <h2 class="h2"><?php echo $total_transactions; ?></h2>
-    </div>
+            <h5 class="h5">OVERALL</h5>
+            <h5 class="h5">TRANSACTIONS</h5>
+            <h2 class="h2"><?php echo $total_transactions; ?></h2>
+        </div>
+    </a>
     <br>
 
     <div class="square male text-center">
