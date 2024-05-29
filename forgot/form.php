@@ -146,6 +146,30 @@ if (mail($to, $subject, $message, $headers)) {
     header('location:'. SITEURL.'forgot/form.php');
  } 
 } 
+// FOR RESIDENT
+if ($result2->num_rows > 0) {
+    // Generate a temporary password
+    $temp_password = generateRandomPassword();
+    
+    // Update the user's password in the database
+    $hashed_password =  password_hash($temp_password, PASSWORD_DEFAULT);
+    $sql_update2 = "UPDATE tbl_resident SET password = '$hashed_password' WHERE email = '$email'";
+    $conn->query($sql_update2); 
+    
+    // Send the temporary password via email
+    $to = $email;
+    $subject = 'Password Reset';
+    $message = 'Your temporary password is: '. '<strong>'. $temp_password . '</strong>' '
+    Please use this temporary password to log in and change your password.';
+    $headers = 'From: ' . $from_name . ' <' . $from_email . '>' ; 
+    if (mail($to, $subject, $message, $headers)) {
+        $_SESSION['temp'] = " <div class='success text-center'>Temporary password sent to your email.</div>";
+           header('location:'. SITEURL.'forgot/temp-pass.php');
+    } else {
+        $_SESSION['temp'] = " <div class='error text-center'>Email not found.</div>";
+        header('location:'. SITEURL.'forgot/form.php');
+     } 
+    } 
     }
     $conn->close();
     ?>
