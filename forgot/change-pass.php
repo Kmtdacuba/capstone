@@ -78,7 +78,6 @@ $email = $_SESSION['email'];
 </html>
 
 <?php
-
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the new password from the POST request
@@ -89,40 +88,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_SESSION['email'];
     } else {
         $_SESSION['change'] = "<div class='error text-center'>No email found in session. Please try again.</div>";
-        header('location:'.SITEURL.'forgot/change-pass.php');
+        header('location:' . SITEURL . 'forgot/change-pass.php');
         exit;
     }
 
     // Validate and sanitize the new password (additional checks can be added)
     if (empty($new_password)) {
         $_SESSION['pass'] = "<div class='error text-center'>Password cannot be empty.</div>";
-        header('location:'.SITEURL.'forgot/change-pass.php');
+        header('location:' . SITEURL . 'forgot/change-pass.php');
         exit;
     }
 
     // Hash the new password
     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-    // Prepare and execute the SQL query to update the password
-    $sql_update = $conn->prepare("UPDATE tbl_admin SET password = ? WHERE email = ?");
-    $sql_update->bind_param('ss', $hashed_password, $email);
-    
-    if ($sql_update->execute()) {
-        if ($sql_update->affected_rows > 0) {
-            $_SESSION['pass'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
-            // Redirect user to login page
-            header('location:'.SITEURL.'index.php');
-            exit;
-        } else {
-            $_SESSION['pass'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
-            // Redirect user back to change password page
-            header('location:'.SITEURL.'forgot/change-pass.php');
-            exit;
+    // List of user types and their corresponding table names
+    $user_types = [
+        'tbl_admin',
+        'tbl_employee',
+        'tbl_resident'
+    ];
+
+    $password_changed = false;
+
+    // Loop through each user type and try to update the password
+    foreach ($user_types as $table) {
+        // Prepare and execute the SQL query to update the password
+        $sql_update = $conn->prepare("UPDATE $table SET password = ? WHERE email = ?");
+        $sql_update->bind_param('ss', $hashed_password, $email);
+        
+        if ($sql_update->execute() && $sql_update->affected_rows > 0) {
+            $password_changed = true;
+            break;
         }
+    }
+
+    if ($password_changed) {
+        $_SESSION['pass'] = "<div class='success text-center'>Password changed successfully! Please login with your new password.</div>";
+        // Redirect user to login page
+        header('location:' . SITEURL . 'index.php');
+        exit;
     } else {
-        $_SESSION['pass'] = "<div class='error text-center'>Error executing query. Please try again later.</div>";
+        $_SESSION['pass'] = "<div class='error text-center'>Error changing password. Please try again later.</div>";
         // Redirect user back to change password page
-        header('location:'.SITEURL.'forgot/change-pass.php');
+        header('location:' . SITEURL . 'forgot/change-pass.php');
         exit;
     }
 }
