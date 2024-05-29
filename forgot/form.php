@@ -146,6 +146,11 @@ if (mail($to, $subject, $message, $headers)) {
     header('location:'. SITEURL.'forgot/form.php');
  } 
 } 
+
+// Check if the email exists in the database - EMPLOYEE
+$sql2 = "SELECT * FROM tbl_resident WHERE email = '$email'";
+$result2 = $conn->query($sql2);
+
 // FOR RESIDENT
 if ($result2->num_rows > 0) {
     // Generate a temporary password
