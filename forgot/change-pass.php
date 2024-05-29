@@ -15,14 +15,14 @@
         if (errorDiv) {
             errorDiv.remove(); // Remove the error message
         }
-    }, 2000);
+    }, 30000);
 
     setTimeout(function() {
         var successDiv = document.querySelector('.success');
         if (successDiv) {
             successDiv.remove(); // Remove the success message
         }
-    }, 2000);
+    }, 30000);
 
     // Check if passwords match
     function validatePasswords() {

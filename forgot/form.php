@@ -21,14 +21,14 @@ include('../config/connection.php');
         if (errorDiv) {
             errorDiv.remove(); // Remove the error message
         }
-    }, 2000);
+    }, 30000);
 
     setTimeout(function() {
         var errorDiv = document.querySelector('.success');
         if (errorDiv) {
             errorDiv.remove(); // Remove the success message
         }
-    }, 2000);
+    }, 30000);
     </script>
 </head>
 
