@@ -1,9 +1,3 @@
-<?php
-include('../config/connection.php');
-session_start(); // Make sure to start the session
-$email = $_SESSION['email'];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +23,18 @@ $email = $_SESSION['email'];
             successDiv.remove(); // Remove the success message
         }
     }, 2000);
+
+    // Check if passwords match
+    function validatePasswords() {
+        var newPassword = document.getElementById('new_password').value;
+        var confirmPassword = document.getElementById('confirm_password').value;
+
+        if (newPassword !== confirmPassword) {
+            alert('Passwords do not match. Please try again.');
+            return false;
+        }
+        return true;
+    }
     </script>
 </head>
 
@@ -56,7 +62,7 @@ $email = $_SESSION['email'];
                     unset($_SESSION['pass']);
                 }
             ?><br>
-            <form method="post" action="change-pass.php">
+            <form method="post" action="change-pass.php" onsubmit="return validatePasswords()">
                 <tr>
                     <label for="new_password" style="text-align: left; display: block;">New Password:</label>
                     <input class="input-responsive" type="password" id="new_password" name="new_password"
@@ -76,12 +82,16 @@ $email = $_SESSION['email'];
 </body>
 
 </html>
-
 <?php
+include('../config/connection.php');
+session_start(); // Make sure to start the session
+$email = $_SESSION['email'];
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the new password from the POST request
+    // Get the new password and confirm password from the POST request
     $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
 
     // Retrieve the email from the session
     if (isset($_SESSION['email'])) {
@@ -93,8 +103,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate and sanitize the new password (additional checks can be added)
-    if (empty($new_password)) {
-        $_SESSION['pass'] = "<div class='error text-center'>Password cannot be empty.</div>";
+    if (empty($new_password) || empty($confirm_password)) {
+        $_SESSION['pass'] = "<div class='error text-center'>Password fields cannot be empty.</div>";
+        header('location:' . SITEURL . 'forgot/change-pass.php');
+        exit;
+    }
+
+    // Check if the passwords match
+    if ($new_password !== $confirm_password) {
+        $_SESSION['pass'] = "<div class='error text-center'>Passwords do not match. Please try again.</div>";
         header('location:' . SITEURL . 'forgot/change-pass.php');
         exit;
     }
